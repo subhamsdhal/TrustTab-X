@@ -55,6 +55,19 @@ def benchmark_main(argv: list[str]) -> None:
 
 
 def main() -> None:
+    if sys.argv[1:2] == ["natural-benchmark"]:
+        from .natural_domain import run_natural_benchmark, save_natural
+
+        parser = argparse.ArgumentParser(description="Run patient-disjoint natural-domain benchmark")
+        parser.add_argument("--archive", default="data/raw/tableshift/dataset_diabetes.zip")
+        parser.add_argument("--seed", type=int, default=264738)
+        parser.add_argument("--max-fit-rows", type=int, default=12000)
+        parser.add_argument("--output", default="outputs/tableshift_diabetes_pilot.json")
+        args = parser.parse_args(sys.argv[2:])
+        result = run_natural_benchmark(args.archive, seed=args.seed, max_fit_rows=args.max_fit_rows)
+        save_natural(result, args.output)
+        print(json.dumps({"output": args.output, "results": result["results"]}, indent=2))
+        return
     if sys.argv[1:2] == ["benchmark"]:
         benchmark_main(sys.argv[2:])
         return

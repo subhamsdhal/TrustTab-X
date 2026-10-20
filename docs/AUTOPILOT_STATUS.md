@@ -1,5 +1,12 @@
 # TrustTab-X autonomous build status
 
+## 2026-10-20 natural-domain checkpoint
+
+- TableShift-derived UCI diabetes admission-source holdout executed with patient-disjoint partitions; see `docs/TABLESHIFT_DOMAIN_MANIFEST.md` and ignored `outputs/tableshift_diabetes_12000.json`. It is not the exact official TableShift split. Source fit 12,000 rows; selection 3,440; calibration 3,407; ID test 2,713; OOD test 51,012. Unused OOD validation has 5,620 rows.
+- Five fixed classical experts fit in a shared 3.818-second wall-clock total on the local CPU; both decisions were charged the same five-model fit pool. Peak Windows process working set was 426,056 KiB. No hyperparameter trials. Three candidates selected random forest: ID/OOD Brier 0.201856/0.256984, log loss 0.591340/0.710901, AUROC 0.670846/0.631052, ECE 0.013872/0.108761. Five candidates selected CatBoost: ID/OOD Brier 0.201603/0.250504, log loss 0.590087/0.696820, AUROC 0.669733/0.643220, ECE 0.009759/0.095313. This single pair is exploratory.
+- `docs/M4_RESEARCH_SPEC.md` defines deployable features, objective, abstention and evaluation gate. M4 router training remains **not started** because one natural pair cannot support held-out-domain evaluation.
+- Final local checks: 18 tests passed and `ruff check src tests` passed. Public raw archive is ignored; no publication or remote push.
+
 Checkpoint: 2026-10-20, Asia/Calcutta. Branch: `codex/trusttabx-autopilot` (local Git). This ledger describes executed work; no public deployment or publication occurred.
 
 | Milestone | State | Evidence and remaining work |

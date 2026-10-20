@@ -1,5 +1,9 @@
 # TrustTab-X preliminary research report
 
+## Natural-domain pilot update (2026-10-20)
+
+An executed patient-disjoint, TableShift-derived UCI diabetes admission-source holdout is documented in `docs/TABLESHIFT_DOMAIN_MANIFEST.md`; machine-readable metrics and split hashes are in `outputs/tableshift_diabetes_12000.json`. Shared five-model training cost was 3.818 seconds; the 3-candidate selector chose random forest and the 5-candidate selector chose CatBoost on source selection Brier. ID/OOD Brier was 0.201856/0.256984 versus 0.201603/0.250504, respectively. OOD log loss was 0.710901 versus 0.696820. Both suffered calibration degradation under shift. This is one exploratory domain pair, with a modified patient-disjoint split and limited features, so it does not establish broad generalisation or justify a trained router. The prospective method is in `docs/M4_RESEARCH_SPEC.md`.
+
 **Checkpoint:** 2026-10-20. **Status:** three-task, 10-fold, three-seed classical benchmark plus a one-fold shift pilot. This is not the final study or evidence of an adaptive router.
 
 ## Question and design

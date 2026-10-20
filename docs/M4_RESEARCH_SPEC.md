@@ -1,0 +1,15 @@
+# M4 research gate and prospective router specification
+
+Date: 2026-10-20. Status: specification only; no learned router has been trained.
+
+## Information and objective
+
+For input row `x`, expert `e` emits probability `p_e(x)`. A router may observe `x`, the expert probabilities and uncertainty summaries, training-fitted feature density/shift scores, and source-validation performance summaries. It cannot observe target labels, target test metrics or post-outcome variables. At deployment, it may compute unlabeled batch statistics if an unsupervised-adaptation protocol explicitly permits them; a zero-shot protocol uses only fixed source-trained objects and each incoming row. Supervised target adaptation, including calibration with target labels, is a separate experiment.
+
+Let `q_theta(e|z(x))` be a routing distribution over experts based on deployable features `z`. A simple deterministic router chooses `e*(x)=argmin_e r_hat_e(z(x))`, where `r_hat_e` estimates conditional Brier or log loss from held-out source environments. An abstention rule emits a decision only when estimated risk is below a threshold `tau` fixed on an independent source selection set. The objective is to minimise expected proper loss plus `lambda` times abstention cost, subject to a predeclared coverage floor and latency/fit budget. A blended probability `sum_e q_theta(e|z)p_e(x)` is an additional comparator, not evidence of better generalisation by itself.
+
+Reliability estimates require out-of-fold or source-environment-held-out predictions, with expert fitting, router fitting, model selection, threshold selection and conformal calibration in distinct partitions. Shift features must be fitted on training data. Test labels are read once for final scoring. Source-derived calibration is assessed empirically on shifted data; exchangeable split-conformal coverage has no guarantee under arbitrary domain shift.
+
+## Evaluation gate
+
+Pre-register multiple independent source environments and at least one held-out dataset/domain with enough positive and negative cases. The current single TableShift-derived source/OOD pair plus three OpenML IID tasks do not establish that gate. Therefore training a learned router now would invite overfitting. Before doing so, obtain additional natural domains and document group/time boundaries. Compare to source-validation-selected fixed expert, uniform ensemble, validation-selected ensemble, confidence/risk-threshold abstention and a simple nonlearned reliability rule. Evaluate paired Brier and log loss, AUROC, ECE, risk at matched coverage, AURC, latency, memory and fit budget across domains/seeds. An oracle using target labels is context only, never an operational baseline. Ablate expert count, shift features, reliability features, calibration and extra compute. A meaningful improvement must recur on held-out domains at matched resources and coverage; a single favorable test difference is exploratory. If the estimate is unreliable, abstain or request human review; never silently switch to an unvalidated expert.

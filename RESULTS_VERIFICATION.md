@@ -1,5 +1,9 @@
 # Results verification — 2026-10-20
 
+## Natural-domain verification
+
+Executed `./.venv/Scripts/trusttabx.exe natural-benchmark --max-fit-rows 12000 --output outputs/tableshift_diabetes_12000.json` successfully against the SHA-256-pinned public UCI archive. This is a patient-disjoint TableShift-derived variant, not an official TableShift score. The result file contains ID/OOD metrics and resource records. Executed full `pytest -q`: 18 passed; `ruff check src tests`: all checks passed. No learned router, TabPFN comparison, official TableShift package execution or repeated natural-domain evaluation has been verified. Benchmark data and JSON output remain Git-ignored local artifacts.
+
 ## Executed locally
 
 - Original starter: `python -m pytest -q -p no:cacheprovider --basetemp=.pytest_tmp` in the project venv: 8 passed before M1 edits.
