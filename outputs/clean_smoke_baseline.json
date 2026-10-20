@@ -1,0 +1,162 @@
+{
+  "created_at_utc": "2026-10-20T17:19:38.957338+00:00",
+  "status": "classical_baseline_only",
+  "dataset": "synthetic_covariate_shift_smoke_test",
+  "config": {
+    "seed": 42,
+    "n_train": 1400,
+    "n_selection": 350,
+    "n_calibration": 350,
+    "n_test": 600,
+    "shift_strength": 1.5,
+    "alpha": 0.1
+  },
+  "model_selection_metric": "brier_on_independent_selection_split",
+  "model_selection_scores": {
+    "logistic_regression": 0.1770252021165112,
+    "hist_gradient_boosting": 0.18195031673950782,
+    "random_forest": 0.18731699005288066
+  },
+  "selected_model": "logistic_regression",
+  "conformal": {
+    "alpha": 0.1,
+    "calibration_size": 350,
+    "score_threshold": 0.7098924384884805,
+    "guarantee": "iid/exchangeable marginal only; not promised under shift"
+  },
+  "iid_test": {
+    "prediction": {
+      "accuracy": 0.7433333333333333,
+      "brier": 0.1710766509708615,
+      "log_loss": 0.5195186942992607,
+      "roc_auc": 0.823273512166357,
+      "average_precision": 0.8088947845471073,
+      "ece_10_bins": 0.019517907448642752,
+      "aurc_confidence": 0.1466182898092645,
+      "risk_coverage_points": [
+        {
+          "coverage": 0.1,
+          "error_risk": 0.06666666666666667
+        },
+        {
+          "coverage": 0.2,
+          "error_risk": 0.1
+        },
+        {
+          "coverage": 0.3016666666666667,
+          "error_risk": 0.09944751381215469
+        },
+        {
+          "coverage": 0.4,
+          "error_risk": 0.1125
+        },
+        {
+          "coverage": 0.5,
+          "error_risk": 0.13333333333333333
+        },
+        {
+          "coverage": 0.6,
+          "error_risk": 0.15555555555555556
+        },
+        {
+          "coverage": 0.7016666666666667,
+          "error_risk": 0.166270783847981
+        },
+        {
+          "coverage": 0.8,
+          "error_risk": 0.20833333333333334
+        },
+        {
+          "coverage": 0.9,
+          "error_risk": 0.23148148148148148
+        },
+        {
+          "coverage": 1.0,
+          "error_risk": 0.25666666666666665
+        }
+      ],
+      "marginal_coverage": 0.91,
+      "mean_set_size": 1.4116666666666666,
+      "abstention_rate": 0.4116666666666667,
+      "singleton_accuracy": 0.8470254957507082
+    },
+    "shift_monitor": {
+      "shifted": false,
+      "min_p_value": 0.08699746277798397,
+      "significant_feature_count": 0,
+      "number_of_features": 8,
+      "familywise_alpha": 0.05
+    }
+  },
+  "shifted_test": {
+    "prediction": {
+      "accuracy": 0.8033333333333333,
+      "brier": 0.13602576549272286,
+      "log_loss": 0.4295338983780517,
+      "roc_auc": 0.8024313737729989,
+      "average_precision": 0.9203356297818789,
+      "ece_10_bins": 0.04014991860365782,
+      "aurc_confidence": 0.08966562116867949,
+      "risk_coverage_points": [
+        {
+          "coverage": 0.1,
+          "error_risk": 0.016666666666666666
+        },
+        {
+          "coverage": 0.2,
+          "error_risk": 0.05
+        },
+        {
+          "coverage": 0.3016666666666667,
+          "error_risk": 0.06077348066298342
+        },
+        {
+          "coverage": 0.4,
+          "error_risk": 0.0625
+        },
+        {
+          "coverage": 0.5,
+          "error_risk": 0.06666666666666667
+        },
+        {
+          "coverage": 0.6,
+          "error_risk": 0.08888888888888889
+        },
+        {
+          "coverage": 0.7016666666666667,
+          "error_risk": 0.12351543942992874
+        },
+        {
+          "coverage": 0.8,
+          "error_risk": 0.13125
+        },
+        {
+          "coverage": 0.9,
+          "error_risk": 0.15555555555555556
+        },
+        {
+          "coverage": 1.0,
+          "error_risk": 0.19666666666666666
+        }
+      ],
+      "marginal_coverage": 0.905,
+      "mean_set_size": 1.2616666666666667,
+      "abstention_rate": 0.26166666666666666,
+      "singleton_accuracy": 0.871331828442438
+    },
+    "shift_monitor": {
+      "shifted": true,
+      "min_p_value": 2.276053455943338e-130,
+      "significant_feature_count": 2,
+      "number_of_features": 8,
+      "familywise_alpha": 0.05
+    }
+  },
+  "limitations": [
+    "Synthetic test results are not research conclusions or industry performance claims.",
+    "This starter has fixed validation-based expert selection, not dynamic routing.",
+    "Conformal marginal coverage is not guaranteed under general distribution shift.",
+    "Feature-wise KS monitoring does not distinguish shift mechanisms or certify safety.",
+    "No tabular foundation model is included in the first baseline run."
+  ]
+}

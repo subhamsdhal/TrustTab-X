@@ -2,11 +2,46 @@
 
 import argparse
 import json
+import sys
 
 from .experiment import ExperimentConfig, run_experiment, save_experiment
 
 
+def benchmark_main(argv: list[str]) -> None:
+    from .benchmark import TASKS, run_openml_task, save_benchmark
+
+    parser = argparse.ArgumentParser(description="Run pinned OpenML-CC18 binary pilot tasks")
+    parser.add_argument("--task-id", type=int, action="append", choices=sorted(TASKS))
+    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--alpha", type=float, default=0.1)
+    parser.add_argument("--max-rows", type=int, default=5000)
+    parser.add_argument("--cache-dir", default="data/raw/openml")
+    parser.add_argument("--advanced-experts", action="store_true")
+    parser.add_argument("--shift-lab", action="store_true")
+    parser.add_argument("--output", default="outputs/openml_m1_pilot.json")
+    args = parser.parse_args(argv)
+    results = []
+    for task_id in args.task_id or list(TASKS):
+        print(f"Running OpenML task {task_id}", flush=True)
+        result = run_openml_task(
+            task_id, seed=args.seed, alpha=args.alpha, max_rows=args.max_rows,
+            cache_directory=args.cache_dir, advanced=args.advanced_experts,
+            shift_lab=args.shift_lab,
+        )
+        results.append(result)
+        save_benchmark(results, args.output)
+        print(json.dumps({
+            "task_id": task_id,
+            "selected_model": result["result"]["selected_model"],
+            "test_brier": result["result"]["test_metrics_selected_model_only"]["brier"],
+        }), flush=True)
+    print(json.dumps({"output": args.output, "completed_tasks": len(results)}))
+
+
 def main() -> None:
+    if sys.argv[1:2] == ["benchmark"]:
+        benchmark_main(sys.argv[2:])
+        return
     parser = argparse.ArgumentParser(description="TrustTab-X baseline experiment")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--train-size", type=int, default=1400)

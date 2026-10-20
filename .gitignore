@@ -1,9 +1,11 @@
 __pycache__/
 .pytest_cache/
+.pytest_tmp/
 .ruff_cache/
 *.py[cod]
 *.egg-info/
 .venv/
+work/
 .env
 outputs/*
 !outputs/.gitkeep

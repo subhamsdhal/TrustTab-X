@@ -3,10 +3,10 @@
 This is NOT yet the shift-aware adaptive router or a TabPFN comparison.
 """
 
+import json
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-import json
 
 from sklearn.metrics import brier_score_loss
 

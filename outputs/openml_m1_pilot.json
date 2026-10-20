@@ -1,0 +1,242 @@
+{
+  "benchmark": "OpenML-CC18 M1 pilot",
+  "tasks": [
+    {
+      "task": {
+        "task_id": 3,
+        "dataset_id": 3,
+        "dataset_version": 1,
+        "dataset_name": "kr-vs-kp",
+        "target": "class",
+        "md5_checksum": "ad6eb32b7492524d4382a40e23cdbb8e",
+        "licence": "Public"
+      },
+      "source_url": "https://www.openml.org/t/3",
+      "dataset_url": "https://www.openml.org/d/3",
+      "dataset_md5_observed": "ad6eb32b7492524d4382a40e23cdbb8e",
+      "row_count": 3196,
+      "split_dimensions": [
+        1,
+        10,
+        1
+      ],
+      "package_versions": {
+        "python": "3.12.10",
+        "numpy": "2.5.4",
+        "pandas": "3.0.6",
+        "scikit_learn": "1.9.1",
+        "openml": "0.15.1"
+      },
+      "result": {
+        "seed": 42,
+        "alpha": 0.1,
+        "selected_model": "hist_gradient_boosting",
+        "selection_brier": {
+          "logistic_regression": 0.041190205505503646,
+          "hist_gradient_boosting": 0.012468787716708198,
+          "random_forest": 0.03282435823526387
+        },
+        "test_metrics_selected_model_only": {
+          "accuracy": 0.996875,
+          "brier": 0.005255298509339728,
+          "log_loss": 0.025141173787342506,
+          "roc_auc": 0.9998825877656452,
+          "marginal_coverage": 0.890625,
+          "mean_set_size": 0.890625,
+          "abstention_rate": 0.109375,
+          "singleton_accuracy": 1.0
+        },
+        "fit_seconds_by_model": {
+          "logistic_regression": 0.078469,
+          "hist_gradient_boosting": 0.17758,
+          "random_forest": 0.19534
+        },
+        "test_inference_seconds": 0.011558,
+        "calibration_threshold": 0.03468085680618016,
+        "class_labels": [
+          "nowin",
+          "won"
+        ],
+        "feature_count": 36,
+        "categorical_feature_count": 36,
+        "split_sizes": {
+          "train": 1725,
+          "selection": 575,
+          "calibration": 576,
+          "test": 320
+        },
+        "split_index_sha256": {
+          "train": "830fd5726482ef5d7f3b05dde4bd4b968f060b862ef5bac0a4315f93c07ca7a4",
+          "selection": "bdc5fb059ef96ca63686eb6f977efbe97434e54831937d49d4541d7437e8234f",
+          "calibration": "b136cfb79f0d9a57eca6936dba9d5dfb13a7ab1bb85d4dc5ef6f65ddb811c5ca",
+          "outer_train": "1ecc0b9bef3290f22e2f9c9fe97443b1de0f6a51f6fffd761a9d08e89259697e",
+          "test": "68e4bdf6e82b85b7802b62b56c9ace564fd8bd4d9f4e883bee3126c96224e984"
+        },
+        "protocol": "CC18 official repeat=0 fold=0 sample=0; 60/20/20 inner train/selection/calibration",
+        "limitations": [
+          "One outer fold and one seed are a pilot, not a full CC18 estimate.",
+          "CC18 tasks here are IID benchmarks; no natural domain shift is claimed.",
+          "Conformal marginal coverage requires exchangeability and is not guaranteed under shift."
+        ]
+      }
+    },
+    {
+      "task": {
+        "task_id": 31,
+        "dataset_id": 31,
+        "dataset_version": 1,
+        "dataset_name": "credit-g",
+        "target": "class",
+        "md5_checksum": "9a475053fed0c26ee95cd4525e50074c",
+        "licence": "Public"
+      },
+      "source_url": "https://www.openml.org/t/31",
+      "dataset_url": "https://www.openml.org/d/31",
+      "dataset_md5_observed": "9a475053fed0c26ee95cd4525e50074c",
+      "row_count": 1000,
+      "split_dimensions": [
+        1,
+        10,
+        1
+      ],
+      "package_versions": {
+        "python": "3.12.10",
+        "numpy": "2.5.4",
+        "pandas": "3.0.6",
+        "scikit_learn": "1.9.1",
+        "openml": "0.15.1"
+      },
+      "result": {
+        "seed": 42,
+        "alpha": 0.1,
+        "selected_model": "logistic_regression",
+        "selection_brier": {
+          "logistic_regression": 0.1621575637862642,
+          "hist_gradient_boosting": 0.16263398239816795,
+          "random_forest": 0.1660014349218204
+        },
+        "test_metrics_selected_model_only": {
+          "accuracy": 0.75,
+          "brier": 0.15735370325444636,
+          "log_loss": 0.4772084475285582,
+          "roc_auc": 0.8114285714285714,
+          "marginal_coverage": 0.94,
+          "mean_set_size": 1.48,
+          "abstention_rate": 0.48,
+          "singleton_accuracy": 0.8846153846153846
+        },
+        "fit_seconds_by_model": {
+          "logistic_regression": 0.031305,
+          "hist_gradient_boosting": 0.112008,
+          "random_forest": 0.12864
+        },
+        "test_inference_seconds": 0.004996,
+        "calibration_threshold": 0.7522009815491038,
+        "class_labels": [
+          "bad",
+          "good"
+        ],
+        "feature_count": 20,
+        "categorical_feature_count": 13,
+        "split_sizes": {
+          "train": 540,
+          "selection": 180,
+          "calibration": 180,
+          "test": 100
+        },
+        "split_index_sha256": {
+          "train": "da582f578ef712e4ea20cb53a775fae3ba10015c6d5fbcf5f3f7438608f7e742",
+          "selection": "49b88e4b6ad22095f6a129252e115c648adc40ab3dc26f62623ed70e62ef072f",
+          "calibration": "923e2f41cf87ad77a92387b2ed5bf6eea3b2ed11da631f2f8b58832e40d79c25",
+          "outer_train": "3604ceeda7f05efd01aee2fd038064a61a0da8abcf3446ffff0e851520e7b8de",
+          "test": "e3f163a8671fac2d9bf23a404b06f9afc7e45890073e8bcbf0c3c2eb77dfffc1"
+        },
+        "protocol": "CC18 official repeat=0 fold=0 sample=0; 60/20/20 inner train/selection/calibration",
+        "limitations": [
+          "One outer fold and one seed are a pilot, not a full CC18 estimate.",
+          "CC18 tasks here are IID benchmarks; no natural domain shift is claimed.",
+          "Conformal marginal coverage requires exchangeability and is not guaranteed under shift."
+        ]
+      }
+    },
+    {
+      "task": {
+        "task_id": 10101,
+        "dataset_id": 1464,
+        "dataset_version": 1,
+        "dataset_name": "blood-transfusion-service-center",
+        "target": "Class",
+        "md5_checksum": "c3242468edab8c2e7a907674122dc851",
+        "licence": "Public"
+      },
+      "source_url": "https://www.openml.org/t/10101",
+      "dataset_url": "https://www.openml.org/d/1464",
+      "dataset_md5_observed": "c3242468edab8c2e7a907674122dc851",
+      "row_count": 748,
+      "split_dimensions": [
+        1,
+        10,
+        1
+      ],
+      "package_versions": {
+        "python": "3.12.10",
+        "numpy": "2.5.4",
+        "pandas": "3.0.6",
+        "scikit_learn": "1.9.1",
+        "openml": "0.15.1"
+      },
+      "result": {
+        "seed": 42,
+        "alpha": 0.1,
+        "selected_model": "logistic_regression",
+        "selection_brier": {
+          "logistic_regression": 0.16350249445348977,
+          "hist_gradient_boosting": 0.19427443703885444,
+          "random_forest": 0.18480594827371538
+        },
+        "test_metrics_selected_model_only": {
+          "accuracy": 0.7466666666666667,
+          "brier": 0.15510012549069044,
+          "log_loss": 0.4638734621136521,
+          "roc_auc": 0.780214424951267,
+          "marginal_coverage": 0.9066666666666666,
+          "mean_set_size": 1.3333333333333333,
+          "abstention_rate": 0.3333333333333333,
+          "singleton_accuracy": 0.86
+        },
+        "fit_seconds_by_model": {
+          "logistic_regression": 0.005898,
+          "hist_gradient_boosting": 0.081827,
+          "random_forest": 0.103418
+        },
+        "test_inference_seconds": 0.001654,
+        "calibration_threshold": 0.6929450198623447,
+        "class_labels": [
+          "1",
+          "2"
+        ],
+        "feature_count": 4,
+        "categorical_feature_count": 0,
+        "split_sizes": {
+          "train": 403,
+          "selection": 135,
+          "calibration": 135,
+          "test": 75
+        },
+        "split_index_sha256": {
+          "train": "17f509849a3c46157f302674f6bc46505b7563ad5cdfd910fce883cce8c83028",
+          "selection": "e7b5a1a5ece9dcf82b84c4296dd4d70fa77e97da6525177399e789dbe3a9a137",
+          "calibration": "3b86e57ad98b77e6d41f524a2475c15e9ee98102c758f2aa17ba0c9a14286b39",
+          "outer_train": "e3bacb4e120f8862ddd04cd624c96d5f77521c9ad20e40fa8b4e49d6cd7cd713",
+          "test": "15ef97c2b7e3612bac39fd91ec8cf0fb5cf3e4ece5ad7eb8ea1c727ef6635d26"
+        },
+        "protocol": "CC18 official repeat=0 fold=0 sample=0; 60/20/20 inner train/selection/calibration",
+        "limitations": [
+          "One outer fold and one seed are a pilot, not a full CC18 estimate.",
+          "CC18 tasks here are IID benchmarks; no natural domain shift is claimed.",
+          "Conformal marginal coverage requires exchangeability and is not guaranteed under shift."
+        ]
+      }
+    }
+  ]
+}

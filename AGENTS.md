@@ -2,10 +2,10 @@
 
 You are implementing a research-first Data Science framework, not a demo that fabricates model wins.
 
-## Current repo state
+## Current repo state (2026-10-20)
 
-- v0.1 smoke pipeline is complete: `src/trusttabx`, `tests`, CLI, docs and GitHub Actions.
-- It deliberately uses only synthetic data and classical baselines.
+- The original v0.1 synthetic smoke pipeline remains reproducible.
+- M1 now includes a three-task OpenML-CC18 pilot; optional M2 classical experts and M3 stress tests have run. See `docs/AUTOPILOT_STATUS.md` and `RESULTS_VERIFICATION.md` for verified scope.
 - The architecture **does not yet have** foundation models, a learned adaptive router, or a backend.
 
 ## Non-negotiable rules
@@ -22,7 +22,7 @@ You are implementing a research-first Data Science framework, not a demo that fa
 
 ## Next task
 
-Implement `M1` from `docs/PROJECT_PLAN.md` with an optional OpenML-CC18 loader, pinned task IDs, dataset provenance, train-only preprocessing, and a lightweight 3-task benchmark CLI. Preserve the synthetic smoke test and add fixture-based offline unit tests. Do not fetch OpenML data in CI; integration test only on demand. Provide a benchmark manifest with task IDs and licences, not hard-coded unsupported claims.
+Continue from `docs/NEXT_CODEX_TASK.md`: expand the pinned pilot to repeated official folds and seeds, validate natural held-out domains and compute budgets, then evaluate a source-only router. Preserve offline fixture tests and never fetch OpenML data in CI.
 
 ## Dev commands
 

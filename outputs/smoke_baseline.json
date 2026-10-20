@@ -1,0 +1,72 @@
+{
+  "created_at_utc": "2026-10-20T16:57:34.992601+00:00",
+  "status": "classical_baseline_only",
+  "dataset": "synthetic_covariate_shift_smoke_test",
+  "config": {
+    "seed": 42,
+    "n_train": 1400,
+    "n_selection": 350,
+    "n_calibration": 350,
+    "n_test": 600,
+    "shift_strength": 1.5,
+    "alpha": 0.1
+  },
+  "model_selection_metric": "brier_on_independent_selection_split",
+  "model_selection_scores": {
+    "logistic_regression": 0.1770252021165112,
+    "hist_gradient_boosting": 0.18195031673950782,
+    "random_forest": 0.18731699005288066
+  },
+  "selected_model": "logistic_regression",
+  "conformal": {
+    "alpha": 0.1,
+    "calibration_size": 350,
+    "score_threshold": 0.7098924384884805,
+    "guarantee": "iid/exchangeable marginal only; not promised under shift"
+  },
+  "iid_test": {
+    "prediction": {
+      "accuracy": 0.7433333333333333,
+      "brier": 0.1710766509708615,
+      "log_loss": 0.5195186942992607,
+      "roc_auc": 0.823273512166357,
+      "marginal_coverage": 0.91,
+      "mean_set_size": 1.4116666666666666,
+      "abstention_rate": 0.4116666666666667,
+      "singleton_accuracy": 0.8470254957507082
+    },
+    "shift_monitor": {
+      "shifted": false,
+      "min_p_value": 0.08699746277798397,
+      "significant_feature_count": 0,
+      "number_of_features": 8,
+      "familywise_alpha": 0.05
+    }
+  },
+  "shifted_test": {
+    "prediction": {
+      "accuracy": 0.8033333333333333,
+      "brier": 0.13602576549272286,
+      "log_loss": 0.4295338983780517,
+      "roc_auc": 0.8024313737729989,
+      "marginal_coverage": 0.905,
+      "mean_set_size": 1.2616666666666667,
+      "abstention_rate": 0.26166666666666666,
+      "singleton_accuracy": 0.871331828442438
+    },
+    "shift_monitor": {
+      "shifted": true,
+      "min_p_value": 2.276053455943338e-130,
+      "significant_feature_count": 2,
+      "number_of_features": 8,
+      "familywise_alpha": 0.05
+    }
+  },
+  "limitations": [
+    "Synthetic test results are not research conclusions or industry performance claims.",
+    "This starter has fixed validation-based expert selection, not dynamic routing.",
+    "Conformal marginal coverage is not guaranteed under general distribution shift.",
+    "Feature-wise KS monitoring does not distinguish shift mechanisms or certify safety.",
+    "No tabular foundation model is included in the first baseline run."
+  ]
+}

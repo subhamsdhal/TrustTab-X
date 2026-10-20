@@ -4,8 +4,8 @@ Coverage is marginal under exchangeability and a held-out calibration split.
 Do not claim finite-sample coverage under arbitrary distribution shift.
 """
 
-from dataclasses import dataclass
 import math
+from dataclasses import dataclass
 
 import numpy as np
 from numpy.typing import ArrayLike, NDArray

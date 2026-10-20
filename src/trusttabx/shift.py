@@ -47,6 +47,6 @@ class FeatureShiftMonitor:
             shifted=count > 0,
             min_p_value=float(np.min(p)),
             significant_feature_count=count,
-            number_of_features=int(len(p)),
+            number_of_features=len(p),
             familywise_alpha=self.alpha,
         )
