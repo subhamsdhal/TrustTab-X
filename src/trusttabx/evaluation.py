@@ -68,7 +68,7 @@ def evaluate_binary(
     return {
         "accuracy": float(accuracy_score(y, np.argmax(p, axis=1))),
         "brier": float(brier_score_loss(y, p[:, 1])),
-        "log_loss": float(log_loss(y, p, labels=[0, 1])),
+        "log_loss": float(log_loss(y, p[:, 1], labels=[0, 1])),
         "roc_auc": auc,
         "average_precision": average_precision,
         "ece_10_bins": expected_calibration_error(y, p),

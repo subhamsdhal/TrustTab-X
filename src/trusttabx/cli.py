@@ -3,6 +3,7 @@
 import argparse
 import json
 import sys
+from pathlib import Path
 
 from .experiment import ExperimentConfig, run_experiment, save_experiment
 
@@ -12,7 +13,9 @@ def benchmark_main(argv: list[str]) -> None:
 
     parser = argparse.ArgumentParser(description="Run pinned OpenML-CC18 binary pilot tasks")
     parser.add_argument("--task-id", type=int, action="append", choices=sorted(TASKS))
-    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--seed", type=int, action="append")
+    parser.add_argument("--fold", type=int, action="append")
+    parser.add_argument("--all-folds", action="store_true")
     parser.add_argument("--alpha", type=float, default=0.1)
     parser.add_argument("--max-rows", type=int, default=5000)
     parser.add_argument("--cache-dir", default="data/raw/openml")
@@ -21,21 +24,34 @@ def benchmark_main(argv: list[str]) -> None:
     parser.add_argument("--output", default="outputs/openml_m1_pilot.json")
     args = parser.parse_args(argv)
     results = []
+    if args.all_folds and args.fold:
+        parser.error("Choose --all-folds or explicit --fold values")
     for task_id in args.task_id or list(TASKS):
-        print(f"Running OpenML task {task_id}", flush=True)
-        result = run_openml_task(
-            task_id, seed=args.seed, alpha=args.alpha, max_rows=args.max_rows,
-            cache_directory=args.cache_dir, advanced=args.advanced_experts,
-            shift_lab=args.shift_lab,
-        )
-        results.append(result)
-        save_benchmark(results, args.output)
-        print(json.dumps({
-            "task_id": task_id,
-            "selected_model": result["result"]["selected_model"],
-            "test_brier": result["result"]["test_metrics_selected_model_only"]["brier"],
-        }), flush=True)
-    print(json.dumps({"output": args.output, "completed_tasks": len(results)}))
+        if args.all_folds:
+            import openml
+
+            openml.config.cache_directory = Path(args.cache_dir).resolve()
+            folds = range(openml.tasks.get_task(task_id).get_split_dimensions()[1])
+        else:
+            folds = args.fold or [0]
+        for fold in folds:
+            for seed in args.seed or [42]:
+                print(f"Running OpenML task {task_id}, fold {fold}, seed {seed}", flush=True)
+                result = run_openml_task(
+                    task_id, seed=seed, fold=fold, alpha=args.alpha, max_rows=args.max_rows,
+                    cache_directory=args.cache_dir, advanced=args.advanced_experts,
+                    shift_lab=args.shift_lab,
+                )
+                results.append(result)
+                save_benchmark(results, args.output)
+                print(json.dumps({
+                    "task_id": task_id,
+                    "fold": fold,
+                    "seed": seed,
+                    "selected_model": result["result"]["selected_model"],
+                    "test_brier": result["result"]["test_metrics_selected_model_only"]["brier"],
+                }), flush=True)
+    print(json.dumps({"output": args.output, "completed_runs": len(results)}))
 
 
 def main() -> None:

@@ -14,6 +14,8 @@ Verified 2026-10-20. The [OpenML-CC18 suite](https://openml.github.io/docs/bench
 
 For each task, retrieve `task.get_train_test_split_indices(fold=0, repeat=0, sample=0)` and reject overlapping or incomplete indices. Stratify only the official training fold into 60% fit, 20% selection, 20% conformal calibration, with seed 42. Fit numeric median imputation and scaling, and categorical most-frequent imputation and bounded one-hot encoding, inside each expert's training pipeline. Select minimum selection Brier. Calibrate the fixed winner on calibration labels. Evaluate only that winner on the untouched official test fold. Reject changed task ID, target, dataset ID/version/name/licence/MD5 and datasets over 5,000 rows.
 
+The CLI now also accepts `--fold N`, `--all-folds`, and repeated `--seed N`. All 10 official outer folds with inner seeds 42, 43, 44 were executed for three- and five-expert comparisons and saved as separate 90-run JSON files. Per-fold official test rows stay untouched by that fold's fit, selection and calibration. The original fold-0 files remain pilot history.
+
 The five-expert option uses one fixed configuration each for logistic regression, HistGradientBoosting, random forest, XGBoost and CatBoost after the same one-hot preprocessing. This is a *pilot comparison*, not equal-compute hyperparameter tuning. CatBoost here does not use its native categorical encoding. Fit and test inference time are recorded; peak memory has not been measured.
 
 ## Reproduce

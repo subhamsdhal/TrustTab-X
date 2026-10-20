@@ -9,12 +9,15 @@
 - `trusttabx benchmark --advanced-experts --output outputs/openml_m2_classical_pilot.json`: same three tasks completed with five experts.
 - `trusttabx benchmark --shift-lab --output outputs/openml_m3_shift_pilot.json`: same three tasks with controlled stress cohorts completed.
 - `trusttabx benchmark --advanced-experts --shift-lab --output outputs/openml_integrated_pilot.json`: completed on retry; this JSON also contains PR-AUC, ECE and selective-risk summaries.
+- `trusttabx benchmark --all-folds --seed 42 --seed 43 --seed 44 --output outputs/openml_10fold_3seed_classical.json`: 90 runs completed (3 tasks × 10 official folds × 3 seeds).
+- Same command with `--advanced-experts` and output `outputs/openml_10fold_3seed_advanced.json`: 90 matched runs completed. Files were paired by task ID, official fold and inner seed; all 90 keys matched.
+- After adding fold/seed CLI support and changing binary log-loss input to the positive-class probability: a fresh dev-only venv passed **16 tests** and Ruff; task 31/fold 2/seed 43 with advanced experts completed without the earlier probability warning (`outputs/openml_fold2_warning_check.json`).
 
 ## Blocked or incomplete
 
 - A broad initial optional-dependency install failed with `MemoryError`; the smaller install succeeded. An OpenBLAS default-thread memory error and one transient Windows stack overflow occurred; single-thread reruns succeeded.
 - `gh auth status` reported an invalid saved GitHub token; there is no configured remote, so private repo creation/push is awaiting reauthentication.
-- No full 10-fold/repeated-seed experiment, natural-domain holdout, trained router, TabPFN checkpoint run, API, dashboard, Docker build or public/private remote push was executed at this checkpoint.
+- No natural-domain holdout, trained router, TabPFN checkpoint run, API, dashboard, Docker build or public/private remote push was executed at this checkpoint.
 - OpenML's `Public` dataset licence field is recorded literally; underlying redistribution and commercial-use rights were not independently verified.
 
 ## Not independently verified

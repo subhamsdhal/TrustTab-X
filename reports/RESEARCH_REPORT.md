@@ -1,6 +1,6 @@
 # TrustTab-X preliminary research report
 
-**Checkpoint:** 2026-10-20. **Status:** three-task, one-fold pilot. This is not the final study or evidence of an adaptive router.
+**Checkpoint:** 2026-10-20. **Status:** three-task, 10-fold, three-seed classical benchmark plus a one-fold shift pilot. This is not the final study or evidence of an adaptive router.
 
 ## Question and design
 
@@ -18,6 +18,18 @@ All values below come from `outputs/openml_integrated_pilot.json` using the five
 
 The three-expert M1 pilot selected logistic regression on task 31 with test Brier 0.157354. Adding XGBoost and CatBoost led the selection split to choose CatBoost, but its test Brier was **worse** at 0.161748. This is a negative pilot observation, not a paired significance claim or a reason to tune on test labels. Task 3's 0.890625 conformal coverage is below the nominal 0.9 level in one 320-row fold; marginal coverage is a repeated-sampling guarantee under assumptions, not an exact per-fold quota.
 
+## Expanded 10-fold, three-seed checkpoint
+
+The CLI was extended to all 10 official folds and inner seeds 42, 43 and 44. `outputs/openml_10fold_3seed_classical.json` and `outputs/openml_10fold_3seed_advanced.json` each contain 90 completed task/fold/seed records, paired exactly by those three keys. Means below are descriptive averages of the 30 runs per task. The three dataset tasks, rather than their 90 correlated evaluations, are the cross-dataset units.
+
+| Task | Three-expert mean Brier ↓ | Five-expert mean Brier ↓ | Paired mean change (five minus three) | Five-expert runs worse |
+| --- | ---: | ---: | ---: | ---: |
+| 3, kr-vs-kp | 0.007781 | 0.007781 | 0.000000 | 0/30 |
+| 31, credit-g | 0.171396 | 0.169002 | −0.002394 | 5/30 |
+| 10101, blood transfusion | 0.159542 | 0.156818 | −0.002723 | 5/30 |
+
+The five-expert selector chose HistGradientBoosting in all 30 chess runs; on credit it chose CatBoost 15/30 times and random forest 10/30 times, and on blood it chose logistic regression 11/30 times and CatBoost 14/30 times. This shows model choice is dataset and inner-split dependent. The advanced run emitted a few scikit-learn probability-sum warnings when two-column probabilities were sent to log-loss; the evaluation code now supplies the positive-class column, which represents the same binary scoring quantity. No broad superiority inference follows from three tasks or these fixed configurations.
+
 ## Controlled stress results
 
 The fixed M3 harness applies 20% MCAR feature-cell missingness, numeric measurement noise at 0.5 training standard deviations, and class-label-stratified downsampling toward 70% positive prevalence. These are **constructed evaluation cohorts**. Missingness/noise preserve labels but can alter the observed conditional relation; they are not automatically pure covariate shift. Prior cohort construction reads test labels only to select the evaluation subset, never to fit or choose the model or thresholds.
@@ -26,7 +38,7 @@ On task 10101 in the integrated run, the prior cohort contained only 26 rows (re
 
 ## Limitations and threats to validity
 
-- Three datasets, one outer fold and one seed, with no task-level interval or multiplicity control. The chess dataset consists of game states and is not an enterprise record set.
+- Three datasets, ten official outer folds and three inner seeds in the expanded classical comparison, with no task-level interval or multiplicity control. The shift study remains one fold and seed. The chess dataset consists of game states and is not an enterprise record set.
 - No natural domain, time or site shift was tested. Hidden duplicate entities or group structure remain possible from the available metadata.
 - Selection and calibration are disjoint, but the final model is fitted only on the 60% inner fit partition; a retrained full-fold model would need a new calibration protocol.
 - Fixed expert configurations are not an equal-compute tuned comparison. CatBoost uses common one-hot features, not native categorical handling. Inference time is recorded but peak memory is absent.

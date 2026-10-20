@@ -149,6 +149,7 @@ def evaluate_arrays(
     max_rows: int = 5000,
     advanced: bool = False,
     shift_lab: bool = False,
+    fold: int = 0,
 ) -> dict:
     """Evaluate one official fold, with no fitting on outer test rows."""
     if not 0 < alpha < 1:
@@ -190,6 +191,7 @@ def evaluate_arrays(
     metrics = evaluate_binary(y[outer_test], test_probabilities, calibrator)
     result = {
         "seed": seed,
+        "outer_fold": fold,
         "advanced_experts": advanced,
         "shift_lab_enabled": shift_lab,
         "alpha": alpha,
@@ -208,9 +210,9 @@ def evaluate_arrays(
             "outer_train": index_hash(outer_train),
             "test": index_hash(outer_test),
         },
-        "protocol": "CC18 official repeat=0 fold=0 sample=0; 60/20/20 inner train/selection/calibration",
+        "protocol": f"CC18 official repeat=0 fold={fold} sample=0; 60/20/20 inner train/selection/calibration",
         "limitations": [
-            "One outer fold and one seed are a pilot, not a full CC18 estimate.",
+            "Interpret each record within its full run set; one fold alone is a pilot.",
             "CC18 tasks here are IID benchmarks; no natural domain shift is claimed.",
             "Conformal marginal coverage requires exchangeability and is not guaranteed under shift.",
         ],
@@ -228,8 +230,9 @@ def run_openml_task(
     max_rows: int = 5000, cache_directory: str | Path = "data/raw/openml",
     advanced: bool = False,
     shift_lab: bool = False,
+    fold: int = 0,
 ) -> dict:
-    """Download a pinned public task and evaluate its first official test fold."""
+    """Download a pinned public task and evaluate one specified official test fold."""
     if task_id not in TASKS:
         raise ValueError(f"Task {task_id} is not in the pinned M1 manifest")
     try:
@@ -247,15 +250,16 @@ def run_openml_task(
             or (spec.md5_checksum and dataset.md5_checksum != spec.md5_checksum)):
         raise ValueError(f"OpenML dataset for task {task_id} does not match the pinned manifest")
     dimensions = task.get_split_dimensions()
-    if dimensions[1] < 1:
-        raise ValueError("OpenML task has no outer fold")
+    if fold < 0 or fold >= dimensions[1]:
+        raise ValueError(f"Fold {fold} is outside OpenML task's {dimensions[1]} folds")
     X, y, categorical, names = dataset.get_data(target=task.target_name, dataset_format="dataframe")
     if X.columns.tolist() != names:
         raise ValueError("Feature names are misaligned with OpenML data")
-    outer_train, outer_test = task.get_train_test_split_indices(fold=0, repeat=0, sample=0)
+    outer_train, outer_test = task.get_train_test_split_indices(fold=fold, repeat=0, sample=0)
     result = evaluate_arrays(
         X, np.asarray(y), categorical, outer_train, outer_test,
-        seed=seed, alpha=alpha, max_rows=max_rows, advanced=advanced, shift_lab=shift_lab,
+        seed=seed, alpha=alpha, max_rows=max_rows, advanced=advanced,
+        shift_lab=shift_lab, fold=fold,
     )
     versions = {
         "python": platform.python_version(), "numpy": np.__version__,
