@@ -55,6 +55,26 @@ def benchmark_main(argv: list[str]) -> None:
 
 
 def main() -> None:
+    if sys.argv[1:2] == ["acs-benchmark"]:
+        from .acs_domain import run_acs_benchmark, save_acs
+
+        parser = argparse.ArgumentParser(description="Run sampled 2018 ACSIncome domain pilot")
+        parser.add_argument("--cache-dir", default="data/raw/acs2018")
+        parser.add_argument("--seed", type=int, default=264738)
+        parser.add_argument("--max-fit-rows", type=int, default=12000)
+        parser.add_argument("--source-per-state", type=int, default=6000)
+        parser.add_argument("--target-per-state", type=int, default=3000)
+        parser.add_argument("--output", default="outputs/acs_income_2018_geographic.json")
+        args = parser.parse_args(sys.argv[2:])
+        result = run_acs_benchmark(
+            args.cache_dir, seed=args.seed, max_fit_rows=args.max_fit_rows,
+            source_per_state=args.source_per_state, target_per_state=args.target_per_state,
+        )
+        save_acs(result, args.output)
+        print(json.dumps({"output": args.output, "split_sizes": result["split_sizes"],
+                          "selected": {name: run["selected_model"]
+                                       for name, run in result["results"].items()}}, indent=2))
+        return
     if sys.argv[1:2] == ["natural-benchmark"]:
         from .natural_domain import run_natural_benchmark, save_natural
 

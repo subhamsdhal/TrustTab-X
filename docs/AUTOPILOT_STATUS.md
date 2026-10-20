@@ -1,5 +1,12 @@
 # TrustTab-X autonomous build status
 
+## 2026-10-20 ACSIncome checkpoint
+
+- Added a Folktables-powered, TableShift-inspired 2018 ACSIncome geographic benchmark; see `docs/ACS_INCOME_DOMAIN_MANIFEST.md` and ignored `outputs/acs_income_2018_geographic_expanded.json`. Seven source states span five divisions; the six New England states are untouched OOD test environments. The bounded sample and 10-feature schema differ from official TableShift.
+- Final expanded run: 14,000 source fit, 4,193 selection, 4,200 calibration, 4,240 ID test and 18,000 OOD test rows. Three and five candidate selectors both chose HistGradientBoosting; ID/OOD Brier 0.131644/0.145517, log loss 0.406822/0.441380, AUROC 0.872832/0.860965, AUPRC 0.743474/0.760401 and ECE 0.024424/0.006536. Extra experts gave no predictive gain in this run. Initial smoke and three-source-state runs remain local historical artifacts.
+- Final local fit measurements: 5.132 seconds for the shared five-model pool, 2.061 seconds for a separately fitted three-model pool, and peak process working set 1,317,712 KiB. Separate three-model metrics matched the shared-pool three-candidate metrics exactly. No tuning trials. These are one-run wall-clock measurements.
+- Shared five-model fit time and separately realized three-model fit time are recorded in the JSON, with peak Windows working set. Seven related ACS source states and one ACS target division plus the hospital pair are still too few independent shift mechanisms for a general cross-dataset learned-router claim. M4 stays at the specification gate; no router was trained or evaluated. Next: additional dataset family or temporal/site holdouts with independent meta-validation.
+
 ## 2026-10-20 natural-domain checkpoint
 
 - TableShift-derived UCI diabetes admission-source holdout executed with patient-disjoint partitions; see `docs/TABLESHIFT_DOMAIN_MANIFEST.md` and ignored `outputs/tableshift_diabetes_12000.json`. It is not the exact official TableShift split. Source fit 12,000 rows; selection 3,440; calibration 3,407; ID test 2,713; OOD test 51,012. Unused OOD validation has 5,620 rows.

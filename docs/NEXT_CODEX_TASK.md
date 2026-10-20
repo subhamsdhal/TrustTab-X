@@ -1,5 +1,9 @@
 # Next Codex task — expand the research protocol before router training
 
+## Next executable task after ACSIncome
+
+Read `docs/ACS_INCOME_DOMAIN_MANIFEST.md`, `docs/TABLESHIFT_DOMAIN_MANIFEST.md`, `docs/M4_RESEARCH_SPEC.md` and both final JSON outputs. Pre-register a further **independent public dataset family or temporal/site shift** with its own source environments; alternatively design nested leave-one-division-out ACS meta-validation across several held-out divisions while reserving New England untouched, but do not count states from one division as independent dataset-level replicates. For a cross-dataset router, standardise only comparable metadata (expert probability, entropy, inter-expert disagreement, source-validated loss and feature-shift summaries); do not merge ACS and hospital raw columns. Use domain-held-out source predictions for router fitting, separate source calibration, static and ensemble controls, and group/domain-level intervals. Keep the New England and hospital final tests out of all router decisions. Re-run `pytest -q` and `ruff check src tests`, then commit only verified work.
+
 ## Next executable task after the natural-domain checkpoint
 
 Read `docs/TABLESHIFT_DOMAIN_MANIFEST.md`, `docs/M4_RESEARCH_SPEC.md` and `outputs/tableshift_diabetes_12000.json`. Obtain a **second independent public natural-domain benchmark** with defensible group/time splits and licensing, then pre-register multi-environment source training and held-out domain evaluation. Preserve patient disjointness. Quantify model redundancy further without target test tuning. Run repeated seeds/domains and grouped uncertainty intervals before a learned router. The current comparison charges five shared fits to both selectors; a separate deployment cost frontier for actually using only three models remains incomplete. Do not claim an exact TableShift score.

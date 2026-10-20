@@ -1,5 +1,9 @@
 # Results verification — 2026-10-20
 
+## ACSIncome geographic pilot
+
+Executed the nine-state smoke and initial full run, preserved as ignored `outputs/acs_income_smoke.json` and `outputs/acs_income_2018_geographic.json`. Expanded to seven source states in five divisions plus six untouched New England states, then reran after making per-state sampling stable and hashing source files. Final reproducible output: ignored `outputs/acs_income_2018_geographic_expanded.json`, with an aggregate-only tracked copy in `reports/results/`. The earlier hospital result also has an aggregate-only tracked copy there. This is a TableShift-inspired bounded protocol, not an official score. The final rerun passed 19 offline tests, Ruff and `git diff --check`. No learned router or cross-dataset improvement was verified. See `docs/ACS_INCOME_DOMAIN_MANIFEST.md` for exact definitions and metrics.
+
 ## Natural-domain verification
 
 Executed `./.venv/Scripts/trusttabx.exe natural-benchmark --max-fit-rows 12000 --output outputs/tableshift_diabetes_12000.json` successfully against the SHA-256-pinned public UCI archive. This is a patient-disjoint TableShift-derived variant, not an official TableShift score. The result file contains ID/OOD metrics and resource records. Executed full `pytest -q`: 18 passed; `ruff check src tests`: all checks passed. No learned router, TabPFN comparison, official TableShift package execution or repeated natural-domain evaluation has been verified. Benchmark data and JSON output remain Git-ignored local artifacts.

@@ -1,5 +1,9 @@
 # TrustTab-X preliminary research report
 
+## Second natural-domain result: 2018 ACSIncome geography
+
+The bounded, household-disjoint Folktables/TableShift-inspired protocol in `docs/ACS_INCOME_DOMAIN_MANIFEST.md` was executed on seven source states and held-out New England. Both the three- and five-candidate pools selected HistGradientBoosting on source selection data; their ID/OOD Brier scores were 0.131644/0.145517 and log losses 0.406822/0.441380. Five candidates did not improve prediction over three in this run. State-level results and resource measurements are in `outputs/acs_income_2018_geographic_expanded.json`. This is one survey year and one target division. ACS and diabetes have incompatible raw schemas, and only two independent dataset families are evaluated. A learned cross-dataset router is therefore still at the research gate; `docs/M4_RESEARCH_SPEC.md` requires domain-held-out source predictions and comparable metadata features before fitting one.
+
 ## Natural-domain pilot update (2026-10-20)
 
 An executed patient-disjoint, TableShift-derived UCI diabetes admission-source holdout is documented in `docs/TABLESHIFT_DOMAIN_MANIFEST.md`; machine-readable metrics and split hashes are in `outputs/tableshift_diabetes_12000.json`. Shared five-model training cost was 3.818 seconds; the 3-candidate selector chose random forest and the 5-candidate selector chose CatBoost on source selection Brier. ID/OOD Brier was 0.201856/0.256984 versus 0.201603/0.250504, respectively. OOD log loss was 0.710901 versus 0.696820. Both suffered calibration degradation under shift. This is one exploratory domain pair, with a modified patient-disjoint split and limited features, so it does not establish broad generalisation or justify a trained router. The prospective method is in `docs/M4_RESEARCH_SPEC.md`.
