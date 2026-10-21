@@ -4,7 +4,7 @@
 
 A research-first Data Science project developed for a Growtern Academy portfolio upgrade and for a reproducible academic/industry demonstration. Attribution to an organisation must accurately reflect its permission, supervision, project dates, and actual work.
 
-> **Current implementation: research framework and secured local M5.1 decision-support demo.** The M4.2 research gate found no adaptive advantage; the ACSIncome service uses one source-selected fixed expert. It is **local demo only** until Docker runtime and internal deployment controls are verified. See [M5 architecture](docs/M5_ARCHITECTURE.md), [security policy](docs/M5_SECURITY.md) and [research decision](docs/M4_2_RESEARCH_DECISION.md).
+> **Current implementation: completed research portfolio and secured local M5.1 decision-support demo.** The M4.2 research gate found no adaptive advantage; the ACSIncome service uses one source-selected fixed expert. It is **local demo only**. The M8 hosted Docker verification status is in the [engineering record](docs/FINAL_ENGINEERING_VERIFICATION.md); internal deployment controls remain open. See [release scope](docs/RELEASE_SCOPE.md), [M5 architecture](docs/M5_ARCHITECTURE.md), [security policy](docs/M5_SECURITY.md) and [research decision](docs/M4_2_RESEARCH_DECISION.md).
 
 ## Final research and portfolio package (M7)
 
@@ -48,7 +48,7 @@ $env:TRUSTTABX_ADMIN_KEY = .\.venv\Scripts\python.exe -c 'import secrets; print(
 
 The trainer needs the cached public 2018 ACS source files or network access on its first run. Open <http://127.0.0.1:8000/> for the dashboard, then enter the operator key from your local environment. The key stays in browser-tab memory; reload clears it. Interactive OpenAPI is at <http://127.0.0.1:8000/docs>. The model bundle and local SQLite MLflow tracker stay under ignored `outputs/m5_acs_model/`. Set the trust flag and approved digest only for a bundle you trained or independently approved: `joblib` deserialization executes pickle content. No target test labels are used in M5 selection. [API examples](docs/M5_API.md), [artifact and monitoring contract](docs/M5_MODEL_MONITORING.md), [security controls](docs/M5_SECURITY.md).
 
-Docker Compose is supplied for an operator with Docker installed: train or provide an approved bundle and keys first, then follow [Docker verification](docs/M5_DOCKER.md). It binds only `127.0.0.1:8000`; container execution has not been verified on this host because Docker is unavailable.
+Docker Compose is supplied for an operator with Docker installed: train or provide an approved bundle and keys first, then follow [Docker verification](docs/M5_DOCKER.md). It binds only `127.0.0.1:8000`. The synthetic hosted-container check is separate from real ACS artifact validation and from any internal deployment approval.
 
 Requires Python 3.10+.
 

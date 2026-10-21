@@ -1,5 +1,23 @@
 # TrustTab-X autonomous build status
 
+## M8 closure checkpoint — 21 October 2026
+
+- Branch `codex/trusttabx-m8-closure` starts from private GitHub M7 commit
+  `5a5c5f7142222a924c35ac9a963eaf83e07a7941` and preserves all prior
+  research history. No new research feature or router claim was added.
+- The 43-test local suite, Ruff, `pip check`, local vulnerability audit, M6/M7
+  claim/hash/link checks, six PNG decode checks, six-page PDF inspection, wheel
+  build, static Compose checks, and real loopback synthetic Uvicorn smoke passed.
+- CI and synthetic Docker verification workflows now pin `ubuntu-24.04` and use
+  Node 24 compatible official actions. The container harness covers role denial,
+  malformed inputs, drift, delayed labels, dashboard, tampered artifacts,
+  resource limits, restart and shutdown. The actual hosted Docker run is pending
+  confirmation of included Actions minutes and a no-charge spending limit; the
+  current GitHub CLI token cannot read account billing usage.
+- M4.2 decision C (**no adaptive advantage demonstrated**) and M5.1 release B
+  (**Local Demo Only**) remain in force. See `docs/RELEASE_SCOPE.md` and
+  `docs/FINAL_ENGINEERING_VERIFICATION.md`.
+
 ## 2026-10-21 M7 final research/portfolio verification
 
 - Completed scientific review of the M6 manuscript against locked M4.2/M5.1 JSON and implementation. Corrected the TableShift paper title and clarified that the router selects one expert per row from predicted squared error, while the primary static expert is uncalibrated and the calibrated-static control is separate. No target retuning or claim inflation. Preserved **C: no adaptive advantage demonstrated** and **B: local demo only**.

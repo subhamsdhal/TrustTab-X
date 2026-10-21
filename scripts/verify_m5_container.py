@@ -1,11 +1,13 @@
 """Static Compose checks, then optional loopback-only synthetic container smoke."""
 
 import argparse
+import hashlib
 import json
 import os
 import secrets
 import shutil
 import subprocess
+import sys
 import time
 import urllib.error
 import urllib.request
@@ -82,24 +84,63 @@ def runtime_checks() -> dict:
     env.update({"TRUSTTABX_MODEL_DIR_HOST": "./work/m5_fixture_bundle",
                 "TRUSTTABX_APPROVED_MANIFEST_SHA256": digest,
                 "TRUSTTABX_API_KEY": operator, "TRUSTTABX_ADMIN_KEY": admin})
+
+    def diagnostic(label: str, output: str) -> None:
+        for private in (operator, admin, "sensitive-feature-marker-should-not-leak"):
+            output = output.replace(private, "[redacted]")
+        print(json.dumps({"diagnostic": label, "tail": output.splitlines()[-25:]}),
+              file=sys.stderr)
+
     run("config", "--quiet", env=env)
-    run("build", env=env)
-    start = time.monotonic()
-    run("up", "-d", env=env)
     try:
+        build = run("build", env=env)
+    except subprocess.CalledProcessError as exc:
+        diagnostic("docker_build", (exc.stdout or "") + (exc.stderr or ""))
+        raise
+    start = time.monotonic()
+    try:
+        run("up", "-d", env=env)
         startup_seconds = ready()
-        assert http("/model")[0] == 401
-        assert http("/model", operator)[0] == 200
+        statuses = {}
+
+        def expect(name: str, status: int, path: str, key: str | None = None,
+                   payload: dict | None = None) -> dict | str:
+            actual, body = http(path, key, payload)
+            statuses[name] = actual
+            assert actual == status, (name, actual, status)
+            return body
+
+        expect("health", 200, "/health")
+        expect("model_anonymous", 401, "/model")
+        model = expect("model_operator", 200, "/model", operator)
+        assert model["selected_expert"] == "logistic_regression"
+        expect("model_wrong_key", 401, "/model", "invalid-key")
         payload = {"schema_version": "acs-income-2018-v1", "record": RECORD}
-        assert http("/predict", operator, payload)[0] == 200
+        expect("predict", 200, "/predict", operator, payload)
+        expect("predict_anonymous", 401, "/predict", payload=payload)
         batch = {"schema_version": payload["schema_version"], "records": [RECORD, RECORD]}
-        assert http("/predict-batch", operator, batch)[0] == 200
-        drift = {"schema_version": payload["schema_version"], "records": [RECORD]}
-        assert http("/monitor/drift", operator, drift)[0] == 200
-        assert http("/metrics", operator)[0] == 200
-        assert "TrustTab-X" in http("/")[1]
-        assert http("/assets/app.js")[0] == 200
-        assert http("/assets/app.css")[0] == 200
+        predictions = expect("predict_batch", 200, "/predict-batch", operator, batch)
+        assert len(predictions["predictions"]) == 2
+        expect("batch_oversized", 422, "/predict-batch", operator,
+               {**batch, "records": [RECORD] * 101})
+        marker = "sensitive-feature-marker-should-not-leak"
+        error = expect("malformed_input", 422, "/predict", operator,
+                       {**payload, "record": {**RECORD, "COW": marker}})
+        assert marker not in json.dumps(error)
+        drift = {"schema_version": payload["schema_version"],
+                 "records": [{**RECORD, "AGEP": 80}]}
+        drift_result = expect("drift", 200, "/monitor/drift", operator, drift)
+        assert drift_result["numeric"]["AGEP"]["alert"]
+        labels = {"labels": [0, 1], "probabilities": [0.2, 0.8]}
+        expect("delayed_operator_denied", 403, "/monitor/delayed-labels", operator, labels)
+        delayed = expect("delayed_admin", 200, "/monitor/delayed-labels", admin, labels)
+        assert abs(delayed["brier"] - 0.04) < 1e-12
+        expect("delayed_invalid", 422, "/monitor/delayed-labels", admin,
+               {"labels": [0, 2], "probabilities": [0.2, 0.8]})
+        expect("metrics", 200, "/metrics", operator)
+        assert "TrustTab-X" in expect("dashboard", 200, "/")
+        expect("dashboard_js", 200, "/assets/app.js")
+        expect("dashboard_css", 200, "/assets/app.css")
         uid = run("exec", "-T", "trusttabx", "id", "-u", env=env).stdout.strip()
         assert uid != "0"
         assert run("exec", "-T", "trusttabx", "touch", "/app/not-writable",
@@ -117,17 +158,41 @@ def runtime_checks() -> dict:
                        "from trusttabx.m5_artifact import load_bundle; load_bundle('/models')",
                        env=env, check=False)
         assert rejected.returncode != 0
+        pipeline = fixture / "pipeline.joblib"
+        original = pipeline.read_bytes()
+        try:
+            pipeline.write_bytes(original + b"tampered")
+            rejected_pipeline = run("run", "--rm", "--no-deps", "trusttabx", "python", "-c",
+                                    "from trusttabx.m5_artifact import load_bundle; load_bundle('/models')",
+                                    env=env, check=False)
+            assert rejected_pipeline.returncode != 0
+        finally:
+            pipeline.write_bytes(original)
+        assert hashlib.sha256(pipeline.read_bytes()).hexdigest() == hashlib.sha256(original).hexdigest()
+        log_process = run("logs", "--no-color", "--tail", "200", "trusttabx", env=env)
+        logs = log_process.stdout + log_process.stderr
+        assert all(value not in logs for value in (operator, admin, marker))
         run("restart", "trusttabx", env=env)
         restart_seconds = ready()
-        assert http("/predict", operator, payload)[0] == 200
+        expect("predict_after_restart", 200, "/predict", operator, payload)
         return {"runtime_checks": "passed", "startup_seconds": startup_seconds,
                 "restart_seconds": restart_seconds, "image_size_bytes": image_size,
                 "nonroot_uid": uid, "container_memory_limit_bytes": details["HostConfig"]["Memory"],
                 "container_memory_usage": stats["MemUsage"],
                 "container_cpu_nano": details["HostConfig"]["NanoCpus"],
+                "response_statuses": statuses,
+                "build_completed": build.returncode == 0,
+                "tampered_manifest_rejected": True, "tampered_pipeline_rejected": True,
+                "logs_exclude_keys_and_marker": True,
                 "smoke_elapsed_seconds": time.monotonic() - start}
+    except Exception:
+        logs = run("logs", "--no-color", "--tail", "100", "trusttabx", env=env,
+                   check=False)
+        diagnostic("container_logs", logs.stdout + logs.stderr)
+        raise
     finally:
         run("down", env=env, check=False)
+        assert not run("ps", "-q", "trusttabx", env=env).stdout.strip()
 
 
 if __name__ == "__main__":

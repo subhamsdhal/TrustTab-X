@@ -205,6 +205,39 @@ def test_audit_contains_metadata_without_features_or_credentials(artifact):
                "private-marker-123" not in message for message in messages)
 
 
+def test_rejected_sensitive_values_never_appear_in_errors_or_audit(artifact):
+    path, record = artifact
+    marker = "confidential-feature-marker"
+    label_marker = "confidential-label-marker"
+    messages = []
+
+    class Collector(logging.Handler):
+        def emit(self, entry):
+            messages.append(entry.getMessage())
+
+    collector = Collector()
+    LOG.addHandler(collector)
+    try:
+        with TestClient(create_app(path)) as client:
+            bad_feature = client.post("/predict", json={"schema_version": SCHEMA_VERSION,
+                "record": {**record, "COW": marker}},
+                headers={"X-TrustTabX-Key": OPERATOR_KEY})
+            bad_label = client.post("/monitor/delayed-labels", json={
+                "labels": [label_marker], "probabilities": [0.8]},
+                headers={"X-TrustTabX-Key": ADMIN_KEY})
+            denied = client.post("/monitor/delayed-labels", json={
+                "labels": [0], "probabilities": [0.2]},
+                headers={"X-TrustTabX-Key": OPERATOR_KEY})
+            assert (bad_feature.status_code, bad_label.status_code,
+                    denied.status_code) == (422, 422, 403)
+            surface = "\n".join([bad_feature.text, bad_label.text, denied.text, *messages])
+            assert marker not in surface
+            assert label_marker not in surface
+            assert OPERATOR_KEY not in surface and ADMIN_KEY not in surface
+    finally:
+        LOG.removeHandler(collector)
+
+
 def test_request_timeout_is_structured(artifact, monkeypatch):
     path, _ = artifact
     monkeypatch.setenv("TRUSTTABX_REQUEST_TIMEOUT_SECONDS", "1")
