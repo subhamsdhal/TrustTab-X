@@ -47,3 +47,8 @@ Executed `./.venv/Scripts/trusttabx.exe natural-benchmark --max-fit-rows 12000 -
 ## Not independently verified
 
 - No model improvement, publication, production-readiness, fairness property or coverage guarantee under arbitrary shift is claimed. The one-fold results are descriptive pilots.
+# M5 local engineering verification, 2026-10-21
+
+- Source-only ACS 2018 trainer selected HistGradientBoosting among five candidates on 4,193 selection rows (Brier 0.1357396620) after fitting on 14,000 source rows. Independent 4,200-row calibration audit Brier 0.1411259448. Tracked aggregate manifest: `reports/results/m5_acs_artifact_summary.json`; fitted joblib, raw data and MLflow SQLite are ignored.
+- Local MLflow run recorded model/seed/schema/hash, selection/calibration Brier and manifest. FastAPI real-bundle loopback Uvicorn smoke: 100 predictions, 0 errors, version `m5-acs-fixed-1`, HTTP sequential p50/p95 26.56/36.45 ms, 38.29 requests/s; internal p50/p95 8.06/9.05 ms. A separate process-tree check showed serving child working set 173.84 MiB at readiness. Hardware: constrained Windows workstation, one process, OpenBLAS/OMP/MKL threads set to one. Measurements are descriptive one-run smoke results.
+- Offline pytest: 38 passed, one Starlette/httpx deprecation warning. Ruff passed. Local wheel build passed and includes API and HTML dashboard. Docker engine not installed, so no container smoke claim.

@@ -1,0 +1,95 @@
+{
+  "artifact_format": 1,
+  "schema_version": "acs-income-2018-v1",
+  "model_version": "m5-acs-fixed-1",
+  "task": "ACSIncome 2018 > $56,000",
+  "selected_expert": "hist_gradient_boosting",
+  "seed": 264738,
+  "survey_year": 2018,
+  "source_states": [
+    "PA",
+    "NJ",
+    "NY",
+    "OR",
+    "NM",
+    "KS",
+    "AL"
+  ],
+  "features": [
+    "AGEP",
+    "WKHP",
+    "COW",
+    "SCHL",
+    "MAR",
+    "OCCP",
+    "POBP",
+    "RELP",
+    "SEX",
+    "RAC1P"
+  ],
+  "feature_types": {
+    "AGEP": "integer",
+    "WKHP": "integer",
+    "COW": "category_code_string",
+    "SCHL": "category_code_string",
+    "MAR": "category_code_string",
+    "OCCP": "category_code_string",
+    "POBP": "category_code_string",
+    "RELP": "category_code_string",
+    "SEX": "category_code_string",
+    "RAC1P": "category_code_string"
+  },
+  "target_mapping": {
+    "0": "PINCP <= 56000",
+    "1": "PINCP > 56000"
+  },
+  "selection_brier_by_expert": {
+    "logistic_regression": 0.13922045075900052,
+    "hist_gradient_boosting": 0.13573966201362414,
+    "random_forest": 0.14069178580479033,
+    "xgboost": 0.13803905248641968,
+    "catboost_ohe": 0.13865976460907817
+  },
+  "calibration_metrics": {
+    "n": 4200,
+    "positive_rate": 0.3173809523809524,
+    "brier": 0.14112594484503488,
+    "log_loss": 0.42773629255614,
+    "auroc": 0.8584272855796788,
+    "auprc": 0.719299768547459,
+    "ece_10_bins": 0.011337026998016935
+  },
+  "split_hashes": {
+    "fit": "6173003fcd2dc44c0c0dd44ef825aa305ff914457c3b59862a5e452680100e62",
+    "selection": "0e16fa1c18d5c31eced4cc53547e7c40d1871fa9845acd2d04f1d9743366ffaa",
+    "calibration": "edb4709b7bc36c8d15769d15cfa7a5361dfa9e0d4785ff9e0de9c8e9bc29836f"
+  },
+  "split_sizes": {
+    "fit": 14000,
+    "selection": 4193,
+    "calibration": 4200
+  },
+  "source_file_sha256": {
+    "PA": "a6ccf32d05eff309204d83c229a05271e1f812de68bdb379df9100a0d9af5e71",
+    "NJ": "2692e67b3c5d3149736e307422c24f07aa8a950ecd63081d171ea3c6205bddb3",
+    "NY": "f9bfd886b96182c4e7bde11386dd5e1c7ea2d6194ef8bb4ee6bfbb0023814a91",
+    "OR": "f015a36e303be25814a9eaeb1eb5150df767f72f4a809cbae596543030e1e39b",
+    "NM": "89d0cda191700869daa53fc5265658610e584192be49ca8a42fd601f909385f3",
+    "KS": "dcc6f24586b0a7c77ba3afb1ad5dcbe779d41079a15745d69e869d6aa5ffd696",
+    "AL": "bab50a5c581aab06652b2d71f3b81affc416a83752cf0150c37958c3f7257675"
+  },
+  "dataset_provenance": "US Census 2018 ACS PUMS via Folktables 0.0.12",
+  "data_rights_note": "Verify Census and Folktables terms before redistribution or real use",
+  "research_decision": "M4.2 C: no adaptive advantage demonstrated",
+  "fit_seconds_by_expert": {
+    "logistic_regression": 0.4771230000005744,
+    "hist_gradient_boosting": 2.384049899999809,
+    "random_forest": 2.5666720000008354,
+    "xgboost": 3.063458499999797,
+    "catboost_ohe": 2.287314599999263
+  },
+  "peak_working_set_kib": 1318188,
+  "python_version": "3.12.10",
+  "sklearn_version": "1.9.1",
+  "pipeline_sha256": "92d788768bcf6aed6a925b00033be4b57da37418f4ac25af66a7b80992cc11b7"
+}

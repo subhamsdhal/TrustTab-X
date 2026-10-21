@@ -13,3 +13,5 @@ data/raw/
 data/processed/
 models/
 *.joblib
+mlruns/
+build/

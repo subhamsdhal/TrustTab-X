@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TrustTab-X · Decision support</title><style>
+:root{font-family:Inter,system-ui,sans-serif;color:#e7eee9;background:#0d1718}*{box-sizing:border-box}body{margin:0}
+header{padding:24px 5vw;border-bottom:1px solid #25413f;display:flex;justify-content:space-between;align-items:center}
+h1{font-size:24px;margin:0}.tag{color:#79d2b2;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+main{max-width:1200px;margin:auto;padding:32px 24px;display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+.card{background:#152425;border:1px solid #2b4745;border-radius:16px;padding:24px;box-shadow:0 10px 30px #0002}
+.wide{grid-column:1/-1}h2{font-size:18px;margin:0 0 12px}p{color:#adbfba;line-height:1.5}
+.metric{font-size:30px;color:#a0ebc9;font-weight:700}.small{font-size:12px;color:#8ba9a2}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}label{font-size:12px;color:#a9c9bf}
+input{display:block;width:100%;padding:10px;margin-top:5px;border:1px solid #41635c;border-radius:7px;background:#0d191a;color:#fff}
+button{padding:12px 18px;border:0;border-radius:8px;background:#9cf0c6;color:#0b2220;font-weight:700;cursor:pointer;margin-top:18px}
+pre{white-space:pre-wrap;word-break:break-word;background:#0b1919;padding:14px;border-radius:9px;color:#ccf6df;min-height:80px}
+.warn{color:#ffcf8f}.ok{color:#a0ebc9}@media(max-width:750px){main{grid-template-columns:1fr}.wide{grid-column:1}}
+</style></head><body><header><div><div class="tag">Research decision C · fixed expert</div><h1>TrustTab-X</h1></div><div class="small">Local ACSIncome 2018 demonstration</div></header>
+<main><section class="card"><h2>Model registry</h2><div id="model" class="metric">Loading…</div><p id="model-detail"></p><div class="small">Source-selected single expert. Adaptive routers are disabled for service inference.</div></section>
+<section class="card"><h2>Service telemetry</h2><div id="telemetry">Loading…</div><p class="small">In-memory local requests only. No fabricated production traffic. Delayed labels are unavailable to this live panel.</p></section>
+<section class="card"><h2>Prediction demonstration</h2><p>Enter a non-sensitive ACS-shaped example. Fields are validated before scoring.</p><form id="form" class="grid"></form><button id="predict">Predict</button><pre id="result">No prediction yet.</pre></section>
+<section class="card"><h2>Reliability & drift</h2><p>Use the current example to compare its feature pattern and prediction with source-fit reference statistics. A one-record drift alert is only illustrative.</p><button id="drift">Inspect example</button><pre id="drift-result">No drift inspection yet.</pre><p class="warn">Feature drift does not prove degraded accuracy. Ground-truth labels are needed to calculate realised Brier and calibration.</p></section>
+<section class="card wide"><h2>Research finding & limitations</h2><p>The M4.2 study found no consistent adaptive-routing advantage over the source-selected fixed expert or simple ensembles. This is an offline decision-support demo, not an approved system for employment, credit, medical or other high-stakes decisions. Data and features are specific to ACSIncome 2018; incompatible datasets require their own model and schema.</p><div class="small">OpenAPI: <a href="/docs" style="color:#a0ebc9">/docs</a> · Model metadata: <a href="/model" style="color:#a0ebc9">/model</a> · Runtime metrics: <a href="/metrics" style="color:#a0ebc9">/metrics</a></div></section></main>
+<script>
+const defaults={AGEP:39,WKHP:40,COW:"1.0",SCHL:"21.0",MAR:"1",OCCP:"2310.0",POBP:"42",RELP:"0",SEX:"1",RAC1P:"1"};
+const form=document.getElementById('form');for(const [key,value] of Object.entries(defaults)){const lab=document.createElement('label');lab.textContent=key;const input=document.createElement('input');input.name=key;input.value=value;if(typeof value==='number'){input.type='number';input.min=key==='AGEP'?16:0;input.max=key==='AGEP'?120:100}lab.append(input);form.append(lab)}
+function record(){const x={};for(const e of form.querySelectorAll('input'))x[e.name]=e.type==='number'?Number(e.value):e.value;return x}
+async function post(path,body){const r=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});return await r.json()}
+async function refresh(){try{const [m,s]=await Promise.all([fetch('/model').then(r=>r.json()),fetch('/metrics').then(r=>r.json())]);document.getElementById('model').textContent=m.selected_expert;document.getElementById('model-detail').textContent=`${m.model_version} · ${m.schema_version}`;document.getElementById('telemetry').innerHTML=`<div class="metric">${s.requests} predictions</div><p>${s.errors} errors · p50 ${s.latency_p50_ms===null?'—':s.latency_p50_ms.toFixed(2)+' ms'} · p95 ${s.latency_p95_ms===null?'—':s.latency_p95_ms.toFixed(2)+' ms'}</p>`}catch(e){document.getElementById('telemetry').textContent='Service unavailable'}}
+document.getElementById('predict').onclick=async()=>{const value=await post('/predict',{schema_version:'acs-income-2018-v1',record:record()});document.getElementById('result').textContent=JSON.stringify(value,null,2);refresh()};
+document.getElementById('drift').onclick=async()=>{const value=await post('/monitor/drift',{schema_version:'acs-income-2018-v1',records:[record()]});document.getElementById('drift-result').textContent=JSON.stringify(value,null,2)};refresh();setInterval(refresh,10000)
+</script></body></html>

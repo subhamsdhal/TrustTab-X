@@ -4,7 +4,7 @@
 
 A research-first Data Science project developed for a Growtern Academy portfolio upgrade and for a reproducible academic/industry demonstration. Attribution to an organisation must accurately reflect its permission, supervision, project dates, and actual work.
 
-> **Current implementation: research pilot, not the finished study.** Includes classical ML, independent model selection, split conformal prediction sets, a three-task real OpenML pilot, controlled stress tests, a drift monitor, tests, and machine-readable metrics. It does **not yet implement** a tabular foundation model, learned shift-aware routing, an API, or a validated enterprise benchmark. One-fold real-data results are descriptive only.
+> **Current implementation: research framework and local M5 decision-support demo.** The M4.2 research gate found no adaptive advantage; the local ACSIncome service uses one source-selected fixed expert. It is not approved for high-stakes or public deployment. See [M5 architecture](docs/M5_ARCHITECTURE.md) and [the research decision](docs/M4_2_RESEARCH_DECISION.md).
 
 ## Research question
 
@@ -23,6 +23,23 @@ Can an evidence-driven model-selection and abstention policy improve predictive 
 - Offline synthetic smoke experiment and three-task real OpenML pilot; JSON output; `pytest` and GitHub Actions CI.
 
 ## Quickstart
+
+### Local M5 ACSIncome demonstration
+
+On Windows PowerShell, from `D:\TrustTab-X`:
+
+```powershell
+$env:OPENBLAS_NUM_THREADS='1'; $env:OMP_NUM_THREADS='1'; $env:MKL_NUM_THREADS='1'
+.\.venv\Scripts\python.exe -m pip install -c constraints/m5.txt -e '.[dev,m5]'
+.\.venv\Scripts\python.exe -m trusttabx.m5_train --output outputs/m5_acs_model --mlflow
+$env:TRUSTTABX_TRUST_LOCAL_ARTIFACT='1'
+$env:TRUSTTABX_MODEL_DIR='outputs/m5_acs_model'
+.\.venv\Scripts\python.exe -m uvicorn trusttabx.m5_api:app --host 127.0.0.1 --port 8000
+```
+
+The trainer needs the cached public 2018 ACS source files or network access on its first run. Open <http://127.0.0.1:8000/> for the dashboard or <http://127.0.0.1:8000/docs> for interactive OpenAPI. The model bundle and local SQLite MLflow tracker stay under ignored `outputs/m5_acs_model/`. Set the trust flag only for a bundle you trained or independently approved: `joblib` deserialization executes pickle content. No target test labels are used in M5 selection. [API examples](docs/M5_API.md), [artifact and monitoring contract](docs/M5_MODEL_MONITORING.md).
+
+Docker Compose is supplied for an operator with Docker installed: train or provide an approved bundle first, then run `docker compose up --build`. It binds only `127.0.0.1:8000`; container execution has not been verified on this host because Docker is unavailable.
 
 Requires Python 3.10+.
 

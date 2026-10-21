@@ -1,0 +1,11 @@
+# M5 local decision-support architecture
+
+`trusttabx.m5_train` loads the bounded Folktables ACSIncome 2018 source-state sample using the existing `acs_domain` adapter. Existing split logic separates fit, source selection, calibration audit, IID test and geographic OOD test. Five fixed classical candidates fit only on fit rows with fit-only preprocessing; minimum source-selection Brier chooses one pipeline. The calibration partition is audited, not used to tune an abstention or probability map. The final IID/OOD labels remain outside M5 training.
+
+The offline trainer writes a versioned JSON manifest and the selected fitted sklearn pipeline to an ignored local bundle. Manifest validation checks feature order/types, schema and model versions, sklearn version, and model SHA256 before loading. SHA256 detects corruption but does not authenticate an attacker-controlled manifest; `TRUSTTABX_TRUST_LOCAL_ARTIFACT=1` is an explicit local operator trust gate. Do not load bundles received from untrusted sources.
+
+At startup FastAPI loads the pipeline once. Pydantic validates each record and caps batches at 100. Inference returns the fixed expert probability, a versioned threshold-0.5 class, no abstention, and an audit ID. No adaptive router is active. In-memory telemetry stores only aggregate latency and probabilities; prediction logs contain no raw features. `/monitor/drift` compares supplied ACS-shaped records against source-fit summary statistics. `/monitor/delayed-labels` computes offline metrics when an operator supplies aligned labels and probabilities. The dashboard fetches these endpoints and presents actual local telemetry.
+
+Docker Compose supplies a loopback-only port, read-only bundle mount, nonroot process, read-only filesystem, tmpfs, health check and 2 GiB/2 CPU limits. Artifact and container package versions should match the pinned `constraints/m5.txt`; the loader fails on a different sklearn version. Docker build/run is pending an available Docker engine.
+
+This system is a portfolio-grade local research demonstrator. It has no authentication, durable audit store, access/retention policy, real traffic source, deployment approval, or security review for external use. ACS survey features may be sensitive and source-data rights require review before redistribution or real decision use.

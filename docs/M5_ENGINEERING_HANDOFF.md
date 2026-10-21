@@ -1,5 +1,9 @@
 # M5 fixed-baseline engineering handoff
 
+## Executed M5 checkpoint, 2026-10-21
+
+The source-selected ACS fixed-expert bundle, FastAPI service, source-reference monitoring, local MLflow record, dashboard, test suite and local Uvicorn HTTP smoke are implemented. See `M5_ARCHITECTURE.md`, `M5_API.md`, `M5_MODEL_MONITORING.md` and `reports/results/m5_acs_artifact_summary.json`. The M4.2 decision remains C. Docker configuration and version constraints are supplied, but container execution awaits an available Docker engine. External use still requires access controls, durable audit governance, licensing/privacy review, and a deployment security review. The existing below sections remain the original engineering contract.
+
 Research gate: [M4.2 decision](M4_2_RESEARCH_DECISION.md) is **C, no adaptive advantage demonstrated**. Build the service around a source-validation-selected **single fixed expert**. Keep the five-expert weighted ensemble behind a research/benchmark flag and the two routers disabled for ordinary scoring. The project may enter M5 engineering; it is not yet a production deployment.
 
 ## Training contract

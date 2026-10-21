@@ -1,5 +1,10 @@
 # Next Codex task — expand the research protocol before router training
 
+## Next M5 engineering task after 2026-10-21 local checkpoint
+
+Start from the verified ACS fixed-expert local service. On a host with Docker, build and run `docker compose up --build` against a locally trusted bundle and check health, prediction, dashboard, memory and restart behavior. Resolve any Linux artifact/package incompatibility. Add a fixture-only container smoke path if source ACS files are absent. Before any external integration, design authentication, access control, audit retention/redaction, model approval and data-use/licensing review. Keep M4.2 decision C and no automatic router switching/abstention. Verify train/export/load reproducibility across a clean environment; add a source-only threshold-calibration study only if preregistered, without revisiting final targets for selection. Run full pytest, Ruff, wheel/container checks and `git diff --check`, update the status ledger and commit. Do not publish or expose a service publicly without approval.
+
+
 ## Next executable task after M4.2 research decision
 
 Read `docs/M4_2_RESEARCH_DECISION.md`, `docs/M5_ENGINEERING_HANDOFF.md` and the locked result JSONs. Stop tuning the routers on ACS, hospital, bank, 2025 College or shopper November/December final targets; they have all been inspected. Implement M5 around the **source-validation-selected fixed expert**: a reproducible local training/artifact contract with immutable feature schema, split hashes, licensing and timing notes; optional local MLflow tracking; FastAPI health/model/predict and explicit batch-mode contracts; structured audit IDs; and synthetic fixture tests for schema, deterministic scoring, abstention and drift alerts. Keep weighted ensemble optional as a higher-cost benchmark, routers disabled by default. No public deployment, paid service, or real decision integration. Run offline tests, Ruff, integration smoke, `git diff --check`, update status/verification and commit. Any renewed adaptive-router research requires a genuinely new preregistered family, never retesting the viewed final environments as confirmation.
