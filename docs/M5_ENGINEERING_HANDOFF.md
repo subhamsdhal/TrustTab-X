@@ -1,5 +1,10 @@
 # M5 fixed-baseline engineering handoff
 
+## M5.1 hardening update, 2026-10-21
+
+Fail-closed operator/admin keys, an independently approved manifest digest, bounded request body/time/rate controls, same-origin and host restrictions, privacy-conscious JSON audit metadata, security-negative tests, synthetic container verification and service-only Docker dependencies are implemented. See `M5_SECURITY.md` and `M5_DOCKER.md`. The local HTTP service passes; Docker runtime is unavailable here. Decision **B: local demo only**. Do not describe this as internal or public production-ready until the remaining gates in `NEXT_CODEX_TASK.md` pass.
+
+
 ## Executed M5 checkpoint, 2026-10-21
 
 The source-selected ACS fixed-expert bundle, FastAPI service, source-reference monitoring, local MLflow record, dashboard, test suite and local Uvicorn HTTP smoke are implemented. See `M5_ARCHITECTURE.md`, `M5_API.md`, `M5_MODEL_MONITORING.md` and `reports/results/m5_acs_artifact_summary.json`. The M4.2 decision remains C. Docker configuration and version constraints are supplied, but container execution awaits an available Docker engine. External use still requires access controls, durable audit governance, licensing/privacy review, and a deployment security review. The existing below sections remain the original engineering contract.

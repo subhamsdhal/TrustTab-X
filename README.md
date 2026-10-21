@@ -4,7 +4,7 @@
 
 A research-first Data Science project developed for a Growtern Academy portfolio upgrade and for a reproducible academic/industry demonstration. Attribution to an organisation must accurately reflect its permission, supervision, project dates, and actual work.
 
-> **Current implementation: research framework and local M5 decision-support demo.** The M4.2 research gate found no adaptive advantage; the local ACSIncome service uses one source-selected fixed expert. It is not approved for high-stakes or public deployment. See [M5 architecture](docs/M5_ARCHITECTURE.md) and [the research decision](docs/M4_2_RESEARCH_DECISION.md).
+> **Current implementation: research framework and secured local M5.1 decision-support demo.** The M4.2 research gate found no adaptive advantage; the ACSIncome service uses one source-selected fixed expert. It is **local demo only** until Docker runtime and internal deployment controls are verified. See [M5 architecture](docs/M5_ARCHITECTURE.md), [security policy](docs/M5_SECURITY.md) and [research decision](docs/M4_2_RESEARCH_DECISION.md).
 
 ## Research question
 
@@ -14,13 +14,11 @@ Can an evidence-driven model-selection and abstention policy improve predictive 
 
 ## Current capability
 
-- Four independent training purposes: `train`, `selection`, `calibration`, `test` (the test has IID and shifted cohorts).
-- Reproducible classical binary classifiers: logistic regression, histogram gradient boosting, random forest.
-- Selection based *only* on selection-split Brier score.
-- Split conformal prediction sets calibrated only on an independent calibration split; non-singleton sets are treated as abstentions.
-- Bonferroni-corrected two-sample Kolmogorov–Smirnov (KS) feature shift detector.
-- IID/shifted evaluation with Brier, log loss, AUROC, accuracy, conformal coverage and abstention rate.
-- Offline synthetic smoke experiment and three-task real OpenML pilot; JSON output; `pytest` and GitHub Actions CI.
+- Reproducible classical benchmarks with separate fit, selection, calibration and final test roles; natural geographic, site and temporal shift experiments with locked negative findings.
+- Five fixed classical candidates for the bounded ACS task; source-selection Brier chooses one expert for M5.1 service inference. The research routers are disabled in the service because M4.2 found no adaptive advantage.
+- Conformal, calibration, selective-risk and drift research diagnostics with their shift limitations documented in the research report.
+- A versioned ACSIncome pipeline artifact, authenticated FastAPI predictions, local drift/delayed-label monitoring, structured privacy-conscious audit metadata and a browser dashboard.
+- Offline synthetic smoke, OpenML and natural-domain aggregate results, 42 automated tests, static container checks and a manual synthetic Docker verification workflow. Docker runtime verification and internal release gates remain open.
 
 ## Quickstart
 
@@ -34,12 +32,15 @@ $env:OPENBLAS_NUM_THREADS='1'; $env:OMP_NUM_THREADS='1'; $env:MKL_NUM_THREADS='1
 .\.venv\Scripts\python.exe -m trusttabx.m5_train --output outputs/m5_acs_model --mlflow
 $env:TRUSTTABX_TRUST_LOCAL_ARTIFACT='1'
 $env:TRUSTTABX_MODEL_DIR='outputs/m5_acs_model'
-.\.venv\Scripts\python.exe -m uvicorn trusttabx.m5_api:app --host 127.0.0.1 --port 8000
+$env:TRUSTTABX_APPROVED_MANIFEST_SHA256=(Get-FileHash -Algorithm SHA256 -LiteralPath outputs/m5_acs_model/manifest.json).Hash.ToLowerInvariant()
+$env:TRUSTTABX_API_KEY = .\.venv\Scripts\python.exe -c 'import secrets; print(secrets.token_urlsafe(48))'
+$env:TRUSTTABX_ADMIN_KEY = .\.venv\Scripts\python.exe -c 'import secrets; print(secrets.token_urlsafe(48))'
+.\.venv\Scripts\python.exe -m uvicorn trusttabx.m5_api:app --host 127.0.0.1 --port 8000 --no-access-log --timeout-keep-alive 5
 ```
 
-The trainer needs the cached public 2018 ACS source files or network access on its first run. Open <http://127.0.0.1:8000/> for the dashboard or <http://127.0.0.1:8000/docs> for interactive OpenAPI. The model bundle and local SQLite MLflow tracker stay under ignored `outputs/m5_acs_model/`. Set the trust flag only for a bundle you trained or independently approved: `joblib` deserialization executes pickle content. No target test labels are used in M5 selection. [API examples](docs/M5_API.md), [artifact and monitoring contract](docs/M5_MODEL_MONITORING.md).
+The trainer needs the cached public 2018 ACS source files or network access on its first run. Open <http://127.0.0.1:8000/> for the dashboard, then enter the operator key from your local environment. The key stays in browser-tab memory; reload clears it. Interactive OpenAPI is at <http://127.0.0.1:8000/docs>. The model bundle and local SQLite MLflow tracker stay under ignored `outputs/m5_acs_model/`. Set the trust flag and approved digest only for a bundle you trained or independently approved: `joblib` deserialization executes pickle content. No target test labels are used in M5 selection. [API examples](docs/M5_API.md), [artifact and monitoring contract](docs/M5_MODEL_MONITORING.md), [security controls](docs/M5_SECURITY.md).
 
-Docker Compose is supplied for an operator with Docker installed: train or provide an approved bundle first, then run `docker compose up --build`. It binds only `127.0.0.1:8000`; container execution has not been verified on this host because Docker is unavailable.
+Docker Compose is supplied for an operator with Docker installed: train or provide an approved bundle and keys first, then follow [Docker verification](docs/M5_DOCKER.md). It binds only `127.0.0.1:8000`; container execution has not been verified on this host because Docker is unavailable.
 
 Requires Python 3.10+.
 

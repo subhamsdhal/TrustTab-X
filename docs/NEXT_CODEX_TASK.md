@@ -1,5 +1,10 @@
 # Next Codex task — expand the research protocol before router training
 
+## Next task after M5.1 local hardening
+
+On a machine with an available Docker engine, run `python scripts/verify_m5_container.py --runtime` with the synthetic fixture. Capture exact Compose build/config, image size, startup/restart time, memory, nonroot/read-only/resource checks, authentication and artifact-failure results. Fix cross-platform packaging or loader issues if observed. Scan the built image and record its digest. For a genuine internal release, put the service behind TLS and managed identity or a secure reverse-proxy session gateway; centralize rate limits and audit retention/access/deletion policy, and obtain source-data rights/privacy/security approval. Do not expose the current browser-key demo publicly. Keep the M4.2 fixed expert and research-only routers. Re-run pytest, Ruff, dependency audit, wheel/container checks and Git whitespace checks; update the release decision and commit. The M6 portfolio handoff in `docs/M6_PORTFOLIO_HANDOFF.md` is draft evidence for an accurate academic/placement narrative, not a deployment claim.
+
+
 ## Next M5 engineering task after 2026-10-21 local checkpoint
 
 Start from the verified ACS fixed-expert local service. On a host with Docker, build and run `docker compose up --build` against a locally trusted bundle and check health, prediction, dashboard, memory and restart behavior. Resolve any Linux artifact/package incompatibility. Add a fixture-only container smoke path if source ACS files are absent. Before any external integration, design authentication, access control, audit retention/redaction, model approval and data-use/licensing review. Keep M4.2 decision C and no automatic router switching/abstention. Verify train/export/load reproducibility across a clean environment; add a source-only threshold-calibration study only if preregistered, without revisiting final targets for selection. Run full pytest, Ruff, wheel/container checks and `git diff --check`, update the status ledger and commit. Do not publish or expose a service publicly without approval.

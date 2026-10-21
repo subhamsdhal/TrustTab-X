@@ -6,6 +6,7 @@ import hashlib
 import json
 import os
 import platform
+import secrets
 from dataclasses import dataclass
 from pathlib import Path
 from time import perf_counter
@@ -140,6 +141,12 @@ def load_bundle(root: str | Path) -> ModelBundle:
     manifest_path = path / "manifest.json"
     if not manifest_path.is_file():
         raise FileNotFoundError("Model manifest is missing")
+    # The operator pins this digest through deployment configuration. A hash
+    # shipped inside the same bundle cannot establish who approved the bundle.
+    approved = os.environ.get("TRUSTTABX_APPROVED_MANIFEST_SHA256", "")
+    actual = digest_file(manifest_path)
+    if len(approved) != 64 or not secrets.compare_digest(approved, actual):
+        raise PermissionError("Manifest digest differs from operator-approved digest")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     if (manifest.get("artifact_format") != 1
             or manifest.get("schema_version") != SCHEMA_VERSION

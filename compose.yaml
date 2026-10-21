@@ -6,8 +6,11 @@ services:
     environment:
       TRUSTTABX_MODEL_DIR: /models
       TRUSTTABX_TRUST_LOCAL_ARTIFACT: "1"
+      TRUSTTABX_APPROVED_MANIFEST_SHA256: ${TRUSTTABX_APPROVED_MANIFEST_SHA256:?Set approved manifest digest}
+      TRUSTTABX_API_KEY: ${TRUSTTABX_API_KEY:?Set operator key}
+      TRUSTTABX_ADMIN_KEY: ${TRUSTTABX_ADMIN_KEY:?Set admin key}
     volumes:
-      - ./outputs/m5_acs_model:/models:ro
+      - ${TRUSTTABX_MODEL_DIR_HOST:-./outputs/m5_acs_model}:/models:ro
     mem_limit: 2g
     cpus: 2
     read_only: true
