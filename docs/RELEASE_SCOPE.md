@@ -8,18 +8,17 @@ reproducibility guide, and review package are checked by `scripts/verify_m6.py` 
 The service therefore uses the source-selected fixed expert. The manuscript has not been
 peer reviewed or published; bounded datasets and split limitations remain in the paper.
 
-## B. Container-verified local demonstration — blocked
+## B. Container-verified local demonstration — complete
 
-The intended acceptance evidence is the real Docker Compose run of
-`scripts/verify_m5_container.py --runtime` on the private repository's `ubuntu-24.04`
-GitHub-hosted runner. It must build the service image and run only a synthetic bundle,
-exercise authenticated API and dashboard paths, verify negative security paths, reject
-tampered artifacts, restart, and record resource measurements. Static Compose validation
-and local FastAPI `TestClient` results alone do not complete this classification.
+The local Windows Docker Desktop Linux/WSL 2 host executed the real Docker Compose run
+of `scripts/verify_m5_container.py --runtime`. It built the service image, generated
+only a synthetic bundle, exercised authenticated API and dashboard paths, verified
+negative security paths, rejected tampered artifacts, restarted, measured resource
+use, and shut down cleanly. See [`FINAL_ENGINEERING_VERIFICATION.md`](FINAL_ENGINEERING_VERIFICATION.md)
+for measured results. Static Compose validation and FastAPI `TestClient` were also run.
 
-The hosted run is blocked because account-level included Actions minutes and the
-no-charge spending limit could not be confirmed with the available GitHub token.
-The Compose port is bound to `127.0.0.1:8000`. Its generated test model is not the real
+No GitHub Actions or paid cloud runner was used for M8. The Compose port is bound to
+`127.0.0.1:8000`. Its generated test model is not the real
 ACS bundle and cannot validate real-data inference quality. See
 [`FINAL_ENGINEERING_VERIFICATION.md`](FINAL_ENGINEERING_VERIFICATION.md) for actual run
 status and measurements.

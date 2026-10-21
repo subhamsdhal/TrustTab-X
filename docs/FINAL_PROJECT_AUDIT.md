@@ -3,13 +3,18 @@
 **Current status, 21 October 2026:** The academic research package is complete.
 M4.2 remains **C — no adaptive advantage demonstrated**; the executable service
 uses the source-selected fixed expert. M5.1 remains **B — Local Demo Only**.
-The private GitHub repository now contains M7 commit `5a5c5f7`, and its initial CI
-passed. On the M8 feature branch, 43 local tests, Ruff, dependency checks, figure/PDF
-verification, a source wheel, and a real loopback synthetic HTTP smoke passed. The
-GitHub-hosted **real Docker run is blocked by unreadable account-level billing limits**;
-no container-verified claim is made. The M8 branch was uploaded privately at
-`cce7567` with `[skip ci]`, and no branch Actions run started. Final M8 outcome:
-**PARTIALLY COMPLETE — CONTAINER VERIFICATION BLOCKED**. See [engineering evidence](FINAL_ENGINEERING_VERIFICATION.md)
+The private GitHub repository contains the M7 branch and its passing initial CI.
+The M8 feature branch was uploaded privately at `dd16f85` with `[skip ci]`; no M8
+GitHub Actions runner was used. The new local Docker Desktop Linux/WSL 2 engine
+built and ran the actual image through Compose with only a synthetic bundle. The
+complete container integration suite passed, including authentication/authorization,
+batch processing, dashboard, drift, delayed labels, artifact tamper rejection,
+restart, resource limits and clean shutdown. After fixing a Windows build-output
+decoding issue in the harness, the final run measured a 680,395,478-byte image,
+1.734 s startup, 124.7 MiB memory use and 50 HTTP predictions at p50/p95
+16.0/31.0 ms. The 43-test suite, Ruff, dependency and portfolio integrity checks
+passed. Final M8 outcome: **COMPLETE — RESEARCH PORTFOLIO AND CONTAINER-VERIFIED
+LOCAL DEMO**. See [engineering evidence](FINAL_ENGINEERING_VERIFICATION.md)
 and [release scope](RELEASE_SCOPE.md). The M7 audit below is retained as a dated
 historical checkpoint; its then-empty GitHub and then-unverified Docker statements
 do not describe the current private handoff state.

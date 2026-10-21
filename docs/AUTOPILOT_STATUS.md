@@ -11,12 +11,16 @@
 - CI and synthetic Docker verification workflows now pin `ubuntu-24.04` and use
   Node 24 compatible official actions. The container harness covers role denial,
   malformed inputs, drift, delayed labels, dashboard, tampered artifacts,
-  resource limits, restart and shutdown. The reviewed branch was uploaded
-  privately at `cce7567` with `[skip ci]`; no runner started. The hosted Docker
-  run is blocked by unreadable included Actions minutes and no-charge limit;
-  the current GitHub CLI token cannot read account billing usage.
+  resource limits, restart and shutdown. A first actual local Compose run passed
+  but exposed a Windows subprocess decoding error in captured build output.
+  Explicit UTF-8 replacement decoding fixed it; a second full local Docker run
+  passed without that error. The image was 680,395,478 bytes, container memory
+  124.7 MiB, startup 1.734 s, restart 1.515 s, and 50 sequential HTTP predictions
+  measured p50/p95 16.0/31.0 ms. Only synthetic artifacts and temporary keys
+  were used. GitHub Actions and paid cloud resources were not used for M8.
 - M4.2 decision C (**no adaptive advantage demonstrated**) and M5.1 release B
-  (**Local Demo Only**) remain in force. See `docs/RELEASE_SCOPE.md` and
+  (**Local Demo Only**) remain in force. Research portfolio and container-verified
+  local demo are complete. See `docs/RELEASE_SCOPE.md` and
   `docs/FINAL_ENGINEERING_VERIFICATION.md`.
 
 ## 2026-10-21 M7 final research/portfolio verification

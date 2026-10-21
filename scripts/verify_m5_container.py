@@ -6,6 +6,7 @@ import json
 import os
 import secrets
 import shutil
+import statistics
 import subprocess
 import sys
 import time
@@ -40,7 +41,8 @@ def static_checks() -> dict:
 
 def run(*args: str, env: dict[str, str], check: bool = True) -> subprocess.CompletedProcess:
     return subprocess.run(["docker", "compose", "-p", PROJECT, *args],
-                          cwd=ROOT, env=env, capture_output=True, text=True, check=check)
+                          cwd=ROOT, env=env, capture_output=True, text=True,
+                          encoding="utf-8", errors="replace", check=check)
 
 
 def http(path: str, key: str | None = None, payload: dict | None = None) -> tuple[int, dict | str]:
@@ -146,12 +148,17 @@ def runtime_checks() -> dict:
         assert run("exec", "-T", "trusttabx", "touch", "/app/not-writable",
                    env=env, check=False).returncode != 0
         container = run("ps", "-q", "trusttabx", env=env).stdout.strip()
-        details = json.loads(subprocess.check_output(["docker", "inspect", container], text=True))[0]
+        details = json.loads(subprocess.check_output(
+            ["docker", "inspect", container], text=True,
+            encoding="utf-8", errors="replace"))[0]
         assert details["HostConfig"]["Memory"] > 0 and details["HostConfig"]["NanoCpus"] > 0
+        assert details["NetworkSettings"]["Ports"]["8000/tcp"][0]["HostIp"] == "127.0.0.1"
         image_size = json.loads(subprocess.check_output(
-            ["docker", "image", "inspect", details["Image"]], text=True))[0]["Size"]
+            ["docker", "image", "inspect", details["Image"]], text=True,
+            encoding="utf-8", errors="replace"))[0]["Size"]
         stats = json.loads(subprocess.check_output([
-            "docker", "stats", "--no-stream", "--format", "{{json .}}", container], text=True))
+            "docker", "stats", "--no-stream", "--format", "{{json .}}", container],
+            text=True, encoding="utf-8", errors="replace"))
         rejected = run("run", "--rm", "--no-deps", "-e",
                        "TRUSTTABX_APPROVED_MANIFEST_SHA256=" + "0" * 64,
                        "trusttabx", "python", "-c",
@@ -175,6 +182,16 @@ def runtime_checks() -> dict:
         run("restart", "trusttabx", env=env)
         restart_seconds = ready()
         expect("predict_after_restart", 200, "/predict", operator, payload)
+        latencies = []
+        performance_start = time.monotonic()
+        for _ in range(50):
+            request_start = time.monotonic()
+            assert http("/predict", operator, payload)[0] == 200
+            latencies.append((time.monotonic() - request_start) * 1000)
+        performance_seconds = time.monotonic() - performance_start
+        later_logs = run("logs", "--no-color", "--tail", "200", "trusttabx", env=env)
+        assert all(value not in later_logs.stdout + later_logs.stderr
+                   for value in (operator, admin, marker))
         return {"runtime_checks": "passed", "startup_seconds": startup_seconds,
                 "restart_seconds": restart_seconds, "image_size_bytes": image_size,
                 "nonroot_uid": uid, "container_memory_limit_bytes": details["HostConfig"]["Memory"],
@@ -184,6 +201,10 @@ def runtime_checks() -> dict:
                 "build_completed": build.returncode == 0,
                 "tampered_manifest_rejected": True, "tampered_pipeline_rejected": True,
                 "logs_exclude_keys_and_marker": True,
+                "http_requests_measured": len(latencies),
+                "http_p50_ms": statistics.median(latencies),
+                "http_p95_ms": sorted(latencies)[int(0.95 * (len(latencies) - 1))],
+                "http_throughput_per_second": len(latencies) / performance_seconds,
                 "smoke_elapsed_seconds": time.monotonic() - start}
     except Exception:
         logs = run("logs", "--no-color", "--tail", "100", "trusttabx", env=env,

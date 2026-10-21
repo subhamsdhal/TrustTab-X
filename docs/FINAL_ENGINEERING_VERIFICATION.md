@@ -1,57 +1,67 @@
 # Final engineering verification — M8
 
-This record distinguishes executed checks from pending hosted-container evidence. The
-research decision remains **M4.2 C: no adaptive advantage demonstrated**; the service
-uses the source-selected fixed expert. Release scope is in [`RELEASE_SCOPE.md`](RELEASE_SCOPE.md).
+**Decision:** COMPLETE — research portfolio and container-verified local demo.
+The M4.2 scientific result remains **C: no adaptive advantage demonstrated**;
+the service uses the source-selected fixed expert. The engineering release remains
+**B: Local Demo Only**. See [`RELEASE_SCOPE.md`](RELEASE_SCOPE.md).
 
-## Executed on 21 October 2026
+## Local verification, 21 October 2026
 
 - Windows Python 3.12.10: `pytest -q -p no:cacheprovider --basetemp=.pytest_tmp`
-  passed **43 tests**. One existing Starlette/httpx deprecation warning remains.
+  passed **43 tests**; one existing Starlette/httpx deprecation warning remains.
 - `ruff check src tests scripts`, `pip check`, `scripts/verify_m6.py`,
-  `scripts/verify_m7.py`, and `git diff --check` passed.
-- `pip-audit --local` found no known vulnerabilities in auditable installed packages;
-  the unpublished local `trusttabx` package was skipped.
+  `scripts/verify_m7.py`, and `git diff --check` passed. `pip-audit --local`
+  found no known vulnerabilities in auditable installed packages and skipped the
+  unpublished local `trusttabx` package.
 - All six tracked PNGs passed image decoding. The manuscript PDF is six A4 pages;
   portfolio copy/hash/link and research-claim checks passed. A local wheel built.
 - A real loopback Uvicorn process loaded an ignored **synthetic** fixture under
-  temporary operator/admin keys and an approved manifest digest. The bounded
+  temporary operator/admin keys and an approved manifest digest. A bounded
   20-request smoke passed: startup 3.33 s, HTTP p50 20.62 ms, p95 30.97 ms,
-  51.59 requests/s, process-tree RSS 183.72 MiB. Its one service error is the
-  intentionally rejected unauthenticated request. This is one local run, not a
-  deployment performance guarantee.
-- Static Compose checks passed. Docker is unavailable on this Windows host.
+  51.59 requests/s, process-tree RSS 183.72 MiB. Its one service error was
+  the intentionally rejected unauthenticated request.
 
-## GitHub-hosted Docker runtime gate
+## Actual local Docker and Compose run
 
-The dedicated manual workflow `.github/workflows/m5-container.yml` targets
-`ubuntu-24.04`, checks out the triggering commit, verifies Docker/Compose, builds
-the actual image, and runs `scripts/verify_m5_container.py --runtime`. The harness
-generates only a synthetic bundle and temporary credentials, runs the service via
-Compose, tests authenticated and denied requests, dashboard, drift, delayed labels,
-malformed input, tampered manifest/pipeline, restart, nonroot/read-only/resource
-limits, and clean shutdown. It prints only status codes and aggregate timings/resource
-data; failure diagnostics redact generated keys and the test feature marker.
+Docker Engine **29.9.1** ran Linux containers on WSL 2; Docker Compose was **5.6.0**.
+The engine reported 16 CPUs and 8,141,041,664 bytes (about 7.58 GiB) of memory.
+`scripts/verify_m5_container.py --runtime` built the actual service image and ran it
+through the checked-in Compose file using an ignored synthetic bundle, generated
+temporary keys, and a generated independently supplied manifest digest. The first
+run completed the integration checks but exposed a Windows console-decoding error in
+captured Docker build output. After explicitly decoding subprocess output as UTF-8
+with replacement, the **second complete build/run passed without that error**.
 
-**Blocked:** account-level included Actions minutes and a no-charge spending limit
-could not be read with the current GitHub CLI token (`user` scope required; billing
-endpoint returned HTTP 404). Local browser access to GitHub billing was also disabled.
-The reviewed branch `codex/trusttabx-m8-closure` was uploaded privately at
-`cce7567948a655c20f39e671fac8061cae0c02f2` with `[skip ci]`; GitHub reported
-no Actions run for that branch. This preserves the work without consuming hosted
-minutes. No hosted M8 Docker build, container startup, image size, Linux resource
-measurement, or Linux artifact compatibility result is claimed. The exact outcome is
-**PARTIALLY COMPLETE — CONTAINER VERIFICATION BLOCKED** until the account's included
-minutes and no-charge spending limit are confirmed and the workflow passes.
+Measured second-run results: image size **680,395,478 bytes**; startup to readiness
+**1.734 s**; restart to readiness **1.515 s**; nonroot UID **1000**; memory limit
+**2,147,483,648 bytes**, sampled memory use **124.7 MiB**; CPU limit **2 CPUs**;
+root filesystem and model mount read-only; host port bound to `127.0.0.1`.
+Fifty sequential authenticated loopback predictions returned HTTP 200, with
+HTTP p50 **16.0 ms**, p95 **31.0 ms**, and **61.5 requests/s**. These are one-host,
+one-run smoke measurements, not capacity or portability guarantees.
+
+The harness recorded 200 for health, authorized model, single and batch prediction,
+drift, admin delayed labels, metrics, dashboard/assets, and prediction after restart.
+Anonymous/wrong-key calls returned 401, operator access to admin delayed labels
+returned 403, and oversized batch, malformed feature and invalid delayed label
+returned 422. Deliberate age shift raised a drift alert; the synthetic delayed-label
+Brier was 0.04. Both manifest digest mismatch and modified pipeline bytes failed
+load. Captured container logs excluded generated keys and the test feature marker.
+Compose shut down its unique project; no service container remained.
+
+The manual GitHub workflow was **not used**; no Actions or paid cloud minutes were
+needed. Passing this synthetic suite completes a **container-verified local demo**.
+It does not validate ACS real-data model quality in Linux or grant production approval.
 
 ## Security and operational boundary
 
-The new negative regression test verifies that rejected sensitive feature values,
-labels, operator keys and admin keys do not appear in API errors or JSON audit
-records. Existing tests cover startup fail-closed behavior, approved artifact
-digest/hash, role authorization, origin/host/body limits, per-process rate limiting,
-CSP, and timeouts. The runtime workflow must still confirm Linux behavior.
+The negative regression test verifies rejected sensitive feature and label values,
+operator keys and admin keys do not appear in API errors or JSON audit records.
+Existing tests cover startup fail-closed behavior, approved artifact digest/hash,
+role authorization, origin/host/body limits, per-process rate limiting, CSP, and
+timeouts. Docker confirmed the listed Linux container paths and failure modes.
 
 No public endpoint or production approval exists. TLS, managed identity, centralized
 rate limits, audit retention/access policy, source-data rights/privacy review,
-security signoff, and an operational owner remain outside this local demonstration.
+security signoff, an operational owner, and an immutable base-image digest/scan
+remain outside this local demonstration.
