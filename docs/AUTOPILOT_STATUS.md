@@ -11,9 +11,10 @@
 - CI and synthetic Docker verification workflows now pin `ubuntu-24.04` and use
   Node 24 compatible official actions. The container harness covers role denial,
   malformed inputs, drift, delayed labels, dashboard, tampered artifacts,
-  resource limits, restart and shutdown. The actual hosted Docker run is pending
-  confirmation of included Actions minutes and a no-charge spending limit; the
-  current GitHub CLI token cannot read account billing usage.
+  resource limits, restart and shutdown. The reviewed branch was uploaded
+  privately at `cce7567` with `[skip ci]`; no runner started. The hosted Docker
+  run is blocked by unreadable included Actions minutes and no-charge limit;
+  the current GitHub CLI token cannot read account billing usage.
 - M4.2 decision C (**no adaptive advantage demonstrated**) and M5.1 release B
   (**Local Demo Only**) remain in force. See `docs/RELEASE_SCOPE.md` and
   `docs/FINAL_ENGINEERING_VERIFICATION.md`.

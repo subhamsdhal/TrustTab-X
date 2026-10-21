@@ -1,5 +1,10 @@
 # Private GitHub handoff
 
+**Current M8 note:** The M7 branch was pushed privately at `5a5c5f7`, and the
+reviewed M8 feature branch `codex/trusttabx-m8-closure` was pushed privately at
+`cce7567` with `[skip ci]`. The original empty-repository instructions below
+record the pre-publication checkpoint and are no longer the current upload state.
+
 On 21 October 2026, GitHub CLI was authenticated as `subhamsdhal`. The private, empty repository [subhamsdhal/TrustTab-X](https://github.com/subhamsdhal/TrustTab-X) was created and verified with `visibility: PRIVATE` and `isEmpty: true`. The local `origin` remote points to it. **No branch, commit, model, raw data or portfolio file has been pushed.**
 
 The local release scan checked Git candidate files for common credential token patterns and private-key blocks and found no hits. It found no candidate `.joblib`, `.db`, `.sqlite`, `.zip`, `.csv`, `.env`, `.log` or `data/raw/` path. `portfolio/final/` contains the PDF, editable source, figures, aggregate evidence and docs; it excludes the ignored fitted bundle, raw ACS cache and local audit log. The project MIT licence covers contributor software/documentation; public-source dataset rights and TabPFN checkpoint terms are separate. Growtern Academy attribution is reported project context, not verified organizational endorsement.

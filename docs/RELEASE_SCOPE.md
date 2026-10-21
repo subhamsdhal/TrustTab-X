@@ -8,7 +8,7 @@ reproducibility guide, and review package are checked by `scripts/verify_m6.py` 
 The service therefore uses the source-selected fixed expert. The manuscript has not been
 peer reviewed or published; bounded datasets and split limitations remain in the paper.
 
-## B. Container-verified local demonstration — verification in progress
+## B. Container-verified local demonstration — blocked
 
 The intended acceptance evidence is the real Docker Compose run of
 `scripts/verify_m5_container.py --runtime` on the private repository's `ubuntu-24.04`
@@ -17,6 +17,8 @@ exercise authenticated API and dashboard paths, verify negative security paths, 
 tampered artifacts, restart, and record resource measurements. Static Compose validation
 and local FastAPI `TestClient` results alone do not complete this classification.
 
+The hosted run is blocked because account-level included Actions minutes and the
+no-charge spending limit could not be confirmed with the available GitHub token.
 The Compose port is bound to `127.0.0.1:8000`. Its generated test model is not the real
 ACS bundle and cannot validate real-data inference quality. See
 [`FINAL_ENGINEERING_VERIFICATION.md`](FINAL_ENGINEERING_VERIFICATION.md) for actual run

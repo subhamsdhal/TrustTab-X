@@ -33,12 +33,16 @@ malformed input, tampered manifest/pipeline, restart, nonroot/read-only/resource
 limits, and clean shutdown. It prints only status codes and aggregate timings/resource
 data; failure diagnostics redact generated keys and the test feature marker.
 
-**Pending:** account-level included Actions minutes and a no-charge spending limit
+**Blocked:** account-level included Actions minutes and a no-charge spending limit
 could not be read with the current GitHub CLI token (`user` scope required; billing
-endpoint returned HTTP 404). No hosted M8 container run is claimed until that
-no-cost gate is confirmed and the workflow succeeds. Replace this paragraph with
-the exact branch, commit, run URL, Docker/Compose versions, status table, image size,
-resource use and conclusion after execution.
+endpoint returned HTTP 404). Local browser access to GitHub billing was also disabled.
+The reviewed branch `codex/trusttabx-m8-closure` was uploaded privately at
+`cce7567948a655c20f39e671fac8061cae0c02f2` with `[skip ci]`; GitHub reported
+no Actions run for that branch. This preserves the work without consuming hosted
+minutes. No hosted M8 Docker build, container startup, image size, Linux resource
+measurement, or Linux artifact compatibility result is claimed. The exact outcome is
+**PARTIALLY COMPLETE — CONTAINER VERIFICATION BLOCKED** until the account's included
+minutes and no-charge spending limit are confirmed and the workflow passes.
 
 ## Security and operational boundary
 

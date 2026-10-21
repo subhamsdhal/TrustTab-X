@@ -9,9 +9,11 @@ confirm that included Actions minutes remain and that the account cannot incur
 additional charges. The current CLI token lacks billing-read scope; do not assume
 that a private workflow is free. The local Windows host has no Docker engine.
 
-Once the no-charge gate is confirmed, push only the reviewed
-`codex/trusttabx-m8-closure` feature branch without force, run the dedicated
-`.github/workflows/m5-container.yml` workflow, inspect the job's actual Docker
+The reviewed `codex/trusttabx-m8-closure` branch is already private on GitHub
+at `cce7567` and was uploaded with `[skip ci]`; no Actions run started. Once the
+no-charge gate is confirmed, run CI on a new non-skipped commit and dispatch the
+dedicated `.github/workflows/m5-container.yml` workflow on this branch. Inspect
+the job's actual Docker
 build/Compose/API/security/resource results, and update the M8 evidence and release
 classification. If the container fails, fix only demonstrated defects and rerun
 within the verified no-charge limit. If billing access or runtime remains unavailable,

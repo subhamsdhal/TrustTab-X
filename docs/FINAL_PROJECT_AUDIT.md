@@ -6,8 +6,10 @@ uses the source-selected fixed expert. M5.1 remains **B — Local Demo Only**.
 The private GitHub repository now contains M7 commit `5a5c5f7`, and its initial CI
 passed. On the M8 feature branch, 43 local tests, Ruff, dependency checks, figure/PDF
 verification, a source wheel, and a real loopback synthetic HTTP smoke passed. The
-GitHub-hosted **real Docker run is pending account no-charge billing verification**;
-no container-verified claim is made yet. See [engineering evidence](FINAL_ENGINEERING_VERIFICATION.md)
+GitHub-hosted **real Docker run is blocked by unreadable account-level billing limits**;
+no container-verified claim is made. The M8 branch was uploaded privately at
+`cce7567` with `[skip ci]`, and no branch Actions run started. Final M8 outcome:
+**PARTIALLY COMPLETE — CONTAINER VERIFICATION BLOCKED**. See [engineering evidence](FINAL_ENGINEERING_VERIFICATION.md)
 and [release scope](RELEASE_SCOPE.md). The M7 audit below is retained as a dated
 historical checkpoint; its then-empty GitHub and then-unverified Docker statements
 do not describe the current private handoff state.
