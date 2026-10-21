@@ -1,5 +1,7 @@
 # M5.1 Docker verification and local deployment
 
+For regular use on Windows, double-click `Start-TrustTabX.cmd` and follow the [local dashboard guide](LOCAL_DASHBOARD.md). Double-click `Stop-TrustTabX.cmd` to stop only this Compose service. The launcher creates restricted, Git-ignored local credentials once, validates the existing approved artifact, waits for readiness and opens the dashboard.
+
 The image installs only the `m5-service` runtime extra from `constraints/m5.txt`, runs as `appuser`, uses a read-only root filesystem with `/tmp` tmpfs, and has a health check. Compose mounts an approved model bundle read-only and binds `127.0.0.1:8000`, with 2 GiB memory and 2 CPU limits. The base image remains `python:3.12-slim`; a future release should pin and scan an immutable image digest.
 
 Prepare the environment in PowerShell from `D:\TrustTab-X` after training or providing an approved local bundle:

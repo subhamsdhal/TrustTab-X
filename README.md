@@ -48,7 +48,7 @@ $env:TRUSTTABX_ADMIN_KEY = .\.venv\Scripts\python.exe -c 'import secrets; print(
 
 The trainer needs the cached public 2018 ACS source files or network access on its first run. Open <http://127.0.0.1:8000/> for the dashboard, then enter the operator key from your local environment. The key stays in browser-tab memory; reload clears it. Interactive OpenAPI is at <http://127.0.0.1:8000/docs>. The model bundle and local SQLite MLflow tracker stay under ignored `outputs/m5_acs_model/`. Set the trust flag and approved digest only for a bundle you trained or independently approved: `joblib` deserialization executes pickle content. No target test labels are used in M5 selection. [API examples](docs/M5_API.md), [artifact and monitoring contract](docs/M5_MODEL_MONITORING.md), [security controls](docs/M5_SECURITY.md).
 
-Docker Compose is supplied for an operator with Docker installed: train or provide an approved bundle and keys first, then follow [Docker verification](docs/M5_DOCKER.md). It binds only `127.0.0.1:8000`. The synthetic hosted-container check is separate from real ACS artifact validation and from any internal deployment approval.
+For regular Windows use, double-click `Start-TrustTabX.cmd` and follow the [local dashboard guide](docs/LOCAL_DASHBOARD.md); `Stop-TrustTabX.cmd` stops only this service. Docker Compose binds only `127.0.0.1:8000`. The [Docker verification](docs/M5_DOCKER.md) explains the manual workflow and synthetic integration check. The synthetic hosted-container check is separate from real ACS artifact validation and from any internal deployment approval.
 
 Requires Python 3.10+.
 
