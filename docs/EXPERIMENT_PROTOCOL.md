@@ -1,5 +1,9 @@
 # Statistical and research evaluation protocol (pre-register before comparing methods)
 
+## Chronological and source-domain addendum (2026-10-21)
+
+The UCI bank protocol was recorded in `docs/BANK_TEMPORAL_PREREGISTRATION.md` before target labels were read. Fit, selection, calibration, near-future and final-future ranges are contiguous in the supplied order. Near-future is a later environment, not an IID test. Source-only domain cross-fitting is implemented in `src/trusttabx/domain_eval.py`: geographic/institutional domains use leave-one-domain-out, while temporal folds train only on earlier blocks. Entity groups must not cross fit/validation where available. Reserved final rows are excluded by construction. `docs/ROUTER_PROTOTYPE_PREREGISTRATION.md` locks the exploratory metadata-only router and fixed controls before final evaluation. The three final-domain scores are descriptive, with no row-IID significance test or arbitrary-shift conformal guarantee.
+
 ## Experimental units
 
 - Begin with **binary classification**. Select a fixed set of suitable OpenML tasks before examining comparative outcomes.

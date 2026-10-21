@@ -52,6 +52,7 @@ class DomainData:
     patient: np.ndarray
     ood: np.ndarray
     source_sha256: str
+    admission_source: np.ndarray | None = None
 
 
 def load_uci_diabetes(path: str | Path) -> DomainData:
@@ -75,6 +76,7 @@ def load_uci_diabetes(path: str | Path) -> DomainData:
         X=X, y=(raw["readmitted"] != "NO").to_numpy(dtype=int),
         patient=raw["patient_nbr"].to_numpy(),
         ood=(raw["admission_source_id"] == 7).to_numpy(), source_sha256=digest,
+        admission_source=raw["admission_source_id"].to_numpy(),
     )
 
 

@@ -1,5 +1,12 @@
 # TrustTab-X autonomous build status
 
+## 2026-10-21 temporal benchmark and M4 exploratory checkpoint
+
+- UCI `bank-additional-full.csv` chronological benchmark executed with the preregistered pre-call 13-feature protocol. Near-future/final-future Brier 0.063753/0.337574, log loss 0.249350/1.099454, positive rate 0.06846/0.38459. Both expert pools selected HistGradientBoosting. Five-model fit 4.681 s, separate three-model fit 1.600 s, peak Windows working set 362,636 KiB. Details in `docs/BANK_TEMPORAL_MANIFEST.md` and tracked aggregate JSON.
+- Domain-aware source-only cross-fitting executed across seven ACS states, four patient-disjoint hospital admission codes and three forward bank blocks: 14 folds, 70 expert fits, 51,917 held-out source predictions. No final target rows enter these training artifacts. See `docs/DOMAIN_CROSSFIT_MANIFEST.md`.
+- Locked exploratory metadata-only reliability router and four controls evaluated on the three final domains. Router Brier was 0.148039 ACS, 0.258926 hospital, 0.344292 bank, versus source-selected static 0.145517, 0.250504, 0.337574. **No router improvement**; the bank uniform ensemble scored 0.330909. This does not establish cross-dataset router generalisation or a shift-aware routing contribution. Additional independent domain families, nested meta-validation and explicit shift features remain M4 requirements.
+- Final audit: 25 offline tests passed, `ruff check src tests` passed, and `git diff --check` passed. Raw bank/ACS/hospital records and row-level source cross-fit predictions remain ignored.
+
 ## 2026-10-20 ACSIncome checkpoint
 
 - Added a Folktables-powered, TableShift-inspired 2018 ACSIncome geographic benchmark; see `docs/ACS_INCOME_DOMAIN_MANIFEST.md` and ignored `outputs/acs_income_2018_geographic_expanded.json`. Seven source states span five divisions; the six New England states are untouched OOD test environments. The bounded sample and 10-feature schema differ from official TableShift.

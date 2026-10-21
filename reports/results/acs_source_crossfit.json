@@ -1,0 +1,228 @@
+{
+  "dataset": "acs",
+  "seed": 264738,
+  "protocol": "leave-one-source-state-out; all other partitions excluded",
+  "source_rows": 14000,
+  "excluded_rows": 46000,
+  "fold_count": 7,
+  "expert_names": [
+    "logistic_regression",
+    "hist_gradient_boosting",
+    "random_forest",
+    "xgboost",
+    "catboost_ohe"
+  ],
+  "trained_model_count": 35,
+  "router_metadata_columns": [
+    "probability_logistic_regression",
+    "probability_hist_gradient_boosting",
+    "probability_random_forest",
+    "probability_xgboost",
+    "probability_catboost_ohe",
+    "binary_entropy_logistic_regression",
+    "binary_entropy_hist_gradient_boosting",
+    "binary_entropy_random_forest",
+    "binary_entropy_xgboost",
+    "binary_entropy_catboost_ohe",
+    "mean_probability",
+    "std_probability"
+  ],
+  "fold_metrics": {
+    "PA": {
+      "n": 2000,
+      "fit_n": 12000,
+      "positive_rate": 0.3,
+      "experts": {
+        "logistic_regression": {
+          "brier": 0.14010244019301824,
+          "fit_seconds": 0.20227130000057514
+        },
+        "hist_gradient_boosting": {
+          "brier": 0.13382130405103357,
+          "fit_seconds": 0.8622085999995761
+        },
+        "random_forest": {
+          "brier": 0.1385366016753382,
+          "fit_seconds": 1.0228201999998419
+        },
+        "xgboost": {
+          "brier": 0.13417617976665497,
+          "fit_seconds": 2.109830099998362
+        },
+        "catboost_ohe": {
+          "brier": 0.13390897230256094,
+          "fit_seconds": 0.8998910000009346
+        }
+      }
+    },
+    "NJ": {
+      "n": 2000,
+      "fit_n": 12000,
+      "positive_rate": 0.434,
+      "experts": {
+        "logistic_regression": {
+          "brier": 0.15692557248712136,
+          "fit_seconds": 0.178789700003108
+        },
+        "hist_gradient_boosting": {
+          "brier": 0.15775932893512226,
+          "fit_seconds": 0.8162290999971447
+        },
+        "random_forest": {
+          "brier": 0.16702939806701203,
+          "fit_seconds": 0.9993746000000101
+        },
+        "xgboost": {
+          "brier": 0.16289971768856049,
+          "fit_seconds": 0.447653100000025
+        },
+        "catboost_ohe": {
+          "brier": 0.16258181586631754,
+          "fit_seconds": 0.7737995999996201
+        }
+      }
+    },
+    "NY": {
+      "n": 2000,
+      "fit_n": 12000,
+      "positive_rate": 0.374,
+      "experts": {
+        "logistic_regression": {
+          "brier": 0.16193490274588535,
+          "fit_seconds": 0.178956300002028
+        },
+        "hist_gradient_boosting": {
+          "brier": 0.15989311004444123,
+          "fit_seconds": 0.8103904999989027
+        },
+        "random_forest": {
+          "brier": 0.1647256085945856,
+          "fit_seconds": 0.8556308999977773
+        },
+        "xgboost": {
+          "brier": 0.16075968742370605,
+          "fit_seconds": 0.4614791999993031
+        },
+        "catboost_ohe": {
+          "brier": 0.1614941254418359,
+          "fit_seconds": 0.9413005999995221
+        }
+      }
+    },
+    "OR": {
+      "n": 2000,
+      "fit_n": 12000,
+      "positive_rate": 0.333,
+      "experts": {
+        "logistic_regression": {
+          "brier": 0.14771122801756065,
+          "fit_seconds": 0.18425089999800548
+        },
+        "hist_gradient_boosting": {
+          "brier": 0.14423560043886324,
+          "fit_seconds": 0.9777874999999767
+        },
+        "random_forest": {
+          "brier": 0.1499371512550831,
+          "fit_seconds": 0.9571556000009878
+        },
+        "xgboost": {
+          "brier": 0.14586761593818665,
+          "fit_seconds": 0.4192165999993449
+        },
+        "catboost_ohe": {
+          "brier": 0.1467135247819136,
+          "fit_seconds": 0.8104051000009349
+        }
+      }
+    },
+    "NM": {
+      "n": 2000,
+      "fit_n": 12000,
+      "positive_rate": 0.2565,
+      "experts": {
+        "logistic_regression": {
+          "brier": 0.129962582584315,
+          "fit_seconds": 0.15892149999854155
+        },
+        "hist_gradient_boosting": {
+          "brier": 0.12784686051229455,
+          "fit_seconds": 0.799764100000175
+        },
+        "random_forest": {
+          "brier": 0.13228226897808398,
+          "fit_seconds": 0.8753741000000446
+        },
+        "xgboost": {
+          "brier": 0.12895211577415466,
+          "fit_seconds": 0.41512990000046557
+        },
+        "catboost_ohe": {
+          "brier": 0.12917947566283478,
+          "fit_seconds": 0.7169930000018212
+        }
+      }
+    },
+    "KS": {
+      "n": 2000,
+      "fit_n": 12000,
+      "positive_rate": 0.281,
+      "experts": {
+        "logistic_regression": {
+          "brier": 0.14023931737120618,
+          "fit_seconds": 0.15251550000175484
+        },
+        "hist_gradient_boosting": {
+          "brier": 0.13499728983765888,
+          "fit_seconds": 0.7941695000008622
+        },
+        "random_forest": {
+          "brier": 0.1350864051926323,
+          "fit_seconds": 0.8299067000007199
+        },
+        "xgboost": {
+          "brier": 0.1335603892803192,
+          "fit_seconds": 0.38932070000009844
+        },
+        "catboost_ohe": {
+          "brier": 0.13437384067686953,
+          "fit_seconds": 0.7006938000013179
+        }
+      }
+    },
+    "AL": {
+      "n": 2000,
+      "fit_n": 12000,
+      "positive_rate": 0.2635,
+      "experts": {
+        "logistic_regression": {
+          "brier": 0.13427919824707618,
+          "fit_seconds": 0.14732100000037462
+        },
+        "hist_gradient_boosting": {
+          "brier": 0.13311263236663262,
+          "fit_seconds": 0.7628861000011966
+        },
+        "random_forest": {
+          "brier": 0.13286524985964934,
+          "fit_seconds": 0.862711899997521
+        },
+        "xgboost": {
+          "brier": 0.13325771689414978,
+          "fit_seconds": 0.3847228000013274
+        },
+        "catboost_ohe": {
+          "brier": 0.13165611263192512,
+          "fit_seconds": 0.7342032000015024
+        }
+      }
+    }
+  },
+  "fit_seconds_total": 23.634074300003704,
+  "peak_process_working_set_kib": 1320456,
+  "limitations": [
+    "Predictions and labels are source-fold only; no final test rows are present.",
+    "These cross-fitted rows support router development but do not themselves provide nested unbiased router evaluation."
+  ],
+  "prediction_artifact": "data\\processed\\acs_source_crossfit_predictions.npz"
+}

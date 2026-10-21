@@ -1,5 +1,9 @@
 # Results verification — 2026-10-20
 
+## 2026-10-21 temporal and exploratory-router run
+
+Executed `trusttabx bank-benchmark`, `trusttabx domain-crossfit --dataset bank`, `--dataset acs`, `--dataset diabetes`, and `trusttabx router-prototype` with BLAS/OpenMP threads set to 1. The bank archive was SHA-256 pinned and all earlier results preserved. Source cross-fit prediction archives contain source labels and remain Git-ignored; the aggregated bank, source-fold and router JSON files are tracked under `reports/results/`. The router did not improve Brier over the fixed expert on any of three final domains. No new-family router transfer, target adaptation, distribution-free coverage under shift, or independent statistical significance was verified. Final audit: 25 offline tests passed, Ruff passed, and `git diff --check` passed.
+
 ## ACSIncome geographic pilot
 
 Executed the nine-state smoke and initial full run, preserved as ignored `outputs/acs_income_smoke.json` and `outputs/acs_income_2018_geographic.json`. Expanded to seven source states in five divisions plus six untouched New England states, then reran after making per-state sampling stable and hashing source files. Final reproducible output: ignored `outputs/acs_income_2018_geographic_expanded.json`, with an aggregate-only tracked copy in `reports/results/`. The earlier hospital result also has an aggregate-only tracked copy there. This is a TableShift-inspired bounded protocol, not an official score. The final rerun passed 19 offline tests, Ruff and `git diff --check`. No learned router or cross-dataset improvement was verified. See `docs/ACS_INCOME_DOMAIN_MANIFEST.md` for exact definitions and metrics.

@@ -124,6 +124,29 @@ def split_acs(data: ACSData, seed: int = 264738) -> dict[str, np.ndarray]:
     return parts
 
 
+def bounded_acs_train(data: ACSData, train: np.ndarray, max_fit_rows: int,
+                      seed: int = 264738) -> np.ndarray:
+    """Cap source fitting rows equally by state without splitting households."""
+    if len(train) <= max_fit_rows:
+        return train
+    rng = np.random.default_rng(seed + 3)
+    chosen = []
+    for state in SOURCE_STATES:
+        state_idx = train[data.state[train] == state]
+        groups, counts = np.unique(data.household[state_idx], return_counts=True)
+        budget = max_fit_rows // len(SOURCE_STATES)
+        selected = []
+        size = 0
+        for pos in rng.permutation(len(groups)):
+            if size + counts[pos] <= budget:
+                selected.append(groups[pos])
+                size += counts[pos]
+            if size == budget:
+                break
+        chosen.append(state_idx[np.isin(data.household[state_idx], selected)])
+    return np.concatenate(chosen)
+
+
 def run_acs_benchmark(
     cache_dir: str | Path = "data/raw/acs2018", *, seed: int = 264738,
     max_fit_rows: int = 12000, source_per_state: int = 6000,
@@ -132,26 +155,8 @@ def run_acs_benchmark(
     data = load_acs_sample(cache_dir, seed=seed, source_per_state=source_per_state,
                            target_per_state=target_per_state)
     parts = split_acs(data, seed)
+    parts["train"] = bounded_acs_train(data, parts["train"], max_fit_rows, seed)
     train = parts["train"]
-    if len(train) > max_fit_rows:
-        rng = np.random.default_rng(seed + 3)
-        chosen = []
-        # Group-safe bounded sampling in each source state.
-        for state in SOURCE_STATES:
-            state_idx = train[data.state[train] == state]
-            groups, counts = np.unique(data.household[state_idx], return_counts=True)
-            budget = max_fit_rows // len(SOURCE_STATES)
-            selected = []
-            size = 0
-            for pos in rng.permutation(len(groups)):
-                if size + counts[pos] <= budget:
-                    selected.append(groups[pos])
-                    size += counts[pos]
-                if size == budget:
-                    break
-            chosen.append(state_idx[np.isin(data.household[state_idx], selected)])
-        train = np.concatenate(chosen)
-    parts["train"] = train
     preprocessing = make_preprocessor(data.X, [c in CATEGORICAL for c in FEATURES])
     model_pool = make_experts(preprocessing, seed, advanced=True)
     fitted, fit_seconds, select_brier, select_probability = {}, {}, {}, {}

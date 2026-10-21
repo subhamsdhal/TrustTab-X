@@ -1,5 +1,9 @@
 # Next Codex task — expand the research protocol before router training
 
+## Next executable task after the temporal/router checkpoint
+
+Read `docs/BANK_TEMPORAL_MANIFEST.md`, `docs/DOMAIN_CROSSFIT_MANIFEST.md`, `docs/ROUTER_PROTOTYPE_PREREGISTRATION.md` and tracked `reports/results/router_prototype_3families.json`. Treat the three final-domain router results as locked exploratory outcomes; do not tune the current router using them. Next, pre-register independent additional natural dataset families or years and implement nested leave-one-family-out meta-training/selection before a new final family. Add explicit source-fitted feature-shift descriptors and a matched-coverage selective-risk comparison. Audit the bank feature timing assumptions and customer recurrence limit. Run `./.venv/Scripts/python.exe -m pytest -q` and `./.venv/Scripts/ruff.exe check src tests`, then commit verified work.
+
 ## Next executable task after ACSIncome
 
 Read `docs/ACS_INCOME_DOMAIN_MANIFEST.md`, `docs/TABLESHIFT_DOMAIN_MANIFEST.md`, `docs/M4_RESEARCH_SPEC.md` and both final JSON outputs. Pre-register a further **independent public dataset family or temporal/site shift** with its own source environments; alternatively design nested leave-one-division-out ACS meta-validation across several held-out divisions while reserving New England untouched, but do not count states from one division as independent dataset-level replicates. For a cross-dataset router, standardise only comparable metadata (expert probability, entropy, inter-expert disagreement, source-validated loss and feature-shift summaries); do not merge ACS and hospital raw columns. Use domain-held-out source predictions for router fitting, separate source calibration, static and ensemble controls, and group/domain-level intervals. Keep the New England and hospital final tests out of all router decisions. Re-run `pytest -q` and `ruff check src tests`, then commit only verified work.

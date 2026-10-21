@@ -1,0 +1,120 @@
+{
+  "dataset": "bank",
+  "seed": 264738,
+  "protocol": "forward-only four source-fit blocks; later windows excluded",
+  "source_rows": 20594,
+  "excluded_rows": 20594,
+  "fold_count": 3,
+  "expert_names": [
+    "logistic_regression",
+    "hist_gradient_boosting",
+    "random_forest",
+    "xgboost",
+    "catboost_ohe"
+  ],
+  "trained_model_count": 15,
+  "router_metadata_columns": [
+    "probability_logistic_regression",
+    "probability_hist_gradient_boosting",
+    "probability_random_forest",
+    "probability_xgboost",
+    "probability_catboost_ohe",
+    "binary_entropy_logistic_regression",
+    "binary_entropy_hist_gradient_boosting",
+    "binary_entropy_random_forest",
+    "binary_entropy_xgboost",
+    "binary_entropy_catboost_ohe",
+    "mean_probability",
+    "std_probability"
+  ],
+  "fold_metrics": {
+    "fit_1": {
+      "n": 5149,
+      "fit_n": 5149,
+      "positive_rate": 0.0386482812196543,
+      "experts": {
+        "logistic_regression": {
+          "brier": 0.03734539576482685,
+          "fit_seconds": 0.09175979999781703
+        },
+        "hist_gradient_boosting": {
+          "brier": 0.0379310380057277,
+          "fit_seconds": 0.19632809999893652
+        },
+        "random_forest": {
+          "brier": 0.03780633407810462,
+          "fit_seconds": 0.30521800000133226
+        },
+        "xgboost": {
+          "brier": 0.03753943741321564,
+          "fit_seconds": 1.7480894000000262
+        },
+        "catboost_ohe": {
+          "brier": 0.0374857518818307,
+          "fit_seconds": 0.44025080000210437
+        }
+      }
+    },
+    "fit_2": {
+      "n": 5148,
+      "fit_n": 10298,
+      "positive_rate": 0.05555555555555555,
+      "experts": {
+        "logistic_regression": {
+          "brier": 0.05278802043555942,
+          "fit_seconds": 0.11438790000102017
+        },
+        "hist_gradient_boosting": {
+          "brier": 0.052958153066769854,
+          "fit_seconds": 0.14399499999854015
+        },
+        "random_forest": {
+          "brier": 0.05322514087523744,
+          "fit_seconds": 0.5196417999977712
+        },
+        "xgboost": {
+          "brier": 0.053388290107250214,
+          "fit_seconds": 0.23793129999830853
+        },
+        "catboost_ohe": {
+          "brier": 0.052970503694975773,
+          "fit_seconds": 0.5741364999994403
+        }
+      }
+    },
+    "fit_3": {
+      "n": 5148,
+      "fit_n": 15446,
+      "positive_rate": 0.06332556332556333,
+      "experts": {
+        "logistic_regression": {
+          "brier": 0.0603658662542058,
+          "fit_seconds": 0.1643026000019745
+        },
+        "hist_gradient_boosting": {
+          "brier": 0.05972684909525837,
+          "fit_seconds": 0.32387150000067777
+        },
+        "random_forest": {
+          "brier": 0.06038002048813211,
+          "fit_seconds": 0.7586799999990035
+        },
+        "xgboost": {
+          "brier": 0.060177985578775406,
+          "fit_seconds": 0.3183414000013727
+        },
+        "catboost_ohe": {
+          "brier": 0.0596767082134727,
+          "fit_seconds": 0.825650200000382
+        }
+      }
+    }
+  },
+  "fit_seconds_total": 6.762584299998707,
+  "peak_process_working_set_kib": 336532,
+  "limitations": [
+    "Predictions and labels are source-fold only; no final test rows are present.",
+    "These cross-fitted rows support router development but do not themselves provide nested unbiased router evaluation."
+  ],
+  "prediction_artifact": "data\\processed\\bank_source_crossfit_predictions.npz"
+}

@@ -55,6 +55,49 @@ def benchmark_main(argv: list[str]) -> None:
 
 
 def main() -> None:
+    if sys.argv[1:2] == ["router-prototype"]:
+        from .router_prototype import run_router_prototype, save_router
+
+        parser = argparse.ArgumentParser(description="Run locked exploratory reliability router")
+        parser.add_argument("--seed", type=int, default=264738)
+        parser.add_argument("--output", default="outputs/router_prototype_3families.json")
+        args = parser.parse_args(sys.argv[2:])
+        result = run_router_prototype(args.seed)
+        save_router(result, args.output)
+        print(json.dumps({"output": args.output, "families": list(result["results"])}, indent=2))
+        return
+    if sys.argv[1:2] == ["domain-crossfit"]:
+        from .crossfit_runs import run_source_crossfit, save_source_crossfit
+
+        parser = argparse.ArgumentParser(description="Create source-only domain-held-out predictions")
+        parser.add_argument("--dataset", required=True, choices=["acs", "bank", "diabetes"])
+        parser.add_argument("--seed", type=int, default=264738)
+        parser.add_argument("--output")
+        parser.add_argument("--prediction-output")
+        args = parser.parse_args(sys.argv[2:])
+        output = args.output or f"outputs/{args.dataset}_source_crossfit.json"
+        predictions_path = args.prediction_output or (
+            f"data/processed/{args.dataset}_source_crossfit_predictions.npz"
+        )
+        predictions, summary = run_source_crossfit(args.dataset, seed=args.seed)
+        save_source_crossfit(predictions, summary, output, predictions_path)
+        print(json.dumps({"output": output, "fold_count": summary["fold_count"],
+                          "trained_model_count": summary["trained_model_count"]}))
+        return
+    if sys.argv[1:2] == ["bank-benchmark"]:
+        from .bank_temporal import run_bank_benchmark, save_bank
+
+        parser = argparse.ArgumentParser(description="Run pre-call chronological bank benchmark")
+        parser.add_argument("--archive", default="data/raw/bank/bank-additional.zip")
+        parser.add_argument("--seed", type=int, default=264738)
+        parser.add_argument("--output", default="outputs/bank_temporal_2008_2010.json")
+        args = parser.parse_args(sys.argv[2:])
+        result = run_bank_benchmark(args.archive, seed=args.seed)
+        save_bank(result, args.output)
+        print(json.dumps({"output": args.output, "selected": {
+            name: value["selected_model"] for name, value in result["results"].items()
+        }}, indent=2))
+        return
     if sys.argv[1:2] == ["acs-benchmark"]:
         from .acs_domain import run_acs_benchmark, save_acs
 

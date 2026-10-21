@@ -1,0 +1,147 @@
+{
+  "dataset": "diabetes",
+  "seed": 264738,
+  "protocol": "leave-one-source-admission-code-out (1, 17, 4, 6), purging patients who cross these codes; all other rows excluded",
+  "source_rows": 22472,
+  "excluded_rows": 77021,
+  "fold_count": 4,
+  "expert_names": [
+    "logistic_regression",
+    "hist_gradient_boosting",
+    "random_forest",
+    "xgboost",
+    "catboost_ohe"
+  ],
+  "trained_model_count": 20,
+  "router_metadata_columns": [
+    "probability_logistic_regression",
+    "probability_hist_gradient_boosting",
+    "probability_random_forest",
+    "probability_xgboost",
+    "probability_catboost_ohe",
+    "binary_entropy_logistic_regression",
+    "binary_entropy_hist_gradient_boosting",
+    "binary_entropy_random_forest",
+    "binary_entropy_xgboost",
+    "binary_entropy_catboost_ohe",
+    "mean_probability",
+    "std_probability"
+  ],
+  "fold_metrics": {
+    "1": {
+      "n": 14890,
+      "fit_n": 7582,
+      "positive_rate": 0.29529885829415714,
+      "experts": {
+        "logistic_regression": {
+          "brier": 0.20517324641098914,
+          "fit_seconds": 0.14407239999854937
+        },
+        "hist_gradient_boosting": {
+          "brier": 0.20187986651744033,
+          "fit_seconds": 0.5271444999998494
+        },
+        "random_forest": {
+          "brier": 0.20020866475808866,
+          "fit_seconds": 0.5908291999985522
+        },
+        "xgboost": {
+          "brier": 0.20103777945041656,
+          "fit_seconds": 1.8669496000002255
+        },
+        "catboost_ohe": {
+          "brier": 0.19959481853666095,
+          "fit_seconds": 0.5831206999973801
+        }
+      }
+    },
+    "4": {
+      "n": 1636,
+      "fit_n": 20836,
+      "positive_rate": 0.2041564792176039,
+      "experts": {
+        "logistic_regression": {
+          "brier": 0.16570158138604107,
+          "fit_seconds": 0.2515151000006881
+        },
+        "hist_gradient_boosting": {
+          "brier": 0.16016564131269578,
+          "fit_seconds": 1.0121687999999267
+        },
+        "random_forest": {
+          "brier": 0.16425476752810036,
+          "fit_seconds": 1.6862209000028088
+        },
+        "xgboost": {
+          "brier": 0.16217157244682312,
+          "fit_seconds": 0.5813228000006347
+        },
+        "catboost_ohe": {
+          "brier": 0.1611091884036417,
+          "fit_seconds": 1.1253792000024987
+        }
+      }
+    },
+    "6": {
+      "n": 1163,
+      "fit_n": 21309,
+      "positive_rate": 0.19604471195184867,
+      "experts": {
+        "logistic_regression": {
+          "brier": 0.15651133097033387,
+          "fit_seconds": 0.26889329999903566
+        },
+        "hist_gradient_boosting": {
+          "brier": 0.15209522131729689,
+          "fit_seconds": 0.991606600000523
+        },
+        "random_forest": {
+          "brier": 0.15369319943558996,
+          "fit_seconds": 1.8341110000001208
+        },
+        "xgboost": {
+          "brier": 0.1513528972864151,
+          "fit_seconds": 0.6211066000032588
+        },
+        "catboost_ohe": {
+          "brier": 0.15022536067312608,
+          "fit_seconds": 1.3390929000015603
+        }
+      }
+    },
+    "17": {
+      "n": 4783,
+      "fit_n": 17689,
+      "positive_rate": 0.46163495713987035,
+      "experts": {
+        "logistic_regression": {
+          "brier": 0.2577909683786596,
+          "fit_seconds": 0.37881109999943874
+        },
+        "hist_gradient_boosting": {
+          "brier": 0.242956917418425,
+          "fit_seconds": 0.8845758999996178
+        },
+        "random_forest": {
+          "brier": 0.24246007739517636,
+          "fit_seconds": 1.4290079999991576
+        },
+        "xgboost": {
+          "brier": 0.24241520464420319,
+          "fit_seconds": 0.51741949999996
+        },
+        "catboost_ohe": {
+          "brier": 0.2442778067515469,
+          "fit_seconds": 1.0703586000017822
+        }
+      }
+    }
+  },
+  "fit_seconds_total": 17.70370670000557,
+  "peak_process_working_set_kib": 397720,
+  "limitations": [
+    "Predictions and labels are source-fold only; no final test rows are present.",
+    "These cross-fitted rows support router development but do not themselves provide nested unbiased router evaluation."
+  ],
+  "prediction_artifact": "data\\processed\\diabetes_source_crossfit_predictions.npz"
+}
