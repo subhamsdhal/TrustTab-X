@@ -1,5 +1,14 @@
 # TrustTab-X autonomous build status
 
+## 2026-10-21 M4.1 reliability and independent confirmation checkpoint
+
+- Reproduced the locked prior router Brier exactly on ACS/hospital/bank: 0.148039/0.258926/0.344292 versus source-selected static 0.145517/0.250504/0.337574. Kept all negative results.
+- Implemented source-only leave-one-family-out router diagnosis across the existing 14 held-out source environments. The router beat the fixed expert selected from the other families on 7/14 source domains; mean domain Brier difference (router minus static) was ACS -0.000277, hospital +0.000833, bank +0.000053. These are exploratory correlated environments. Mean pairwise squared-error correlations were 0.936/0.936/0.998; little expert diversity, especially in bank. See `reports/results/m4_1_source_router_diagnosis.json`.
+- Preregistered and executed a new **single-cohort, TableShift-inspired** College Scorecard institution-type confirmation (2,272 eligible institutions; 228 for-profit final), not the official TableShift split. Source-selected random forest Brier 0.263707; unchanged router 0.285757; source-only sigmoid calibrated RF 0.266892; uniform ensemble 0.268967; weighted ensemble 0.268696. No adaptive improvement. See `docs/COLLEGE_SCORECARD_DOMAIN_MANIFEST.md` and tracked result JSON.
+- Added source-only probability calibration, confidence and disagreement abstention, router-risk abstention, fixed source thresholds, matched-target-coverage diagnostics, risk–coverage curves, coverage-at-fixed-risk summaries and resource records. All target coverages were below 80% for the cited source thresholds, so the selective objective's coverage constraint was not met. No shifted-domain conformal guarantee or family-level uncertainty interval is claimed.
+- Bank audit: final positive rate 0.38459 versus mean fixed-model probability 0.06496 and near-future rate 0.06846. Large categorical total-variation shifts: contact 0.513, month 0.451, previous outcome 0.431. Pure label shift is **not** established. Customer recurrence remains unauditable without IDs.
+- Final verification: 29 offline tests pass, Ruff passes, `git diff --check` passes. Raw archives remain ignored. No paid service or publication.
+
 ## 2026-10-21 temporal benchmark and M4 exploratory checkpoint
 
 - UCI `bank-additional-full.csv` chronological benchmark executed with the preregistered pre-call 13-feature protocol. Near-future/final-future Brier 0.063753/0.337574, log loss 0.249350/1.099454, positive rate 0.06846/0.38459. Both expert pools selected HistGradientBoosting. Five-model fit 4.681 s, separate three-model fit 1.600 s, peak Windows working set 362,636 KiB. Details in `docs/BANK_TEMPORAL_MANIFEST.md` and tracked aggregate JSON.

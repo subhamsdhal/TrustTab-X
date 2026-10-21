@@ -1,0 +1,218 @@
+{
+  "archive_sha256": "a607b5edab6c6c75ce09c39142a77702c38123bd5aa7ae89a63503bbe17d65cd",
+  "model": "hist_gradient_boosting",
+  "windows": {
+    "fit": {
+      "n": 20594,
+      "observed_rate": 0.046761192580363216,
+      "mean_predicted_probability": 0.04690024510418314,
+      "predicted_positive_rate_at_half": 0.0,
+      "brier": 0.04377730107111252,
+      "log_loss": 0.18126762417754447
+    },
+    "selection": {
+      "n": 6178,
+      "observed_rate": 0.05292975072839107,
+      "mean_predicted_probability": 0.06284761782394921,
+      "predicted_positive_rate_at_half": 0.0,
+      "brier": 0.050942434837128715,
+      "log_loss": 0.21462178425987447
+    },
+    "calibration": {
+      "n": 4119,
+      "observed_rate": 0.16800194221898518,
+      "mean_predicted_probability": 0.06272759891292201,
+      "predicted_positive_rate_at_half": 0.0,
+      "brier": 0.15002181667319675,
+      "log_loss": 0.5180816002733046
+    },
+    "near_future": {
+      "n": 4119,
+      "observed_rate": 0.06846321922796796,
+      "mean_predicted_probability": 0.06032188469333887,
+      "predicted_positive_rate_at_half": 0.0,
+      "brier": 0.06375250075169343,
+      "log_loss": 0.24934972802469213
+    },
+    "final_future": {
+      "n": 6178,
+      "observed_rate": 0.38459048235674975,
+      "mean_predicted_probability": 0.06496202183683292,
+      "predicted_positive_rate_at_half": 0.0,
+      "brier": 0.3375742343205313,
+      "log_loss": 1.0994541840221332
+    }
+  },
+  "feature_drift_from_fit": {
+    "fit": {
+      "numeric_mean_change_fit_sd": {
+        "age": {
+          "source_mean": 39.93687481790813,
+          "window_mean": 39.93687481790813,
+          "source_sd": 9.281412026215245,
+          "standardized_mean_change": 0.0
+        },
+        "pdays": {
+          "source_mean": 999.0,
+          "window_mean": 999.0,
+          "source_sd": 0.0,
+          "standardized_mean_change": null
+        },
+        "previous": {
+          "source_mean": 0.0,
+          "window_mean": 0.0,
+          "source_sd": 0.0,
+          "standardized_mean_change": null
+        }
+      },
+      "categorical_total_variation": {
+        "job": 0.0,
+        "marital": 0.0,
+        "education": 0.0,
+        "default": 0.0,
+        "housing": 0.0,
+        "loan": 0.0,
+        "contact": 0.0,
+        "month": 0.0,
+        "day_of_week": 0.0,
+        "poutcome": 0.0
+      }
+    },
+    "selection": {
+      "numeric_mean_change_fit_sd": {
+        "age": {
+          "source_mean": 39.93687481790813,
+          "window_mean": 40.763191971511816,
+          "source_sd": 9.281412026215245,
+          "standardized_mean_change": 0.0890292502121192
+        },
+        "pdays": {
+          "source_mean": 999.0,
+          "window_mean": 994.3302039494982,
+          "source_sd": 0.0,
+          "standardized_mean_change": null
+        },
+        "previous": {
+          "source_mean": 0.0,
+          "window_mean": 0.0904823567497572,
+          "source_sd": 0.0,
+          "standardized_mean_change": null
+        }
+      },
+      "categorical_total_variation": {
+        "job": 0.2050029469526824,
+        "marital": 0.01593187353408873,
+        "education": 0.23639886312108244,
+        "default": 0.11705113078443014,
+        "housing": 0.09171189639855568,
+        "loan": 0.0072296466049304,
+        "contact": 0.5630418053541133,
+        "month": 0.9139555210255415,
+        "day_of_week": 0.10901918743332728,
+        "poutcome": 0.0903204920686306
+      }
+    },
+    "calibration": {
+      "numeric_mean_change_fit_sd": {
+        "age": {
+          "source_mean": 39.93687481790813,
+          "window_mean": 40.61252731245448,
+          "source_sd": 9.281412026215245,
+          "standardized_mean_change": 0.07279630433795875
+        },
+        "pdays": {
+          "source_mean": 999.0,
+          "window_mean": 973.4005826656955,
+          "source_sd": 0.0,
+          "standardized_mean_change": null
+        },
+        "previous": {
+          "source_mean": 0.0,
+          "window_mean": 0.26050012138868656,
+          "source_sd": 0.0,
+          "standardized_mean_change": null
+        }
+      },
+      "categorical_total_variation": {
+        "job": 0.11058880692333072,
+        "marital": 0.05572958490916409,
+        "education": 0.09578242865694411,
+        "default": 0.15995584219805545,
+        "housing": 0.10437094053161522,
+        "loan": 0.010723465019015324,
+        "contact": 0.5602155199131557,
+        "month": 0.8880796309783928,
+        "day_of_week": 0.19866024236759644,
+        "poutcome": 0.24107793153678078
+      }
+    },
+    "near_future": {
+      "numeric_mean_change_fit_sd": {
+        "age": {
+          "source_mean": 39.93687481790813,
+          "window_mean": 36.574411264870115,
+          "source_sd": 9.281412026215245,
+          "standardized_mean_change": -0.36227931090019183
+        },
+        "pdays": {
+          "source_mean": 999.0,
+          "window_mean": 980.7334304442826,
+          "source_sd": 0.0,
+          "standardized_mean_change": null
+        },
+        "previous": {
+          "source_mean": 0.0,
+          "window_mean": 0.3590677348871085,
+          "source_sd": 0.0,
+          "standardized_mean_change": null
+        }
+      },
+      "categorical_total_variation": {
+        "job": 0.13331449727978295,
+        "marital": 0.09214619088148747,
+        "education": 0.11680142732441536,
+        "default": 0.10266038213493332,
+        "housing": 0.08276375432137005,
+        "loan": 0.013151238750503558,
+        "contact": 0.5594871877937092,
+        "month": 0.6230455472467709,
+        "day_of_week": 0.14671544518431381,
+        "poutcome": 0.34255887351298864
+      }
+    },
+    "final_future": {
+      "numeric_mean_change_fit_sd": {
+        "age": {
+          "source_mean": 39.93687481790813,
+          "window_mean": 41.483166073162835,
+          "source_sd": 9.281412026215245,
+          "standardized_mean_change": 0.16660086319702494
+        },
+        "pdays": {
+          "source_mean": 999.0,
+          "window_mean": 789.4112981547427,
+          "source_sd": 0.0,
+          "standardized_mean_change": null
+        },
+        "previous": {
+          "source_mean": 0.0,
+          "window_mean": 0.6495629653609583,
+          "source_sd": 0.0,
+          "standardized_mean_change": null
+        }
+      },
+      "categorical_total_variation": {
+        "job": 0.26438607919098656,
+        "marital": 0.13668660404000532,
+        "education": 0.17495654239057895,
+        "default": 0.25350305697413555,
+        "housing": 0.07261186402561946,
+        "loan": 0.005934729155917749,
+        "contact": 0.5130256188860006,
+        "month": 0.45118439768465435,
+        "day_of_week": 0.07534468436984526,
+        "poutcome": 0.43104564584007765
+      }
+    }
+  }
+}

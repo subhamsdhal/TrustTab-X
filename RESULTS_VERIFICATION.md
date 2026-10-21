@@ -1,5 +1,13 @@
 # Results verification — 2026-10-20
 
+## 2026-10-21 M4.1 reliability checkpoint
+
+Verified the checkout began at `d4dbb80` with a clean tree. Re-executed the locked exploratory router without changing its protocol; ACS, hospital and bank static/router Brier pairs reproduced exactly as 0.145517/0.148039, 0.250504/0.258926 and 0.337574/0.344292. The rerun is ignored under `outputs/router_prototype_m4_1_reproduction.json`; the earlier tracked result remains intact.
+
+Preregistered the new College Scorecard family before opening outcome rows, downloaded and SHA256-pinned the public archive, then executed the fixed source/for-profit-target benchmark. Tracked aggregate outputs are `reports/results/college_scorecard_2025_confirmation.json`, `reports/results/m4_1_source_router_diagnosis.json` and `reports/results/bank_temporal_diagnosis.json`. The source-only family-held-out diagnosis reads only named training-family cross-fit arrays when fitting each router. The confirmation run uses a new 228-institution target. The router did not beat static RF on primary Brier; probability calibration did not help. No independent-environment confidence interval, official TableShift score, prospective education prediction, or 80% target selective-coverage success is verified.
+
+Final local checks: `./.venv/Scripts/python.exe -m pytest -q -p no:cacheprovider --basetemp=.pytest_tmp` **29 passed**; `./.venv/Scripts/ruff.exe check src tests` passed; `git diff --check` passed. OpenBLAS, OMP and MKL were set to one thread for experiments. No raw records were committed or sent to a service.
+
 ## 2026-10-21 temporal and exploratory-router run
 
 Executed `trusttabx bank-benchmark`, `trusttabx domain-crossfit --dataset bank`, `--dataset acs`, `--dataset diabetes`, and `trusttabx router-prototype` with BLAS/OpenMP threads set to 1. The bank archive was SHA-256 pinned and all earlier results preserved. Source cross-fit prediction archives contain source labels and remain Git-ignored; the aggregated bank, source-fold and router JSON files are tracked under `reports/results/`. The router did not improve Brier over the fixed expert on any of three final domains. No new-family router transfer, target adaptation, distribution-free coverage under shift, or independent statistical significance was verified. Final audit: 25 offline tests passed, Ruff passed, and `git diff --check` passed.

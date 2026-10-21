@@ -20,11 +20,14 @@ from .evaluation import evaluate_binary
 FAMILIES = ("acs", "diabetes", "bank")
 
 
-def fit_reliability_models(prediction_dir: str | Path = "data/processed") -> tuple[dict, dict]:
+def fit_reliability_models(prediction_dir: str | Path = "data/processed",
+                           families: tuple[str, ...] = FAMILIES) -> tuple[dict, dict]:
     """Fit one squared-error regressor per expert on domain-held-out source rows."""
     arrays = {}
     names = None
-    for family in FAMILIES:
+    if not families or not set(families).issubset(FAMILIES):
+        raise ValueError("Expected nonempty subset of known families")
+    for family in families:
         with np.load(Path(prediction_dir) / f"{family}_source_crossfit_predictions.npz") as saved:
             arrays[family] = {key: saved[key] for key in saved.files}
         current = [key for key in arrays[family] if key not in
@@ -35,17 +38,17 @@ def fit_reliability_models(prediction_dir: str | Path = "data/processed") -> tup
             raise ValueError("Cross-fit expert schemas differ across families")
     assert names is not None
     features, labels, weights = [], [], []
-    for family in FAMILIES:
+    for family in families:
         record = arrays[family]
         domains, counts = np.unique(record["domain"], return_counts=True)
-        domain_weight = {name: 1.0 / (len(FAMILIES) * len(domains) * count)
+        domain_weight = {name: 1.0 / (len(families) * len(domains) * count)
                          for name, count in zip(domains, counts)}
         features.append(record["router_metadata"])
         labels.append(np.column_stack([record[name] for name in names]))
         weights.append(np.array([domain_weight[name] for name in record["domain"]]))
     X = np.vstack(features)
     probabilities = np.vstack(labels)
-    y = np.concatenate([arrays[family]["label"] for family in FAMILIES])
+    y = np.concatenate([arrays[family]["label"] for family in families])
     weight = np.concatenate(weights)
     models = {}
     start = perf_counter()
@@ -55,9 +58,9 @@ def fit_reliability_models(prediction_dir: str | Path = "data/processed") -> tup
         model.fit(X, squared_error, ridge__sample_weight=weight * len(weight))
         models[name] = model
     return models, {"expert_names": names, "fit_seconds": perf_counter() - start,
-                    "source_crossfit_rows": len(y), "family_count": len(FAMILIES),
+                    "source_crossfit_rows": len(y), "family_count": len(families),
                     "domain_count": {family: len(np.unique(arrays[family]["domain"]))
-                                     for family in FAMILIES}}
+                                     for family in families}}
 
 
 def policy_probabilities(probabilities: np.ndarray, names: list[str], models: dict,
