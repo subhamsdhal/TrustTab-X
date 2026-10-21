@@ -3,8 +3,13 @@
 from __future__ import annotations
 
 import numpy as np
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegression, Ridge
 from sklearn.metrics import average_precision_score, brier_score_loss, log_loss, roc_auc_score
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+
+from .domain_eval import router_probability_metadata
+from .evaluation import expected_calibration_error
 
 
 def fit_sigmoid_calibrator(probability: np.ndarray, labels: np.ndarray):
@@ -37,6 +42,7 @@ def probability_metrics(labels: np.ndarray, probability: np.ndarray) -> dict:
         "log_loss": float(log_loss(y, p, labels=[0, 1])),
         "auroc": float(roc_auc_score(y, p)) if len(np.unique(y)) == 2 else None,
         "auprc": float(average_precision_score(y, p)) if len(np.unique(y)) == 2 else None,
+        "ece_10_bins": expected_calibration_error(y, np.column_stack([1 - p, p])),
     }
 
 
@@ -89,3 +95,49 @@ def disagreement_uncertainty(matrix: np.ndarray) -> np.ndarray:
     if p.ndim != 2 or p.shape[1] < 2:
         raise ValueError("At least two experts required")
     return p.std(axis=1)
+
+
+def fit_error_router(matrix: np.ndarray, labels: np.ndarray, names: list[str],
+                     *, simplified: bool = False) -> dict:
+    """Fit fixed-alpha risk regressors on inner held-out source predictions."""
+    p, y = np.asarray(matrix), np.asarray(labels)
+    if p.shape != (len(y), len(names)) or len(y) == 0:
+        raise ValueError("Router training arrays do not match expert schema")
+    models = {}
+    full = router_probability_metadata(dict(zip(names, p.T)), names)
+    for index, name in enumerate(names):
+        features = np.column_stack([p[:, index], p.std(axis=1)]) if simplified else full
+        model = make_pipeline(StandardScaler(), Ridge(alpha=100.0))
+        model.fit(features, (p[:, index] - y) ** 2)
+        models[name] = model
+    return models
+
+
+def routed_probability(matrix: np.ndarray, names: list[str], models: dict,
+                       *, simplified: bool = False) -> tuple[np.ndarray, np.ndarray]:
+    p = np.asarray(matrix)
+    if p.ndim != 2 or p.shape[1] != len(names):
+        raise ValueError("Router deployment arrays do not match expert schema")
+    full = router_probability_metadata(dict(zip(names, p.T)), names)
+    risk = np.column_stack([
+        np.clip(models[name].predict(
+            np.column_stack([p[:, index], p.std(axis=1)]) if simplified else full
+        ), 0, 1) for index, name in enumerate(names)
+    ])
+    choice = risk.argmin(axis=1)
+    rows = np.arange(len(p))
+    return p[rows, choice], risk[rows, choice]
+
+
+def batch_selective_metrics(labels: np.ndarray, probability: np.ndarray,
+                            target_score: np.ndarray, coverage: float = 0.8) -> dict:
+    """Unlabeled-batch threshold; labels enter only final risk evaluation."""
+    y, p, score = np.asarray(labels), np.asarray(probability), np.asarray(target_score)
+    if len(y) != len(p) or len(y) != len(score) or not 0 < coverage <= 1:
+        raise ValueError("Invalid batch arrays or coverage")
+    count = max(1, int(np.ceil(coverage * len(y))))
+    accepted = np.zeros(len(y), dtype=bool)
+    accepted[np.argsort(score, kind="stable")[:count]] = True
+    return {"acceptance": float(accepted.mean()),
+            "accepted_error_risk": float(np.mean(((p >= 0.5) != y)[accepted])),
+            "information": "unlabeled target batch scores; transductive"}
