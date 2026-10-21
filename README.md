@@ -1,10 +1,18 @@
 # TrustTab-X
 
-**Adaptive Tabular Foundation Models for Robust Prediction and Decision Intelligence Under Distribution Shift**
+**Trustworthy tabular machine learning under distribution shift: reproducible research and a secured local demonstration**
 
 A research-first Data Science project developed for a Growtern Academy portfolio upgrade and for a reproducible academic/industry demonstration. Attribution to an organisation must accurately reflect its permission, supervision, project dates, and actual work.
 
 > **Current implementation: research framework and secured local M5.1 decision-support demo.** The M4.2 research gate found no adaptive advantage; the ACSIncome service uses one source-selected fixed expert. It is **local demo only** until Docker runtime and internal deployment controls are verified. See [M5 architecture](docs/M5_ARCHITECTURE.md), [security policy](docs/M5_SECURITY.md) and [research decision](docs/M4_2_RESEARCH_DECISION.md).
+
+## M6 research and portfolio package
+
+The [research manuscript](reports/paper/TrustTab-X-manuscript.md) evaluates natural geographic, hospital-domain and temporal shifts, and records why the adaptive router was not selected. The [reproducibility guide](docs/M6_REPRODUCIBILITY.md) provides fast verification and full-rerun prerequisites; [claim traceability](docs/M6_CLAIM_TRACEABILITY.md) maps conclusions to tracked JSON. Six [scientific figures](reports/figures/manifest.json) regenerate from those JSON files with `python scripts/build_m6_figures.py`.
+
+The fixed expert's bounded ACS ID/OOD Brier was **0.131644/0.145517**; the modified hospital study was **0.201603/0.250504**; bank near/later-future was **0.063753/0.337574**, alongside a large prevalence change. These are different datasets and split designs, not a pooled score. The router beat static selection in only **6/13 correlated outer source domains**, and the new shopper family missed the preregistered improvement margin over a weighted ensemble. M4.2 decision **C** retains the source-selected fixed expert. Neither modified ACS/hospital study is an official TableShift score.
+
+For technical reviewers: [industrial case study](docs/M6_INDUSTRIAL_CASE_STUDY.md), [MSc research summary](docs/M6_MSC_PORTFOLIO.md), [placement and interview handoff](docs/M6_PLACEMENT.md), [M5 API](docs/M5_API.md), [verification ledger](RESULTS_VERIFICATION.md). The manuscript has not been peer reviewed or published. The service remains release **B: local demo only**; Docker runtime, TLS, managed identity and full data-rights/privacy governance are open.
 
 ## Research question
 

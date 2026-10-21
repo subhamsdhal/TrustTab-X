@@ -1,5 +1,12 @@
 # TrustTab-X autonomous build status
 
+## 2026-10-21 M6 research and portfolio checkpoint
+
+- Audited locked M4.2 and M5.1 evidence without changing trained policies or target results. Created a complete review-style Markdown manuscript at `reports/paper/TrustTab-X-manuscript.md`, six figures under `reports/figures/`, an input-SHA256 figure manifest and `scripts/build_m6_figures.py`. The figures are generated solely from tracked aggregate JSON, not synthetic or fabricated numbers. PDF was not produced because local Pandoc/TeX was unavailable; the reproducibility guide gives a compilation command.
+- Added `docs/M6_CLAIM_TRACEABILITY.md`, `docs/M6_REPRODUCIBILITY.md`, `docs/M6_INDUSTRIAL_CASE_STUDY.md`, `docs/M6_MSC_PORTFOLIO.md` and `docs/M6_PLACEMENT.md`; updated README navigation and verified results. Preserved M4.2 **C: no adaptive advantage demonstrated**, and M5.1 **B: local demo only**. No peer review, official TableShift score, employer endorsement or production status is claimed.
+- `scripts/verify_m6.py` passed: result/figure input hashes, selected numeric claims and local Markdown links. Figure regeneration passed. Full offline pytest **42 passed, 1 existing Starlette/httpx deprecation warning**; Ruff passed. No raw data, credentials or fitted model bundles added to the research package.
+- Remaining: optional PDF rendering on a host with Pandoc/TeX, independent review of the manuscript, and M5.1 Docker/runtime plus internal release controls. Any new router claim requires genuinely new preregistered independent families; viewed targets cannot be reused for selection.
+
 ## 2026-10-21 M5.1 security and reliability checkpoint
 
 - Preserved fixed-expert M4.2 decision C and locked research results. Service startup now requires distinct 32+ character operator/admin API keys, explicit local-artifact trust, and an independently configured approved manifest SHA256; a changed bundle is rejected before pickle loading. Operator/admin endpoint roles, same-origin browser checks, localhost host allowlist, bounded bodies, a 15-second request/body-read timeout and per-process 120/minute role limiter are implemented. The dashboard holds a user-entered key only in tab memory; no key is shipped in HTML. See `docs/M5_SECURITY.md`.

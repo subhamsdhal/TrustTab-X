@@ -1,0 +1,50 @@
+{
+  "generation_command": ".\\.venv\\Scripts\\python.exe scripts\\build_m6_figures.py",
+  "sources": {
+    "acs_income_2018_geographic_expanded": {
+      "path": "reports/results/acs_income_2018_geographic_expanded.json",
+      "sha256": "99be91c2b36a9b4d4a08eacd2519994fa50feb1414b91df855187ca1950d344b"
+    },
+    "tableshift_diabetes_12000": {
+      "path": "reports/results/tableshift_diabetes_12000.json",
+      "sha256": "5d63e625794ec514a85259edd10bbe2e3563006408cab1d0c53aeec5b916cf9d"
+    },
+    "bank_temporal_2008_2010": {
+      "path": "reports/results/bank_temporal_2008_2010.json",
+      "sha256": "75e17e0524099f6a79ef37c79629ec57e7d361796c57ed8ac52b07d5e7b93af5"
+    },
+    "m4_2_nested_acs": {
+      "path": "reports/results/m4_2_nested_acs.json",
+      "sha256": "3082193f91b01ebd1058162aa0072481671e72a642c6ce07d99b2b8e008fcf97"
+    },
+    "m4_2_nested_diabetes": {
+      "path": "reports/results/m4_2_nested_diabetes.json",
+      "sha256": "6414fddda8f3f2378af919110214bc75f655b6d5c9cd13c1937ab317db0361ff"
+    },
+    "m4_2_nested_bank": {
+      "path": "reports/results/m4_2_nested_bank.json",
+      "sha256": "a43fbf76975bc7962c1c0c1f6c256e3572f3d0a316b99b9ebd0bc539a6dbdc8a"
+    },
+    "m4_2_shopper_confirmation": {
+      "path": "reports/results/m4_2_shopper_confirmation.json",
+      "sha256": "98b851dacb09ea3e30bab66e2f0339d885d125c125f093a89831745748cf5fe2"
+    },
+    "m4_1_source_router_diagnosis": {
+      "path": "reports/results/m4_1_source_router_diagnosis.json",
+      "sha256": "fe1614470c8dad1a8d479574813502f5b85d4210e31eeb026aad64786db53fdb"
+    }
+  },
+  "figures": [
+    "bank_reliability.png",
+    "expert_error_correlation.png",
+    "nested_router_differences.png",
+    "shift_brier.png",
+    "shopper_fit_cost.png",
+    "shopper_risk_coverage.png"
+  ],
+  "cautions": [
+    "Source domains within a family are correlated, not independent dataset replicates.",
+    "Risk-coverage curves are retrospective target-ranked descriptions; x markers show source-fixed thresholds.",
+    "Fit-cost chart reports model fits only, from one local run."
+  ]
+}

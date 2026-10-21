@@ -1,4 +1,12 @@
-# Next Codex task — expand the research protocol before router training
+# Next Codex task — M6 handoff and remaining release gates
+
+The M6 manuscript, figures, traceability map, reproducibility guide and portfolio materials are complete as a local Markdown research package. The next necessary work is an independent scientific/editorial review, followed by PDF rendering on a host with Pandoc/TeX if a PDF is needed for an application. Check every rendered figure/citation and fix editorial issues without changing the locked results or implying peer review. See `docs/M6_REPRODUCIBILITY.md` for the build command.
+
+For an actual internal service release, execute the existing M5.1 Docker runtime verification on a Docker-capable host, inspect the resulting image and Linux artifact loading, and complete TLS/managed identity, centralized audit governance, source-data rights/privacy review and security approval. These are release gates, not reasons to redo the M4.2 final targets. Keep the fixed expert in service; routers remain research-only. No public exposure or real decisions without a separate approval.
+
+If further adaptive research is desired, preregister genuinely new independent natural families and a family-held-out comparison before viewing new target labels. Do not call the already inspected ACS, hospital, bank, College or shopper outcomes independent confirmation again.
+
+## Historical task notes retained below
 
 ## Next task after M5.1 local hardening
 
