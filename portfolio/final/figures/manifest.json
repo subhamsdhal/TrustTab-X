@@ -1,0 +1,51 @@
+{
+  "generation_command": ".\\.venv\\Scripts\\python.exe scripts\\build_m6_figures.py",
+  "source_hash_normalization": "UTF-8 JSON with CRLF normalized to LF",
+  "sources": {
+    "acs_income_2018_geographic_expanded": {
+      "path": "reports/results/acs_income_2018_geographic_expanded.json",
+      "sha256": "6fc315daca56a346dec054eace667fd2785c6a7dfa271d7c4185a407a0f031ed"
+    },
+    "tableshift_diabetes_12000": {
+      "path": "reports/results/tableshift_diabetes_12000.json",
+      "sha256": "56cae1c6ea72cd143a03f2f949f2a4cebf64ad4ddc80890dfec37bf5523d0e8d"
+    },
+    "bank_temporal_2008_2010": {
+      "path": "reports/results/bank_temporal_2008_2010.json",
+      "sha256": "b54eecc0853c22d3cdaebac3b6b1bdd9aef85baf1b384a79aefdb0971769c707"
+    },
+    "m4_2_nested_acs": {
+      "path": "reports/results/m4_2_nested_acs.json",
+      "sha256": "a0a6dd5de38bc0a7e54537cbdeeae42b65a982a111879cb89f9d81d6d30fecaf"
+    },
+    "m4_2_nested_diabetes": {
+      "path": "reports/results/m4_2_nested_diabetes.json",
+      "sha256": "38d94d50f8b348b85b6998c14fad5cf94915951230c8bbd0395e33218fa59708"
+    },
+    "m4_2_nested_bank": {
+      "path": "reports/results/m4_2_nested_bank.json",
+      "sha256": "65d00be36ca1d52b6cff407e7ee70c7e19a8421dbf1be1521722ed92e793bda9"
+    },
+    "m4_2_shopper_confirmation": {
+      "path": "reports/results/m4_2_shopper_confirmation.json",
+      "sha256": "7f2fd797453280a912b022fe9a2891503583dd74cc2d5a0b6ac40d2c01cb5fc8"
+    },
+    "m4_1_source_router_diagnosis": {
+      "path": "reports/results/m4_1_source_router_diagnosis.json",
+      "sha256": "04675d1a04ad02bc675599ed69dbc1d7d3385cd56d1e3602663c2ad98336f9d5"
+    }
+  },
+  "figures": [
+    "bank_reliability.png",
+    "expert_error_correlation.png",
+    "nested_router_differences.png",
+    "shift_brier.png",
+    "shopper_fit_cost.png",
+    "shopper_risk_coverage.png"
+  ],
+  "cautions": [
+    "Source domains within a family are correlated, not independent dataset replicates.",
+    "Risk-coverage curves are retrospective target-ranked descriptions; x markers show source-fixed thresholds.",
+    "Fit-cost chart reports model fits only, from one local run."
+  ]
+}

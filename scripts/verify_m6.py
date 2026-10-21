@@ -25,7 +25,7 @@ def main() -> None:
     for item in manifest["sources"].values():
         path = ROOT / item["path"]
         assert path.is_file(), path
-        assert hashlib.sha256(path.read_bytes()).hexdigest() == item["sha256"], path
+        assert hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest() == item["sha256"], path
     for name in manifest["figures"]:
         path = FIGURES / name
         assert path.is_file() and path.stat().st_size > 1000, path

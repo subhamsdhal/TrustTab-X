@@ -1,0 +1,67 @@
+{
+  "scope": "local in-process FastAPI portfolio demonstration on cached public ACS rows; descriptive subset only",
+  "research_decision": "M4.2 C - no adaptive advantage; fixed expert",
+  "release_decision": "M5.1 B - local demo only",
+  "artifact": {
+    "model_version": "m5-acs-fixed-1",
+    "selected_expert": "hist_gradient_boosting",
+    "pipeline_sha256": "92d788768bcf6aed6a925b00033be4b57da37418f4ac25af66a7b80992cc11b7",
+    "manifest_sha256": "53551e90fc1b765b7b7bfc4bd94f16e928f96db8ec4af092e5d3ab8cc9c1f216",
+    "tracked_pipeline_and_split_hashes_match": true,
+    "source_archive_hashes_match": true
+  },
+  "health": {
+    "status": "ready",
+    "model_version": "m5-acs-fixed-1"
+  },
+  "dashboard_status": 200,
+  "unauthorized_model_status": 401,
+  "model_task": "ACSIncome 2018 > $56,000",
+  "schema_version": "acs-income-2018-v1",
+  "prediction": {
+    "model_version": "m5-acs-fixed-1",
+    "selected_expert": "hist_gradient_boosting",
+    "probability_positive": 0.005917410389724364,
+    "predicted_class": 0,
+    "decision_threshold": 0.5,
+    "abstention": false,
+    "reliability_warning": "OOD reliability unverified; monitor drift"
+  },
+  "drift": {
+    "cohort": "first 100 deterministic New England target sample rows (CT only under state ordering); no target labels used",
+    "n": 100,
+    "states": [
+      "CT"
+    ],
+    "any_feature_alert": true,
+    "probability_alert": true,
+    "numeric_alerts": {
+      "AGEP": true,
+      "WKHP": false
+    },
+    "performance_status": "labels unavailable; Brier, calibration and accuracy unknown"
+  },
+  "delayed_labels": {
+    "cohort": "first 100 deterministic household-disjoint source ID-test rows accepted by the artifact's categorical schema; feature-only filter",
+    "n": 100,
+    "observed_positive_rate": 0.24,
+    "metrics": {
+      "n": 100,
+      "positive_rate": 0.24,
+      "brier": 0.09970031895866144,
+      "log_loss": 0.32563079765747266,
+      "auroc": 0.9098135964912281,
+      "auprc": 0.7911585272265866,
+      "ece_10_bins": 0.033704730416309565
+    },
+    "limitation": "Feature-only service-eligible subset; descriptive demo, not a preregistered estimate or deployment validation"
+  },
+  "telemetry": {
+    "requests": 101,
+    "errors": 2
+  },
+  "admin_only_delayed_labels_operator_status": 403,
+  "dashboard_csp_present": true,
+  "raw_records_written": false,
+  "keys_written": false
+}

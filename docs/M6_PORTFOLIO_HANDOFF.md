@@ -1,4 +1,4 @@
-# M6 academic and placement portfolio handoff — draft
+# M6 academic and placement portfolio handoff — verified context
 
 ## Accurate project description
 
@@ -15,4 +15,4 @@ TrustTab-X is a reproducible tabular reliability research framework with a secur
 
 “Built a reproducible tabular ML research framework and a locally secured ACSIncome decision-support API with split-safe fixed-expert selection, versioned model artifacts, drift diagnostics and negative-result reporting. Implemented API contract/security tests and measured loopback inference. Adaptive routing did not show a consistent advantage; container and internal deployment gates remain open.”
 
-Do not call this a deployed enterprise service, claim selective guarantees under shift, claim TabPFN production use, or present the router as a demonstrated improvement. The next M6 deliverable is a polished research methods/results narrative and portfolio presentation grounded in the locked evidence, after the Docker gate is explicitly labelled or completed.
+Do not call this a deployed enterprise service, claim selective guarantees under shift, claim TabPFN production use, or present the router as a demonstrated improvement. The M7 [final package](../portfolio/final/README.md) now contains the manuscript PDF and editable source, figures, research and industry summaries, and a real-data local demo record. The Docker and internal release gates remain explicitly open.

@@ -22,7 +22,7 @@ The [experiment protocol](../../docs/EXPERIMENT_PROTOCOL.md) and [source protoco
 
 ## 3. Methods and leakage controls
 
-For binary label \(y_i\) and probability \(p_i\), Brier score is \(n^{-1}\sum_i(p_i-y_i)^2\), with lower values preferred. Recorded secondary measures include log loss, AUROC, average precision, ten-bin expected calibration error (ECE), acceptance and selective error. ECE is descriptive and sensitive to binning and prevalence; it cannot certify subgroup calibration. Candidate experts are logistic regression, histogram gradient boosting, random forest, XGBoost and one-hot CatBoost. The selected fixed model is chosen using source selection data. Distinct source partitions fit probability calibration and acceptance thresholds. Target outcomes are never used to update the reported source-fitted policy.
+For binary label \(y_i\) and probability \(p_i\), Brier score is \(n^{-1}\sum_i(p_i-y_i)^2\), with lower values preferred. Recorded secondary measures include log loss, AUROC, average precision, ten-bin expected calibration error (ECE), acceptance and selective error. ECE is descriptive and sensitive to binning and prevalence; it cannot certify subgroup calibration. Candidate experts are logistic regression, histogram gradient boosting, random forest, XGBoost and one-hot CatBoost. The selected fixed model is chosen using source selection data. In the M4.2 policy comparison, distinct source partitions fit the separately reported probability-calibrated control and the acceptance thresholds; the primary static policy uses its uncalibrated source-selected expert. Target outcomes are never used to update the reported source-fitted policy.
 
 The M4.2 router uses comparable expert probabilities and source-derived metadata instead of merging incompatible raw feature columns. Nested outer-source-domain evaluation excludes each outer domain from inner expert fitting, selection, calibration and threshold fitting. This strengthens the source diagnostic but does not turn 13 correlated domains into 13 independent families. A separate shopper family was preregistered and evaluated once. The source-fixed threshold may miss its intended 80% target acceptance. Target-ranked risk–coverage curves are retrospective descriptions, not deployable thresholds. With only three original families, we do not report a family-level confidence interval or a population-level generalization claim.
 
@@ -58,7 +58,7 @@ The router beat static selection on 6/13 outer source domains. Weighted ensemble
 
 ![Expert error overlap](../figures/expert_error_correlation.png)
 
-The preregistered shopper family produced November static/weighted/router Brier 0.190073/0.189411/0.196618 and December 0.103842/0.102534/0.102092. December router gain over weighted was 0.000442, below the locked 0.002 margin; November was worse. December source-fixed coverage was 0.7817 for static and 0.7759 for weighted, below 0.8. Two months remain one family. The separate College Scorecard for-profit target also favored static random forest (0.263707) over router (0.285757), but those outcomes are viewed evidence and cannot be retuned on. The [M4.2 decision](../../docs/M4_2_RESEARCH_DECISION.md) is **C: fixed expert; router research-only**.
+The preregistered shopper family produced November static/weighted/router Brier 0.190073/0.189411/0.196618 and December 0.103842/0.102534/0.102092. December router gain over weighted was 0.000442, below the locked 0.002 margin; November was worse. December source-fixed coverage was 0.7817 for static and 0.7759 for weighted, below 0.8. Two months remain one family. The separate College Scorecard for-profit target also favored static random forest (0.263707) over router (0.285757), but those outcomes are viewed evidence and cannot be retuned on. The [M4.2 decision](../../docs/M4_2_RESEARCH_DECISION.md) is **C — no adaptive advantage demonstrated**. The fixed expert remains the supported baseline; the router is research-only.
 
 ![Shopper retrospective risk–coverage and actual source-fixed thresholds](../figures/shopper_risk_coverage.png)
 
@@ -92,7 +92,7 @@ The [reproducibility guide](../../docs/M6_REPRODUCIBILITY.md) separates low-cost
 
 ## References
 
-1. Gardner, J., Popovic, Z., and Schmidt, L. (2023). [TableShift: Benchmarking the Robustness of Tabular Machine Learning Models](https://proceedings.neurips.cc/paper_files/paper/2023/hash/a76a757ed479a1e6a5f8134bea492f83-Abstract-Datasets_and_Benchmarks.html). NeurIPS Datasets and Benchmarks.
+1. Gardner, J., Popovic, Z., and Schmidt, L. (2023). [Benchmarking Distribution Shift in Tabular Data with TableShift](https://proceedings.neurips.cc/paper_files/paper/2023/hash/a76a757ed479a1e6a5f8134bea492f83-Abstract-Datasets_and_Benchmarks.html). NeurIPS Datasets and Benchmarks.
 2. Koh, P. W., et al. (2021). [WILDS: A Benchmark of in-the-Wild Distribution Shifts](https://proceedings.mlr.press/v139/koh21a.html). ICML.
 3. Guo, C., Pleiss, G., Sun, Y., and Weinberger, K. Q. (2017). [On Calibration of Modern Neural Networks](https://proceedings.mlr.press/v70/guo17a.html). ICML.
 4. Rabanser, S., Günnemann, S., and Lipton, Z. C. (2019). [Failing Loudly: An Empirical Study of Methods for Detecting Dataset Shift](https://proceedings.neurips.cc/paper/2019/hash/846c260d715e5b854ffad5f70a516c88-Abstract.html). NeurIPS.

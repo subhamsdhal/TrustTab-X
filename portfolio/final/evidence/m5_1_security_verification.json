@@ -1,0 +1,35 @@
+{
+  "checkpoint_date": "2026-10-21",
+  "release_decision": "B_LOCAL_DEMO_ONLY",
+  "research_decision": "M4.2 C: no adaptive advantage demonstrated",
+  "tests_passed": 42,
+  "ruff": "passed",
+  "pip_check": "passed",
+  "container_static_checks": "passed",
+  "container_runtime_checks": "not_run_no_docker_podman_or_nerdctl",
+  "pip_audit": {
+    "tool_version": "2.10.1",
+    "installed_distributions": 134,
+    "initial_advisory_records": 12,
+    "initial_affected_package": "pip 25.0.1",
+    "remediation": "upgrade pip to 26.2.2",
+    "post_upgrade_known_vulnerabilities_in_auditable_dependencies": 0,
+    "skipped_local_package": "trusttabx 0.1.0 is not on PyPI",
+    "scope": "local Windows venv, not Docker image"
+  },
+  "authenticated_http_smoke": {
+    "host": "Windows local loopback",
+    "python_version": "3.12.10",
+    "uvicorn_processes": 1,
+    "concurrency": 1,
+    "measured_prediction_requests": 100,
+    "startup_seconds": 2.267011,
+    "http_p50_ms": 21.43405,
+    "http_p95_ms": 37.2467,
+    "throughput_requests_per_second": 49.107363,
+    "process_tree_rss_mib": 184.292969,
+    "service_predictions_including_initial_batch": 102,
+    "service_errors_from_intentional_unauthenticated_probe": 1,
+    "conditions_note": "One sequential client; one smoke run; not comparable to earlier M5 conditions"
+  }
+}

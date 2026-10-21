@@ -1,0 +1,815 @@
+{
+  "protocol": "exploratory source-only leave-one-family-out meta-transfer",
+  "expert_names": [
+    "logistic_regression",
+    "hist_gradient_boosting",
+    "random_forest",
+    "xgboost",
+    "catboost_ohe"
+  ],
+  "families": {
+    "acs": {
+      "training_families": [
+        "diabetes",
+        "bank"
+      ],
+      "router_fit": {
+        "expert_names": [
+          "logistic_regression",
+          "hist_gradient_boosting",
+          "random_forest",
+          "xgboost",
+          "catboost_ohe"
+        ],
+        "fit_seconds": 0.09348899999986315,
+        "source_crossfit_rows": 37917,
+        "family_count": 2,
+        "domain_count": {
+          "diabetes": 4,
+          "bank": 3
+        }
+      },
+      "source_selected_expert": "catboost_ohe",
+      "source_brier_by_expert": {
+        "logistic_regression": 0.12323035463568491,
+        "hist_gradient_boosting": 0.119739879182025,
+        "random_forest": 0.1203123378798651,
+        "xgboost": 0.11980646381662201,
+        "catboost_ohe": 0.11942305742733529
+      },
+      "router_choice_fraction": {
+        "logistic_regression": 0.1687857142857143,
+        "hist_gradient_boosting": 0.17585714285714285,
+        "random_forest": 0.053785714285714284,
+        "xgboost": 0.107,
+        "catboost_ohe": 0.49457142857142855
+      },
+      "domains": {
+        "AL": {
+          "n": 2000,
+          "positive_rate": 0.2635,
+          "expert_brier": {
+            "logistic_regression": 0.13427919824707618,
+            "hist_gradient_boosting": 0.13311263236663262,
+            "random_forest": 0.13286524985964934,
+            "xgboost": 0.13325771566199762,
+            "catboost_ohe": 0.13165611263192512
+          },
+          "mean_expert_disagreement": 0.03838779062660818,
+          "mean_pairwise_squared_error_correlation": 0.9415087936630415,
+          "router_predicted_vs_realized_error_spearman": 0.8259391939896717,
+          "label_aware_per_row_oracle_brier_diagnostic": 0.09830283625550791,
+          "policies": {
+            "static_other_families": {
+              "n": 2000,
+              "positive_rate": 0.2635,
+              "brier": 0.13165611263192512,
+              "log_loss": 0.4078175856006484,
+              "auroc": 0.8616662222342454,
+              "auprc": 0.6950484572292425
+            },
+            "uniform_ensemble": {
+              "n": 2000,
+              "positive_rate": 0.2635,
+              "brier": 0.13083312872294983,
+              "log_loss": 0.40613543746701253,
+              "auroc": 0.8628481548325262,
+              "auprc": 0.6994254045802909
+            },
+            "weighted_other_families": {
+              "n": 2000,
+              "positive_rate": 0.2635,
+              "brier": 0.13084116223275727,
+              "log_loss": 0.4061593051341655,
+              "auroc": 0.8628649015614391,
+              "auprc": 0.699490294350273
+            },
+            "router_other_families": {
+              "n": 2000,
+              "positive_rate": 0.2635,
+              "brier": 0.12985215616422915,
+              "log_loss": 0.4029696581806634,
+              "auroc": 0.8609982853926013,
+              "auprc": 0.6970806231591231
+            }
+          }
+        },
+        "KS": {
+          "n": 2000,
+          "positive_rate": 0.281,
+          "expert_brier": {
+            "logistic_regression": 0.14023931737120618,
+            "hist_gradient_boosting": 0.13499728983765888,
+            "random_forest": 0.1350864051926323,
+            "xgboost": 0.13356040025344754,
+            "catboost_ohe": 0.13437384067686953
+          },
+          "mean_expert_disagreement": 0.03907178434280791,
+          "mean_pairwise_squared_error_correlation": 0.9314242764554408,
+          "router_predicted_vs_realized_error_spearman": 0.8037131186511361,
+          "label_aware_per_row_oracle_brier_diagnostic": 0.09961191967290188,
+          "policies": {
+            "static_other_families": {
+              "n": 2000,
+              "positive_rate": 0.281,
+              "brier": 0.13437384067686953,
+              "log_loss": 0.4159472299485665,
+              "auroc": 0.867491548661397,
+              "auprc": 0.7182250241765675
+            },
+            "uniform_ensemble": {
+              "n": 2000,
+              "positive_rate": 0.281,
+              "brier": 0.1333512711411633,
+              "log_loss": 0.41344568275916094,
+              "auroc": 0.8705744930434223,
+              "auprc": 0.7268228417403986
+            },
+            "weighted_other_families": {
+              "n": 2000,
+              "positive_rate": 0.281,
+              "brier": 0.1333424102244286,
+              "log_loss": 0.413425285812606,
+              "auroc": 0.8705782051980062,
+              "auprc": 0.7268555257121102
+            },
+            "router_other_families": {
+              "n": 2000,
+              "positive_rate": 0.281,
+              "brier": 0.13170512629023198,
+              "log_loss": 0.4099850585869978,
+              "auroc": 0.8681343700968623,
+              "auprc": 0.7226928463651803
+            }
+          }
+        },
+        "NJ": {
+          "n": 2000,
+          "positive_rate": 0.434,
+          "expert_brier": {
+            "logistic_regression": 0.15692557248712136,
+            "hist_gradient_boosting": 0.15775932893512226,
+            "random_forest": 0.16702939806701203,
+            "xgboost": 0.16289972033815164,
+            "catboost_ohe": 0.16258181586631754
+          },
+          "mean_expert_disagreement": 0.043043862038064165,
+          "mean_pairwise_squared_error_correlation": 0.9398055033575199,
+          "router_predicted_vs_realized_error_spearman": 0.6651219277225543,
+          "label_aware_per_row_oracle_brier_diagnostic": 0.11828012473666327,
+          "policies": {
+            "static_other_families": {
+              "n": 2000,
+              "positive_rate": 0.434,
+              "brier": 0.16258181586631754,
+              "log_loss": 0.48578473047278053,
+              "auroc": 0.8628324933643811,
+              "auprc": 0.8151479725654884
+            },
+            "uniform_ensemble": {
+              "n": 2000,
+              "positive_rate": 0.434,
+              "brier": 0.15887071043279363,
+              "log_loss": 0.4774939203701743,
+              "auroc": 0.8662312126491997,
+              "auprc": 0.8180683868178292
+            },
+            "weighted_other_families": {
+              "n": 2000,
+              "positive_rate": 0.434,
+              "brier": 0.15890971956768396,
+              "log_loss": 0.4776010563636628,
+              "auroc": 0.866217982120467,
+              "auprc": 0.8181289740046107
+            },
+            "router_other_families": {
+              "n": 2000,
+              "positive_rate": 0.434,
+              "brier": 0.1665128732985562,
+              "log_loss": 0.4966595175169474,
+              "auroc": 0.862821807168097,
+              "auprc": 0.8162870472920003
+            }
+          }
+        },
+        "NM": {
+          "n": 2000,
+          "positive_rate": 0.2565,
+          "expert_brier": {
+            "logistic_regression": 0.129962582584315,
+            "hist_gradient_boosting": 0.12784686051229455,
+            "random_forest": 0.13228226897808398,
+            "xgboost": 0.12895211298640605,
+            "catboost_ohe": 0.12917947566283478
+          },
+          "mean_expert_disagreement": 0.04066903885297355,
+          "mean_pairwise_squared_error_correlation": 0.9379732907062257,
+          "router_predicted_vs_realized_error_spearman": 0.8376053952409358,
+          "label_aware_per_row_oracle_brier_diagnostic": 0.09423421148231274,
+          "policies": {
+            "static_other_families": {
+              "n": 2000,
+              "positive_rate": 0.2565,
+              "brier": 0.12917947566283478,
+              "log_loss": 0.4030553148163233,
+              "auroc": 0.8616921703496581,
+              "auprc": 0.6785910882653368
+            },
+            "uniform_ensemble": {
+              "n": 2000,
+              "positive_rate": 0.2565,
+              "brier": 0.12719116857859689,
+              "log_loss": 0.39788867210223916,
+              "auroc": 0.8674667128105701,
+              "auprc": 0.6844184915009676
+            },
+            "weighted_other_families": {
+              "n": 2000,
+              "positive_rate": 0.2565,
+              "brier": 0.12720508826210392,
+              "log_loss": 0.39792944400380365,
+              "auroc": 0.867447049215357,
+              "auprc": 0.684326009084183
+            },
+            "router_other_families": {
+              "n": 2000,
+              "positive_rate": 0.2565,
+              "brier": 0.12723117255167643,
+              "log_loss": 0.39771915744401076,
+              "auroc": 0.8622486500941886,
+              "auprc": 0.6780971519025105
+            }
+          }
+        },
+        "NY": {
+          "n": 2000,
+          "positive_rate": 0.374,
+          "expert_brier": {
+            "logistic_regression": 0.16193490274588535,
+            "hist_gradient_boosting": 0.15989311004444123,
+            "random_forest": 0.1647256085945856,
+            "xgboost": 0.16075968086828157,
+            "catboost_ohe": 0.1614941254418359
+          },
+          "mean_expert_disagreement": 0.044728036678384736,
+          "mean_pairwise_squared_error_correlation": 0.9342416654409724,
+          "router_predicted_vs_realized_error_spearman": 0.7046935002387963,
+          "label_aware_per_row_oracle_brier_diagnostic": 0.1172863387121398,
+          "policies": {
+            "static_other_families": {
+              "n": 2000,
+              "positive_rate": 0.374,
+              "brier": 0.1614941254418359,
+              "log_loss": 0.4823688043340181,
+              "auroc": 0.8339074592950745,
+              "auprc": 0.736915965727206
+            },
+            "uniform_ensemble": {
+              "n": 2000,
+              "positive_rate": 0.374,
+              "brier": 0.1588513162264569,
+              "log_loss": 0.47586678130312904,
+              "auroc": 0.838956066016299,
+              "auprc": 0.7426366830117116
+            },
+            "weighted_other_families": {
+              "n": 2000,
+              "positive_rate": 0.374,
+              "brier": 0.1588679345082338,
+              "log_loss": 0.4759036872097026,
+              "auroc": 0.8389752866002631,
+              "auprc": 0.7426912805966632
+            },
+            "router_other_families": {
+              "n": 2000,
+              "positive_rate": 0.374,
+              "brier": 0.16231544147546093,
+              "log_loss": 0.4838761261779375,
+              "auroc": 0.8367590464881858,
+              "auprc": 0.7403148711783464
+            }
+          }
+        },
+        "OR": {
+          "n": 2000,
+          "positive_rate": 0.333,
+          "expert_brier": {
+            "logistic_regression": 0.14771122801756065,
+            "hist_gradient_boosting": 0.14423560043886324,
+            "random_forest": 0.1499371512550831,
+            "xgboost": 0.14586760571671425,
+            "catboost_ohe": 0.1467135247819136
+          },
+          "mean_expert_disagreement": 0.04081081692927667,
+          "mean_pairwise_squared_error_correlation": 0.9347213582426994,
+          "router_predicted_vs_realized_error_spearman": 0.7707212567707553,
+          "label_aware_per_row_oracle_brier_diagnostic": 0.10854831700245458,
+          "policies": {
+            "static_other_families": {
+              "n": 2000,
+              "positive_rate": 0.333,
+              "brier": 0.1467135247819136,
+              "log_loss": 0.44626020418966617,
+              "auroc": 0.8529648464056261,
+              "auprc": 0.7362904524718971
+            },
+            "uniform_ensemble": {
+              "n": 2000,
+              "positive_rate": 0.333,
+              "brier": 0.14442006654619816,
+              "log_loss": 0.4403912450793483,
+              "auroc": 0.8586253044648847,
+              "auprc": 0.7442922985152121
+            },
+            "weighted_other_families": {
+              "n": 2000,
+              "positive_rate": 0.333,
+              "brier": 0.14443271437478933,
+              "log_loss": 0.44042813781905726,
+              "auroc": 0.8585847841844844,
+              "auprc": 0.7442293995369162
+            },
+            "router_other_families": {
+              "n": 2000,
+              "positive_rate": 0.333,
+              "brier": 0.14723707992809545,
+              "log_loss": 0.4500508291971429,
+              "auroc": 0.853768498633566,
+              "auprc": 0.741129329620026
+            }
+          }
+        },
+        "PA": {
+          "n": 2000,
+          "positive_rate": 0.3,
+          "expert_brier": {
+            "logistic_regression": 0.14010244019301824,
+            "hist_gradient_boosting": 0.13382130405103357,
+            "random_forest": 0.1385366016753382,
+            "xgboost": 0.1341761683099091,
+            "catboost_ohe": 0.13390897230256094
+          },
+          "mean_expert_disagreement": 0.04075846894204534,
+          "mean_pairwise_squared_error_correlation": 0.9314629467418147,
+          "router_predicted_vs_realized_error_spearman": 0.8028936757931628,
+          "label_aware_per_row_oracle_brier_diagnostic": 0.09837272885630671,
+          "policies": {
+            "static_other_families": {
+              "n": 2000,
+              "positive_rate": 0.3,
+              "brier": 0.13390897230256094,
+              "log_loss": 0.4117890015914596,
+              "auroc": 0.870247619047619,
+              "auprc": 0.7279418756881548
+            },
+            "uniform_ensemble": {
+              "n": 2000,
+              "positive_rate": 0.3,
+              "brier": 0.13368926683610605,
+              "log_loss": 0.4117990242086464,
+              "auroc": 0.870429761904762,
+              "auprc": 0.7318887304642601
+            },
+            "weighted_other_families": {
+              "n": 2000,
+              "positive_rate": 0.3,
+              "brier": 0.13368154856052822,
+              "log_loss": 0.41177713172729413,
+              "auroc": 0.8704380952380951,
+              "auprc": 0.7319797415100254
+            },
+            "router_other_families": {
+              "n": 2000,
+              "positive_rate": 0.3,
+              "brier": 0.13311403698375557,
+              "log_loss": 0.4095043868258818,
+              "auroc": 0.8702089285714285,
+              "auprc": 0.7340184918075353
+            }
+          }
+        }
+      }
+    },
+    "diabetes": {
+      "training_families": [
+        "acs",
+        "bank"
+      ],
+      "router_fit": {
+        "expert_names": [
+          "logistic_regression",
+          "hist_gradient_boosting",
+          "random_forest",
+          "xgboost",
+          "catboost_ohe"
+        ],
+        "fit_seconds": 0.07617069999992054,
+        "source_crossfit_rows": 29445,
+        "family_count": 2,
+        "domain_count": {
+          "acs": 7,
+          "bank": 3
+        }
+      },
+      "source_selected_expert": "hist_gradient_boosting",
+      "source_brier_by_expert": {
+        "logistic_regression": 0.0973085881457308,
+        "hist_gradient_boosting": 0.09593596808886742,
+        "random_forest": 0.09812544092755893,
+        "xgboost": 0.09657524133094851,
+        "catboost_ohe": 0.0964441511577316
+      },
+      "router_choice_fraction": {
+        "logistic_regression": 0.4320042719829121,
+        "hist_gradient_boosting": 0.3995194019223923,
+        "random_forest": 0.024385902456390173,
+        "xgboost": 0.02874688501245995,
+        "catboost_ohe": 0.1153435386258455
+      },
+      "domains": {
+        "1": {
+          "n": 14890,
+          "positive_rate": 0.29529885829415714,
+          "expert_brier": {
+            "logistic_regression": 0.20517324641098914,
+            "hist_gradient_boosting": 0.20187986651744033,
+            "random_forest": 0.20020866475808866,
+            "xgboost": 0.20103778305047904,
+            "catboost_ohe": 0.19959481853666095
+          },
+          "mean_expert_disagreement": 0.03697980040825199,
+          "mean_pairwise_squared_error_correlation": 0.969408810551689,
+          "router_predicted_vs_realized_error_spearman": 0.5217121397856955,
+          "label_aware_per_row_oracle_brier_diagnostic": 0.1630707460534052,
+          "policies": {
+            "static_other_families": {
+              "n": 14890,
+              "positive_rate": 0.29529885829415714,
+              "brier": 0.20187986651744033,
+              "log_loss": 0.5968639648646356,
+              "auroc": 0.6254356711724014,
+              "auprc": 0.42276576532364285
+            },
+            "uniform_ensemble": {
+              "n": 14890,
+              "positive_rate": 0.29529885829415714,
+              "brier": 0.19977242386221278,
+              "log_loss": 0.5897262966020066,
+              "auroc": 0.6323201898073814,
+              "auprc": 0.43050574836259586
+            },
+            "weighted_other_families": {
+              "n": 14890,
+              "positive_rate": 0.29529885829415714,
+              "brier": 0.19977597480271303,
+              "log_loss": 0.5897412243316507,
+              "auroc": 0.6323146845506304,
+              "auprc": 0.43049890186485046
+            },
+            "router_other_families": {
+              "n": 14890,
+              "positive_rate": 0.29529885829415714,
+              "brier": 0.20602509779116554,
+              "log_loss": 0.6107526598547632,
+              "auroc": 0.6259325747797555,
+              "auprc": 0.42374421836296616
+            }
+          }
+        },
+        "17": {
+          "n": 4783,
+          "positive_rate": 0.46163495713987035,
+          "expert_brier": {
+            "logistic_regression": 0.2577909683786596,
+            "hist_gradient_boosting": 0.242956917418425,
+            "random_forest": 0.24246007739517636,
+            "xgboost": 0.2424151846191389,
+            "catboost_ohe": 0.2442778067515469
+          },
+          "mean_expert_disagreement": 0.05369167078259909,
+          "mean_pairwise_squared_error_correlation": 0.8215948108188156,
+          "router_predicted_vs_realized_error_spearman": 0.1779857693003186,
+          "label_aware_per_row_oracle_brier_diagnostic": 0.17978923990194776,
+          "policies": {
+            "static_other_families": {
+              "n": 4783,
+              "positive_rate": 0.46163495713987035,
+              "brier": 0.242956917418425,
+              "log_loss": 0.6803513610156185,
+              "auroc": 0.6028742788799776,
+              "auprc": 0.5657585008978164
+            },
+            "uniform_ensemble": {
+              "n": 4783,
+              "positive_rate": 0.46163495713987035,
+              "brier": 0.24228337314635726,
+              "log_loss": 0.6782905365572658,
+              "auroc": 0.6010832629801603,
+              "auprc": 0.5683513775296876
+            },
+            "weighted_other_families": {
+              "n": 4783,
+              "positive_rate": 0.46163495713987035,
+              "brier": 0.242284892127724,
+              "log_loss": 0.6782963849069442,
+              "auroc": 0.601107183058956,
+              "auprc": 0.5683779482985507
+            },
+            "router_other_families": {
+              "n": 4783,
+              "positive_rate": 0.46163495713987035,
+              "brier": 0.24368959746211097,
+              "log_loss": 0.6817295101999507,
+              "auroc": 0.6033075664837484,
+              "auprc": 0.5727295249132606
+            }
+          }
+        },
+        "4": {
+          "n": 1636,
+          "positive_rate": 0.2041564792176039,
+          "expert_brier": {
+            "logistic_regression": 0.16570158138604107,
+            "hist_gradient_boosting": 0.16016564131269578,
+            "random_forest": 0.16425476752810036,
+            "xgboost": 0.1621715731348536,
+            "catboost_ohe": 0.1611091884036417
+          },
+          "mean_expert_disagreement": 0.025320378195018412,
+          "mean_pairwise_squared_error_correlation": 0.9690680885425657,
+          "router_predicted_vs_realized_error_spearman": 0.6928704592835845,
+          "label_aware_per_row_oracle_brier_diagnostic": 0.13762709240812793,
+          "policies": {
+            "static_other_families": {
+              "n": 1636,
+              "positive_rate": 0.2041564792176039,
+              "brier": 0.16016564131269578,
+              "log_loss": 0.49994644529979093,
+              "auroc": 0.6928516239410579,
+              "auprc": 0.3974018801954449
+            },
+            "uniform_ensemble": {
+              "n": 1636,
+              "positive_rate": 0.2041564792176039,
+              "brier": 0.16186678263534332,
+              "log_loss": 0.504627444578102,
+              "auroc": 0.684492765620832,
+              "auprc": 0.3986243191834278
+            },
+            "weighted_other_families": {
+              "n": 1636,
+              "positive_rate": 0.2041564792176039,
+              "brier": 0.16185685676253567,
+              "log_loss": 0.5046025177483334,
+              "auroc": 0.6845364570398373,
+              "auprc": 0.39859559575729137
+            },
+            "router_other_families": {
+              "n": 1636,
+              "positive_rate": 0.2041564792176039,
+              "brier": 0.15933976231959407,
+              "log_loss": 0.4975510531110184,
+              "auroc": 0.6802684952675294,
+              "auprc": 0.3846424745924142
+            }
+          }
+        },
+        "6": {
+          "n": 1163,
+          "positive_rate": 0.19604471195184867,
+          "expert_brier": {
+            "logistic_regression": 0.15651133097033387,
+            "hist_gradient_boosting": 0.15209522131729689,
+            "random_forest": 0.15369319943558996,
+            "xgboost": 0.15135289858657155,
+            "catboost_ohe": 0.15022536067312608
+          },
+          "mean_expert_disagreement": 0.025548807382985973,
+          "mean_pairwise_squared_error_correlation": 0.9839754494267886,
+          "router_predicted_vs_realized_error_spearman": 0.5870703262661957,
+          "label_aware_per_row_oracle_brier_diagnostic": 0.12986242592812322,
+          "policies": {
+            "static_other_families": {
+              "n": 1163,
+              "positive_rate": 0.19604471195184867,
+              "brier": 0.15209522131729689,
+              "log_loss": 0.48091986335300946,
+              "auroc": 0.6203044375644995,
+              "auprc": 0.34033615919178395
+            },
+            "uniform_ensemble": {
+              "n": 1163,
+              "positive_rate": 0.19604471195184867,
+              "brier": 0.15192496866508048,
+              "log_loss": 0.48095671747378077,
+              "auroc": 0.629955905807299,
+              "auprc": 0.3495345979125372
+            },
+            "weighted_other_families": {
+              "n": 1163,
+              "positive_rate": 0.19604471195184867,
+              "brier": 0.15191840436150678,
+              "log_loss": 0.480936419607073,
+              "auroc": 0.6299324514494793,
+              "auprc": 0.3493963679339701
+            },
+            "router_other_families": {
+              "n": 1163,
+              "positive_rate": 0.19604471195184867,
+              "brier": 0.15137553003280443,
+              "log_loss": 0.47928813079593646,
+              "auroc": 0.6246130030959753,
+              "auprc": 0.33315839518671536
+            }
+          }
+        }
+      }
+    },
+    "bank": {
+      "training_families": [
+        "acs",
+        "diabetes"
+      ],
+      "router_fit": {
+        "expert_names": [
+          "logistic_regression",
+          "hist_gradient_boosting",
+          "random_forest",
+          "xgboost",
+          "catboost_ohe"
+        ],
+        "fit_seconds": 0.08338869999988674,
+        "source_crossfit_rows": 36472,
+        "family_count": 2,
+        "domain_count": {
+          "acs": 7,
+          "diabetes": 4
+        }
+      },
+      "source_selected_expert": "hist_gradient_boosting",
+      "source_brier_by_expert": {
+        "logistic_regression": 0.17037251529655162,
+        "hist_gradient_boosting": 0.16547050054830706,
+        "random_forest": 0.16796728032693253,
+        "xgboost": 0.1660131373620887,
+        "catboost_ohe": 0.1658228873216404
+      },
+      "router_choice_fraction": {
+        "logistic_regression": 0.29057947555843316,
+        "hist_gradient_boosting": 0.04279702168986727,
+        "random_forest": 0.513434768533506,
+        "xgboost": 0.055875687924894786,
+        "catboost_ohe": 0.0973130462932988
+      },
+      "domains": {
+        "fit_1": {
+          "n": 5149,
+          "positive_rate": 0.0386482812196543,
+          "expert_brier": {
+            "logistic_regression": 0.03734539576482685,
+            "hist_gradient_boosting": 0.0379310380057277,
+            "random_forest": 0.03780633407810462,
+            "xgboost": 0.03753943456481579,
+            "catboost_ohe": 0.0374857518818307
+          },
+          "mean_expert_disagreement": 0.010940686601287122,
+          "mean_pairwise_squared_error_correlation": 0.9988870707566146,
+          "router_predicted_vs_realized_error_spearman": 0.3901653569429884,
+          "label_aware_per_row_oracle_brier_diagnostic": 0.03526121785558189,
+          "policies": {
+            "static_other_families": {
+              "n": 5149,
+              "positive_rate": 0.0386482812196543,
+              "brier": 0.0379310380057277,
+              "log_loss": 0.1746014569611204,
+              "auroc": 0.5098604131769962,
+              "auprc": 0.04119450125454073
+            },
+            "uniform_ensemble": {
+              "n": 5149,
+              "positive_rate": 0.0386482812196543,
+              "brier": 0.03743739134043851,
+              "log_loss": 0.1672212977352918,
+              "auroc": 0.5295614435815441,
+              "auprc": 0.04105132121391794
+            },
+            "weighted_other_families": {
+              "n": 5149,
+              "positive_rate": 0.0386482812196543,
+              "brier": 0.03743915863690715,
+              "log_loss": 0.16725098204942818,
+              "auroc": 0.5294974874371859,
+              "auprc": 0.04105698612384991
+            },
+            "router_other_families": {
+              "n": 5149,
+              "positive_rate": 0.0386482812196543,
+              "brier": 0.037505386210358684,
+              "log_loss": 0.17037352184568127,
+              "auroc": 0.4976945332724227,
+              "auprc": 0.038444213497342776
+            }
+          }
+        },
+        "fit_2": {
+          "n": 5148,
+          "positive_rate": 0.05555555555555555,
+          "expert_brier": {
+            "logistic_regression": 0.05278802043555942,
+            "hist_gradient_boosting": 0.052958153066769854,
+            "random_forest": 0.05322514087523744,
+            "xgboost": 0.053388290334063546,
+            "catboost_ohe": 0.052970503694975773
+          },
+          "mean_expert_disagreement": 0.017275846383752846,
+          "mean_pairwise_squared_error_correlation": 0.998566909044411,
+          "router_predicted_vs_realized_error_spearman": 0.5378983174996114,
+          "label_aware_per_row_oracle_brier_diagnostic": 0.04788820913433837,
+          "policies": {
+            "static_other_families": {
+              "n": 5148,
+              "positive_rate": 0.05555555555555555,
+              "brier": 0.052958153066769854,
+              "log_loss": 0.22112330036845607,
+              "auroc": 0.49126161785561206,
+              "auprc": 0.05640198603028079
+            },
+            "uniform_ensemble": {
+              "n": 5148,
+              "positive_rate": 0.05555555555555555,
+              "brier": 0.05267664547156618,
+              "log_loss": 0.21727960058620546,
+              "auroc": 0.521142267851441,
+              "auprc": 0.06066325952407607
+            },
+            "weighted_other_families": {
+              "n": 5148,
+              "positive_rate": 0.05555555555555555,
+              "brier": 0.05268157260165469,
+              "log_loss": 0.2173424219408238,
+              "auroc": 0.5205842080584985,
+              "auprc": 0.060566855424749794
+            },
+            "router_other_families": {
+              "n": 5148,
+              "positive_rate": 0.05555555555555555,
+              "brier": 0.05333264161593985,
+              "log_loss": 0.23008224982107187,
+              "auroc": 0.47520301582415936,
+              "auprc": 0.05312702768846896
+            }
+          }
+        },
+        "fit_3": {
+          "n": 5148,
+          "positive_rate": 0.06332556332556333,
+          "expert_brier": {
+            "logistic_regression": 0.0603658662542058,
+            "hist_gradient_boosting": 0.05972684909525837,
+            "random_forest": 0.06038002048813211,
+            "xgboost": 0.060177978457565694,
+            "catboost_ohe": 0.0596767082134727
+          },
+          "mean_expert_disagreement": 0.016180041417928365,
+          "mean_pairwise_squared_error_correlation": 0.9979899084604504,
+          "router_predicted_vs_realized_error_spearman": 0.6448034952476303,
+          "label_aware_per_row_oracle_brier_diagnostic": 0.05433896039103014,
+          "policies": {
+            "static_other_families": {
+              "n": 5148,
+              "positive_rate": 0.06332556332556333,
+              "brier": 0.05972684909525837,
+              "log_loss": 0.2394234993229346,
+              "auroc": 0.5126967910369905,
+              "auprc": 0.06544007301616815
+            },
+            "uniform_ensemble": {
+              "n": 5148,
+              "positive_rate": 0.06332556332556333,
+              "brier": 0.05972365197593742,
+              "log_loss": 0.2391808693736939,
+              "auroc": 0.5117807441862832,
+              "auprc": 0.06654458737593826
+            },
+            "weighted_other_families": {
+              "n": 5148,
+              "positive_rate": 0.06332556332556333,
+              "brier": 0.059723629417226254,
+              "log_loss": 0.23918350705285535,
+              "auroc": 0.5116910479321515,
+              "auprc": 0.06651628694104736
+            },
+            "router_other_families": {
+              "n": 5148,
+              "positive_rate": 0.06332556332556333,
+              "brier": 0.05993593719531348,
+              "log_loss": 0.24416463200566305,
+              "auroc": 0.4970498838401701,
+              "auprc": 0.06470719324032845
+            }
+          }
+        }
+      }
+    }
+  }
+}

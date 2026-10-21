@@ -10,7 +10,7 @@ Every primary numeric claim below is drawn from a tracked aggregate JSON. The [v
 | Nested 13-domain Brier means, router 6/13 wins, source-fixed coverage counts | `reports/results/m4_2_nested_acs.json`, `m4_2_nested_diabetes.json`, `m4_2_nested_bank.json`: `outer_domains.*.policies.*.probability.brier` and `selective.confidence.source_threshold.target_coverage` | Domains within families are correlated. |
 | Expert squared-error overlap | `reports/results/m4_1_source_router_diagnosis.json`: `families.*.domains.*.mean_pairwise_squared_error_correlation` | Diagnostic association, not causal evidence. |
 | Shopper November/December Brier, fit cost and source-fixed threshold | `reports/results/m4_2_shopper_confirmation.json`: `environments.nov/dec.policies.*`, `fit_seconds_by_expert` | One family, two correlated months, one-run timings. |
-| College for-profit static/router Brier | `reports/results/college_scorecard_2025_confirmation.json`: `policies.static/metadata_router.probability.brier` | Already viewed final cohort. |
+| College for-profit static/router Brier | `reports/results/college_scorecard_2025_confirmation.json`: `policies.static/reliability_router.probability.brier` | Already viewed final cohort. |
 | M5.1 loopback latency, RSS, startup and probe | `reports/results/m5_1_security_verification.json`, explained in `RESULTS_VERIFICATION.md` | Local smoke, no container/runtime release claim. |
 | M4.2 decision C and M5.1 release B | `docs/M4_2_RESEARCH_DECISION.md`, `docs/M5_SECURITY.md`, `docs/M6_PORTFOLIO_HANDOFF.md` | Router research-only; local demo only. |
 

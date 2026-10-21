@@ -1,0 +1,836 @@
+{
+  "benchmark": "UCI Bank Marketing pre-call chronological holdout",
+  "source_url": "https://archive.ics.uci.edu/ml/machine-learning-databases/00222/bank-additional.zip",
+  "archive_sha256": "a607b5edab6c6c75ce09c39142a77702c38123bd5aa7ae89a63503bbe17d65cd",
+  "target": "y == yes",
+  "prediction_point": "before current telephone call",
+  "features": [
+    "age",
+    "pdays",
+    "previous",
+    "job",
+    "marital",
+    "education",
+    "default",
+    "housing",
+    "loan",
+    "contact",
+    "month",
+    "day_of_week",
+    "poutcome"
+  ],
+  "excluded_features": [
+    "duration",
+    "campaign",
+    "emp.var.rate",
+    "cons.price.idx",
+    "cons.conf.idx",
+    "euribor3m",
+    "nr.employed"
+  ],
+  "seed": 264738,
+  "splits": {
+    "fit": {
+      "start": 0,
+      "end_exclusive": 20594,
+      "size": 20594,
+      "positive_rate_final_audit": 0.046761192580363216
+    },
+    "selection": {
+      "start": 20594,
+      "end_exclusive": 26772,
+      "size": 6178,
+      "positive_rate_final_audit": 0.05292975072839107
+    },
+    "calibration": {
+      "start": 26772,
+      "end_exclusive": 30891,
+      "size": 4119,
+      "positive_rate_final_audit": 0.16800194221898518
+    },
+    "near_future": {
+      "start": 30891,
+      "end_exclusive": 35010,
+      "size": 4119,
+      "positive_rate_final_audit": 0.06846321922796796
+    },
+    "final_future": {
+      "start": 35010,
+      "end_exclusive": 41188,
+      "size": 6178,
+      "positive_rate_final_audit": 0.38459048235674975
+    }
+  },
+  "selection_brier_by_model": {
+    "logistic_regression": 0.0523781773230858,
+    "hist_gradient_boosting": 0.050942434837128715,
+    "random_forest": 0.05207774694075637,
+    "xgboost": 0.05170276388525963,
+    "catboost_ohe": 0.05116350703689026
+  },
+  "fit_seconds_by_model": {
+    "logistic_regression": 0.21920899999895482,
+    "hist_gradient_boosting": 0.33831479999935254,
+    "random_forest": 0.954525699999067,
+    "xgboost": 2.0307911000018066,
+    "catboost_ohe": 1.1377974999995786
+  },
+  "shared_five_fit_seconds": 4.68063809999876,
+  "separate_three_fit_seconds_by_model": {
+    "logistic_regression": 0.21576800000184448,
+    "hist_gradient_boosting": 0.3258367999987968,
+    "random_forest": 1.0582759999997506
+  },
+  "separate_three_fit_seconds": 1.599880800000392,
+  "peak_process_working_set_kib": 362636,
+  "package_versions": {
+    "python": "3.12.10",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "sklearn": "1.9.1"
+  },
+  "results": {
+    "three_experts": {
+      "selected_model": "hist_gradient_boosting",
+      "selection_brier": 0.050942434837128715,
+      "near_future": {
+        "metrics": {
+          "accuracy": 0.9315367807720321,
+          "brier": 0.06375250075169343,
+          "log_loss": 0.24934972802469213,
+          "roc_auc": 0.5388148616402072,
+          "average_precision": 0.07390912007911997,
+          "ece_10_bins": 0.008141334534629023,
+          "aurc_confidence": 0.05828048571306651,
+          "risk_coverage_points": [
+            {
+              "coverage": 0.10002427773731488,
+              "error_risk": 0.03398058252427184
+            },
+            {
+              "coverage": 0.20004855547462977,
+              "error_risk": 0.05339805825242718
+            },
+            {
+              "coverage": 0.30007283321194467,
+              "error_risk": 0.05016181229773463
+            },
+            {
+              "coverage": 0.40009711094925954,
+              "error_risk": 0.05703883495145631
+            },
+            {
+              "coverage": 0.5001213886865744,
+              "error_risk": 0.06019417475728155
+            },
+            {
+              "coverage": 0.6001456664238893,
+              "error_risk": 0.06229773462783172
+            },
+            {
+              "coverage": 0.7001699441612041,
+              "error_risk": 0.06553398058252427
+            },
+            {
+              "coverage": 0.8001942218985191,
+              "error_risk": 0.0670509708737864
+            },
+            {
+              "coverage": 0.9002184996358339,
+              "error_risk": 0.06930960086299892
+            },
+            {
+              "coverage": 1.0,
+              "error_risk": 0.06846321922796796
+            }
+          ],
+          "marginal_coverage": 0.956300072833212,
+          "mean_set_size": 1.3272638990046128,
+          "abstention_rate": 0.3272638990046128,
+          "singleton_accuracy": 0.9350415012630819
+        },
+        "reliability_bins": [
+          {
+            "bin": 0,
+            "count": 4115,
+            "mean_predicted": 0.060279621620682206,
+            "observed_rate": 0.06828675577156744
+          },
+          {
+            "bin": 1,
+            "count": 4,
+            "mean_predicted": 0.10380002068887692,
+            "observed_rate": 0.25
+          },
+          {
+            "bin": 2,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 3,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 4,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 5,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 6,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 7,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 8,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 9,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          }
+        ],
+        "inference_seconds": 0.017201000002387445,
+        "positive_rate_final_audit": 0.06846321922796796
+      },
+      "final_future": {
+        "metrics": {
+          "accuracy": 0.6154095176432502,
+          "brier": 0.3375742343205313,
+          "log_loss": 1.0994541840221332,
+          "roc_auc": 0.5514281093417075,
+          "average_precision": 0.43164843274775383,
+          "ece_10_bins": 0.3196284605199168,
+          "aurc_confidence": 0.35659247175279596,
+          "risk_coverage_points": [
+            {
+              "coverage": 0.10003237293622531,
+              "error_risk": 0.3268608414239482
+            },
+            {
+              "coverage": 0.20006474587245063,
+              "error_risk": 0.37297734627831713
+            },
+            {
+              "coverage": 0.30009711880867596,
+              "error_risk": 0.3581445523193096
+            },
+            {
+              "coverage": 0.40012949174490126,
+              "error_risk": 0.3333333333333333
+            },
+            {
+              "coverage": 0.5,
+              "error_risk": 0.35189381676918097
+            },
+            {
+              "coverage": 0.6000323729362254,
+              "error_risk": 0.3541947666576747
+            },
+            {
+              "coverage": 0.7000647458724506,
+              "error_risk": 0.3507514450867052
+            },
+            {
+              "coverage": 0.800097118808676,
+              "error_risk": 0.3619259558972284
+            },
+            {
+              "coverage": 0.9001294917449013,
+              "error_risk": 0.37385362344901996
+            },
+            {
+              "coverage": 1.0,
+              "error_risk": 0.38459048235674975
+            }
+          ],
+          "marginal_coverage": 0.7874716736808028,
+          "mean_set_size": 1.4002913564260278,
+          "abstention_rate": 0.40029135642602787,
+          "singleton_accuracy": 0.6456140350877193
+        },
+        "reliability_bins": [
+          {
+            "bin": 0,
+            "count": 5756,
+            "mean_predicted": 0.06104877122795299,
+            "observed_rate": 0.37890896455872136
+          },
+          {
+            "bin": 1,
+            "count": 422,
+            "mean_predicted": 0.11833801829349838,
+            "observed_rate": 0.46208530805687204
+          },
+          {
+            "bin": 2,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 3,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 4,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 5,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 6,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 7,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 8,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 9,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          }
+        ],
+        "inference_seconds": 0.025001000001793727,
+        "positive_rate_final_audit": 0.38459048235674975
+      }
+    },
+    "five_experts": {
+      "selected_model": "hist_gradient_boosting",
+      "selection_brier": 0.050942434837128715,
+      "near_future": {
+        "metrics": {
+          "accuracy": 0.9315367807720321,
+          "brier": 0.06375250075169343,
+          "log_loss": 0.24934972802469213,
+          "roc_auc": 0.5388148616402072,
+          "average_precision": 0.07390912007911997,
+          "ece_10_bins": 0.008141334534629023,
+          "aurc_confidence": 0.05828048571306651,
+          "risk_coverage_points": [
+            {
+              "coverage": 0.10002427773731488,
+              "error_risk": 0.03398058252427184
+            },
+            {
+              "coverage": 0.20004855547462977,
+              "error_risk": 0.05339805825242718
+            },
+            {
+              "coverage": 0.30007283321194467,
+              "error_risk": 0.05016181229773463
+            },
+            {
+              "coverage": 0.40009711094925954,
+              "error_risk": 0.05703883495145631
+            },
+            {
+              "coverage": 0.5001213886865744,
+              "error_risk": 0.06019417475728155
+            },
+            {
+              "coverage": 0.6001456664238893,
+              "error_risk": 0.06229773462783172
+            },
+            {
+              "coverage": 0.7001699441612041,
+              "error_risk": 0.06553398058252427
+            },
+            {
+              "coverage": 0.8001942218985191,
+              "error_risk": 0.0670509708737864
+            },
+            {
+              "coverage": 0.9002184996358339,
+              "error_risk": 0.06930960086299892
+            },
+            {
+              "coverage": 1.0,
+              "error_risk": 0.06846321922796796
+            }
+          ],
+          "marginal_coverage": 0.956300072833212,
+          "mean_set_size": 1.3272638990046128,
+          "abstention_rate": 0.3272638990046128,
+          "singleton_accuracy": 0.9350415012630819
+        },
+        "reliability_bins": [
+          {
+            "bin": 0,
+            "count": 4115,
+            "mean_predicted": 0.060279621620682206,
+            "observed_rate": 0.06828675577156744
+          },
+          {
+            "bin": 1,
+            "count": 4,
+            "mean_predicted": 0.10380002068887692,
+            "observed_rate": 0.25
+          },
+          {
+            "bin": 2,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 3,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 4,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 5,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 6,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 7,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 8,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 9,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          }
+        ],
+        "inference_seconds": 0.018764299999020295,
+        "positive_rate_final_audit": 0.06846321922796796
+      },
+      "final_future": {
+        "metrics": {
+          "accuracy": 0.6154095176432502,
+          "brier": 0.3375742343205313,
+          "log_loss": 1.0994541840221332,
+          "roc_auc": 0.5514281093417075,
+          "average_precision": 0.43164843274775383,
+          "ece_10_bins": 0.3196284605199168,
+          "aurc_confidence": 0.35659247175279596,
+          "risk_coverage_points": [
+            {
+              "coverage": 0.10003237293622531,
+              "error_risk": 0.3268608414239482
+            },
+            {
+              "coverage": 0.20006474587245063,
+              "error_risk": 0.37297734627831713
+            },
+            {
+              "coverage": 0.30009711880867596,
+              "error_risk": 0.3581445523193096
+            },
+            {
+              "coverage": 0.40012949174490126,
+              "error_risk": 0.3333333333333333
+            },
+            {
+              "coverage": 0.5,
+              "error_risk": 0.35189381676918097
+            },
+            {
+              "coverage": 0.6000323729362254,
+              "error_risk": 0.3541947666576747
+            },
+            {
+              "coverage": 0.7000647458724506,
+              "error_risk": 0.3507514450867052
+            },
+            {
+              "coverage": 0.800097118808676,
+              "error_risk": 0.3619259558972284
+            },
+            {
+              "coverage": 0.9001294917449013,
+              "error_risk": 0.37385362344901996
+            },
+            {
+              "coverage": 1.0,
+              "error_risk": 0.38459048235674975
+            }
+          ],
+          "marginal_coverage": 0.7874716736808028,
+          "mean_set_size": 1.4002913564260278,
+          "abstention_rate": 0.40029135642602787,
+          "singleton_accuracy": 0.6456140350877193
+        },
+        "reliability_bins": [
+          {
+            "bin": 0,
+            "count": 5756,
+            "mean_predicted": 0.06104877122795299,
+            "observed_rate": 0.37890896455872136
+          },
+          {
+            "bin": 1,
+            "count": 422,
+            "mean_predicted": 0.11833801829349838,
+            "observed_rate": 0.46208530805687204
+          },
+          {
+            "bin": 2,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 3,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 4,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 5,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 6,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 7,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 8,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          },
+          {
+            "bin": 9,
+            "count": 0,
+            "mean_predicted": null,
+            "observed_rate": null
+          }
+        ],
+        "inference_seconds": 0.02547049999702722,
+        "positive_rate_final_audit": 0.38459048235674975
+      }
+    }
+  },
+  "separately_realized_three_experts": {
+    "selected_model": "hist_gradient_boosting",
+    "near_future": {
+      "metrics": {
+        "accuracy": 0.9315367807720321,
+        "brier": 0.06375250075169343,
+        "log_loss": 0.24934972802469213,
+        "roc_auc": 0.5388148616402072,
+        "average_precision": 0.07390912007911997,
+        "ece_10_bins": 0.008141334534629023,
+        "aurc_confidence": 0.05828048571306651,
+        "risk_coverage_points": [
+          {
+            "coverage": 0.10002427773731488,
+            "error_risk": 0.03398058252427184
+          },
+          {
+            "coverage": 0.20004855547462977,
+            "error_risk": 0.05339805825242718
+          },
+          {
+            "coverage": 0.30007283321194467,
+            "error_risk": 0.05016181229773463
+          },
+          {
+            "coverage": 0.40009711094925954,
+            "error_risk": 0.05703883495145631
+          },
+          {
+            "coverage": 0.5001213886865744,
+            "error_risk": 0.06019417475728155
+          },
+          {
+            "coverage": 0.6001456664238893,
+            "error_risk": 0.06229773462783172
+          },
+          {
+            "coverage": 0.7001699441612041,
+            "error_risk": 0.06553398058252427
+          },
+          {
+            "coverage": 0.8001942218985191,
+            "error_risk": 0.0670509708737864
+          },
+          {
+            "coverage": 0.9002184996358339,
+            "error_risk": 0.06930960086299892
+          },
+          {
+            "coverage": 1.0,
+            "error_risk": 0.06846321922796796
+          }
+        ],
+        "marginal_coverage": 0.956300072833212,
+        "mean_set_size": 1.3272638990046128,
+        "abstention_rate": 0.3272638990046128,
+        "singleton_accuracy": 0.9350415012630819
+      },
+      "reliability_bins": [
+        {
+          "bin": 0,
+          "count": 4115,
+          "mean_predicted": 0.060279621620682206,
+          "observed_rate": 0.06828675577156744
+        },
+        {
+          "bin": 1,
+          "count": 4,
+          "mean_predicted": 0.10380002068887692,
+          "observed_rate": 0.25
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "bin": 6,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "bin": 7,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "bin": 8,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "bin": 9,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        }
+      ],
+      "inference_seconds": 0.018752100000710925,
+      "positive_rate_final_audit": 0.06846321922796796
+    },
+    "final_future": {
+      "metrics": {
+        "accuracy": 0.6154095176432502,
+        "brier": 0.3375742343205313,
+        "log_loss": 1.0994541840221332,
+        "roc_auc": 0.5514281093417075,
+        "average_precision": 0.43164843274775383,
+        "ece_10_bins": 0.3196284605199168,
+        "aurc_confidence": 0.35659247175279596,
+        "risk_coverage_points": [
+          {
+            "coverage": 0.10003237293622531,
+            "error_risk": 0.3268608414239482
+          },
+          {
+            "coverage": 0.20006474587245063,
+            "error_risk": 0.37297734627831713
+          },
+          {
+            "coverage": 0.30009711880867596,
+            "error_risk": 0.3581445523193096
+          },
+          {
+            "coverage": 0.40012949174490126,
+            "error_risk": 0.3333333333333333
+          },
+          {
+            "coverage": 0.5,
+            "error_risk": 0.35189381676918097
+          },
+          {
+            "coverage": 0.6000323729362254,
+            "error_risk": 0.3541947666576747
+          },
+          {
+            "coverage": 0.7000647458724506,
+            "error_risk": 0.3507514450867052
+          },
+          {
+            "coverage": 0.800097118808676,
+            "error_risk": 0.3619259558972284
+          },
+          {
+            "coverage": 0.9001294917449013,
+            "error_risk": 0.37385362344901996
+          },
+          {
+            "coverage": 1.0,
+            "error_risk": 0.38459048235674975
+          }
+        ],
+        "marginal_coverage": 0.7874716736808028,
+        "mean_set_size": 1.4002913564260278,
+        "abstention_rate": 0.40029135642602787,
+        "singleton_accuracy": 0.6456140350877193
+      },
+      "reliability_bins": [
+        {
+          "bin": 0,
+          "count": 5756,
+          "mean_predicted": 0.06104877122795299,
+          "observed_rate": 0.37890896455872136
+        },
+        {
+          "bin": 1,
+          "count": 422,
+          "mean_predicted": 0.11833801829349838,
+          "observed_rate": 0.46208530805687204
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "bin": 6,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "bin": 7,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "bin": 8,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "bin": 9,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        }
+      ],
+      "inference_seconds": 0.024754899997788016,
+      "positive_rate_final_audit": 0.38459048235674975
+    }
+  },
+  "limitations": [
+    "Original order is chronological but exact per-record timestamps are unavailable.",
+    "Near-future is a later time window, not IID; no customer IDs to enforce entity isolation.",
+    "One final future window cannot establish arbitrary temporal generalisation."
+  ]
+}

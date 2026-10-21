@@ -35,6 +35,11 @@ def load(name: str) -> dict:
     return json.loads(SOURCES[name].read_text(encoding="utf-8"))
 
 
+def source_hash(path: Path) -> str:
+    """Hash JSON content consistently across Git CRLF/LF checkouts."""
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+
+
 def save(name: str) -> None:
     plt.tight_layout()
     plt.savefig(FIGURES / name, dpi=200, bbox_inches="tight")
@@ -130,7 +135,8 @@ def build() -> None:
 
     manifest = {
         "generation_command": ".\\.venv\\Scripts\\python.exe scripts\\build_m6_figures.py",
-        "sources": {name: {"path": str(path.relative_to(ROOT)).replace("\\", "/"), "sha256": hashlib.sha256(path.read_bytes()).hexdigest()} for name, path in SOURCES.items()},
+        "source_hash_normalization": "UTF-8 JSON with CRLF normalized to LF",
+        "sources": {name: {"path": str(path.relative_to(ROOT)).replace("\\", "/"), "sha256": source_hash(path)} for name, path in SOURCES.items()},
         "figures": sorted(p.name for p in FIGURES.glob("*.png")),
         "cautions": ["Source domains within a family are correlated, not independent dataset replicates.", "Risk-coverage curves are retrospective target-ranked descriptions; x markers show source-fixed thresholds.", "Fit-cost chart reports model fits only, from one local run."],
     }

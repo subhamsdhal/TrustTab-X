@@ -8,21 +8,30 @@ Run commands from `D:\TrustTab-X` on branch `codex/trusttabx-autopilot`. Python 
 $env:OPENBLAS_NUM_THREADS='1'; $env:OMP_NUM_THREADS='1'; $env:MKL_NUM_THREADS='1'
 .\.venv\Scripts\python.exe -m pip install -c constraints/m5.txt -e '.[dev,m5]'
 .\.venv\Scripts\python.exe -m pytest -q -p no:cacheprovider --basetemp=.pytest_tmp
-.\.venv\Scripts\ruff.exe check src tests scripts/build_m6_figures.py
+.\.venv\Scripts\ruff.exe check src tests scripts
 .\.venv\Scripts\python.exe scripts\build_m6_figures.py
 .\.venv\Scripts\python.exe scripts\verify_m6.py
 git diff --check
 ```
 
-`scripts/verify_m6.py` checks the current figure input hashes, expected recorded metrics, manuscript-relative links and figure presence. It does not rerun model training. The exact tracked aggregates are in `reports/results/`; `reports/figures/manifest.json` records the SHA-256 of all figure inputs. The manuscript is `reports/paper/TrustTab-X-manuscript.md`.
+`scripts/verify_m6.py` checks the current figure input hashes, expected recorded metrics, manuscript-relative links and figure presence. It does not rerun model training. The exact tracked aggregates are in `reports/results/`; `reports/figures/manifest.json` records SHA-256 after CRLF-to-LF normalization of JSON inputs so Git checkouts on different platforms agree. The manuscript is `reports/paper/TrustTab-X-manuscript.md`.
 
-The complete manuscript is maintained in Markdown because this host has no local Pandoc or TeX engine installed. On a machine with Pandoc and a TeX engine, build a PDF without changing scientific content:
+The complete manuscript is maintained in Markdown. M7 generated a checked A4 PDF from it using ReportLab, without Pandoc or TeX. On this host the Codex bundled Python runtime includes `reportlab`, `pypdf` and Poppler. From the project root, use the bundled Python path returned by `load_workspace_dependencies`:
+
+```powershell
+& 'C:\Users\hp\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' scripts\build_m7_pdf.py
+pdfinfo reports/paper/TrustTab-X-manuscript.pdf
+```
+
+On another Windows host, install ReportLab in a local Python environment and run `python scripts/build_m7_pdf.py`; the builder uses local Cambria/Calibri fonts. Render every PDF page with Poppler for visual QA. If Pandoc and TeX are already installed, an alternative build is:
 
 ```powershell
 pandoc reports/paper/TrustTab-X-manuscript.md --from markdown --pdf-engine=xelatex --resource-path=reports/paper -o reports/paper/TrustTab-X-manuscript.pdf
 ```
 
-Inspect the rendered PDF before distributing it; the Markdown manuscript is the source of record in this checkpoint.
+Inspect the rendered PDF before distributing it; the Markdown manuscript remains the editable source of record.
+
+For the real local service demonstration on cached public ACS rows, run `python scripts/run_m7_local_demo.py` with the project `.venv` and one-thread BLAS settings. It requires the already approved local artifact and cached source archives, rechecks tracked provenance, and writes only aggregate results to `reports/results/m7_local_demo.json`. It does not silently fetch data for the portfolio. `python scripts/build_m7_portfolio.py` assembles `portfolio/final/` and its SHA-256 manifest after the paper and audit are current.
 
 ## Full experiment prerequisites
 

@@ -1,0 +1,5 @@
+# Growtern Academy portfolio project description
+
+TrustTab-X was developed for a Growtern Academy portfolio upgrade, according to the project author's reported context. It is a reproducible research project on tabular prediction under distribution shift and a secured local ACSIncome demonstration. The research compared source-selected fixed experts, weighted ensembles and experimental adaptive routers on bounded geographic, hospital-domain and temporal data. The final router evaluation did **not** demonstrate an adaptive advantage, so the fixed expert remained the engineering baseline. The local service includes a versioned artifact, schema validation, authenticated API, drift diagnostics, delayed-label evaluation, dashboard and audit metadata. It is **not a production deployment**.
+
+This wording does not certify an internship, employer relationship, project dates, Growtern supervision, endorsement, publication or the applicant's individual contribution. Confirm organizational permission and individual attribution before using it externally.

@@ -1,4 +1,10 @@
-# Next Codex task — M6 handoff and remaining release gates
+# Next Codex task — only remaining M7 handoff and release gates
+
+The final M7 review package, manuscript PDF, aggregate real-data local demonstration and private GitHub handoff are prepared. The private repository at `https://github.com/subhamsdhal/TrustTab-X` is empty; no project data were pushed. The one unavoidable user action for a GitHub handoff is to review and authorize a push of the final tracked files. Follow `docs/GITHUB_PRIVATE_HANDOFF.md` for the exact command. Keep the repository private. Faculty/placement review may use the local `portfolio/final/` package now.
+
+For an internal service release beyond local demo B, run the existing Docker verification on a Docker-capable host and complete TLS/managed identity, log governance, data rights/privacy and security approval. This is separate from academic portfolio readiness. No new research milestone is required. Do not retune M4.2 on previously viewed final targets.
+
+## Historical task notes retained below
 
 The M6 manuscript, figures, traceability map, reproducibility guide and portfolio materials are complete as a local Markdown research package. The next necessary work is an independent scientific/editorial review, followed by PDF rendering on a host with Pandoc/TeX if a PDF is needed for an application. Check every rendered figure/citation and fix editorial issues without changing the locked results or implying peer review. See `docs/M6_REPRODUCIBILITY.md` for the build command.
 

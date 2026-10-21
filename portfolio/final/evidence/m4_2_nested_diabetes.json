@@ -1,0 +1,3436 @@
+{
+  "family": "diabetes",
+  "protocol": "patient-disjoint admission codes",
+  "source_rows": 22472,
+  "outer_domains": {
+    "1": {
+      "partition_sizes": {
+        "fit": 5364,
+        "selection": 1128,
+        "probability_calibration": 507,
+        "threshold_calibration": 583,
+        "outer": 14890
+      },
+      "partition_index_sha256": {
+        "fit": "7eb5cb3ecaa5d797e148a71200a45850c62ab01d80ac8e7a175aa930c68edb09",
+        "selection": "61e0c8899100f2a441429338726f83e1206700c2df0bca9e234219a0fd7c3ca4",
+        "probability_calibration": "97a4b0dd83961aef70ccdc0e283c2736eed29a00b08710e135b025535df8da7a",
+        "threshold_calibration": "a0fdb94a0795b7e574c015853e69ffba74412856123d92efbcacf18acd9ae2c2",
+        "outer": "be4b2c7467ddbbad65a98daeafce3be39388ffd8dc29ee145b3b1bc3082c28aa"
+      },
+      "inner_domains": [
+        "4",
+        "6",
+        "17"
+      ],
+      "inner_oof_rows": 5364,
+      "selected_expert": "catboost_ohe",
+      "selection_brier": {
+        "logistic_regression": 0.19118483947432713,
+        "hist_gradient_boosting": 0.1866337626709008,
+        "random_forest": 0.19281072534371635,
+        "xgboost": 0.1871679799783388,
+        "catboost_ohe": 0.18661099620175164
+      },
+      "inner_fit_seconds": 4.826104700000087,
+      "full_fit_seconds": {
+        "logistic_regression": 0.07608469999968293,
+        "hist_gradient_boosting": 0.3200047000000268,
+        "random_forest": 0.3871041000002151,
+        "xgboost": 0.16097839999974894,
+        "catboost_ohe": 0.3569585999998708
+      },
+      "inference_seconds": {
+        "selection": 0.06263230000013209,
+        "probability_calibration": 0.051091400000132126,
+        "threshold_calibration": 0.0479816000001847,
+        "outer": 0.42244869999967705
+      },
+      "policies": {
+        "static": {
+          "probability": {
+            "n": 14890,
+            "positive_rate": 0.29529885829415714,
+            "brier": 0.19982172028415865,
+            "log_loss": 0.5894641466495,
+            "auroc": 0.6313198694838005,
+            "auprc": 0.4268984545858746,
+            "ece_10_bins": 0.04693346959669397
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.4365496393027659,
+                "target_coverage": 0.9468770987239759,
+                "target_error_risk": 0.27746648698489257,
+                "matched_target_coverage": 0.8,
+                "matched_target_error_risk_descriptive": 0.25125923438549363,
+                "target_ranked_aurc_descriptive": 0.21944419014141273,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.1,
+                    "error_risk": 0.16789791806581597
+                  },
+                  {
+                    "coverage": 0.2,
+                    "error_risk": 0.18401611820013433
+                  },
+                  {
+                    "coverage": 0.3000671591672263,
+                    "error_risk": 0.19762757385854968
+                  },
+                  {
+                    "coverage": 0.4,
+                    "error_risk": 0.2100402955003358
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.2231027535258563
+                  },
+                  {
+                    "coverage": 0.6,
+                    "error_risk": 0.22979628385941347
+                  },
+                  {
+                    "coverage": 0.7000671591672263,
+                    "error_risk": 0.23954336147352265
+                  },
+                  {
+                    "coverage": 0.8,
+                    "error_risk": 0.25125923438549363
+                  },
+                  {
+                    "coverage": 0.9,
+                    "error_risk": 0.2681889411237967
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.28891873740765617
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.0030893216924110143,
+                  "0.2": 0.3159838817998657
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8,
+                "accepted_error_risk": 0.25125923438549363,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.05032135794300025,
+                "target_coverage": 0.764002686366689,
+                "target_error_risk": 0.2749648382559775,
+                "matched_target_coverage": 0.8,
+                "matched_target_error_risk_descriptive": 0.27610812625923437,
+                "target_ranked_aurc_descriptive": 0.2612444918923825,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.1,
+                    "error_risk": 0.24714573539288112
+                  },
+                  {
+                    "coverage": 0.2,
+                    "error_risk": 0.24714573539288112
+                  },
+                  {
+                    "coverage": 0.3000671591672263,
+                    "error_risk": 0.25335720680393914
+                  },
+                  {
+                    "coverage": 0.4,
+                    "error_risk": 0.2583948959032908
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.2638012088650101
+                  },
+                  {
+                    "coverage": 0.6,
+                    "error_risk": 0.2668457577792702
+                  },
+                  {
+                    "coverage": 0.7000671591672263,
+                    "error_risk": 0.27235226400613965
+                  },
+                  {
+                    "coverage": 0.8,
+                    "error_risk": 0.27610812625923437
+                  },
+                  {
+                    "coverage": 0.9,
+                    "error_risk": 0.28206850235057085
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.28891873740765617
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.0016118200134318335,
+                  "0.2": 0.014842175957018132
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8,
+                "accepted_error_risk": 0.27610812625923437,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        },
+        "uniform": {
+          "probability": {
+            "n": 14890,
+            "positive_rate": 0.29529885829415714,
+            "brier": 0.200035031121011,
+            "log_loss": 0.5902750370841724,
+            "auroc": 0.6314766284186426,
+            "auprc": 0.4282063589740229,
+            "ece_10_bins": 0.049929347020095216
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.4424083354336587,
+                "target_coverage": 0.9517125587642713,
+                "target_error_risk": 0.27852656834380074,
+                "matched_target_coverage": 0.8,
+                "matched_target_error_risk_descriptive": 0.2508394895903291,
+                "target_ranked_aurc_descriptive": 0.22044757022958303,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.1,
+                    "error_risk": 0.17662860980523842
+                  },
+                  {
+                    "coverage": 0.2,
+                    "error_risk": 0.18670248488918736
+                  },
+                  {
+                    "coverage": 0.3000671591672263,
+                    "error_risk": 0.20411817367949867
+                  },
+                  {
+                    "coverage": 0.4,
+                    "error_risk": 0.21171927468099397
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.21746138347884486
+                  },
+                  {
+                    "coverage": 0.6,
+                    "error_risk": 0.23069173942243115
+                  },
+                  {
+                    "coverage": 0.7000671591672263,
+                    "error_risk": 0.2390636991557943
+                  },
+                  {
+                    "coverage": 0.8,
+                    "error_risk": 0.2508394895903291
+                  },
+                  {
+                    "coverage": 0.9,
+                    "error_risk": 0.2677412133422879
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.2896574882471457
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.004029550033579583,
+                  "0.2": 0.2745466756212223
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8,
+                "accepted_error_risk": 0.2508394895903291,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.05032135794300025,
+                "target_coverage": 0.764002686366689,
+                "target_error_risk": 0.2748769338959212,
+                "matched_target_coverage": 0.8,
+                "matched_target_error_risk_descriptive": 0.2761920752182673,
+                "target_ranked_aurc_descriptive": 0.26139317471372486,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.1,
+                    "error_risk": 0.2478173270651444
+                  },
+                  {
+                    "coverage": 0.2,
+                    "error_risk": 0.24748153122901276
+                  },
+                  {
+                    "coverage": 0.3000671591672263,
+                    "error_risk": 0.2535810205908684
+                  },
+                  {
+                    "coverage": 0.4,
+                    "error_risk": 0.25822699798522497
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.2638012088650101
+                  },
+                  {
+                    "coverage": 0.6,
+                    "error_risk": 0.266733825833893
+                  },
+                  {
+                    "coverage": 0.7000671591672263,
+                    "error_risk": 0.2724481964696853
+                  },
+                  {
+                    "coverage": 0.8,
+                    "error_risk": 0.2761920752182673
+                  },
+                  {
+                    "coverage": 0.9,
+                    "error_risk": 0.2825908514289978
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.2896574882471457
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.0016118200134318335,
+                  "0.2": 0.014842175957018132
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8,
+                "accepted_error_risk": 0.2761920752182673,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        },
+        "weighted": {
+          "probability": {
+            "n": 14890,
+            "positive_rate": 0.29529885829415714,
+            "brier": 0.20003628742658738,
+            "log_loss": 0.5902840175984921,
+            "auroc": 0.6314492755288021,
+            "auprc": 0.4281751092915333,
+            "ece_10_bins": 0.04970576014821463
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.44245292579459733,
+                "target_coverage": 0.951645399597045,
+                "target_error_risk": 0.27854622441778404,
+                "matched_target_coverage": 0.8,
+                "matched_target_error_risk_descriptive": 0.250923438549362,
+                "target_ranked_aurc_descriptive": 0.22046137703611896,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.1,
+                    "error_risk": 0.17662860980523842
+                  },
+                  {
+                    "coverage": 0.2,
+                    "error_risk": 0.18737407656145064
+                  },
+                  {
+                    "coverage": 0.3000671591672263,
+                    "error_risk": 0.20389435989256938
+                  },
+                  {
+                    "coverage": 0.4,
+                    "error_risk": 0.21188717259905976
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.21719274680993955
+                  },
+                  {
+                    "coverage": 0.6,
+                    "error_risk": 0.23069173942243115
+                  },
+                  {
+                    "coverage": 0.7000671591672263,
+                    "error_risk": 0.23896776669224865
+                  },
+                  {
+                    "coverage": 0.8,
+                    "error_risk": 0.250923438549362
+                  },
+                  {
+                    "coverage": 0.9,
+                    "error_risk": 0.2677412133422879
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.28945601074546673
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.0030221625251846875,
+                  "0.2": 0.27468099395567497
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8,
+                "accepted_error_risk": 0.250923438549362,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.05032135794300025,
+                "target_coverage": 0.764002686366689,
+                "target_error_risk": 0.274789029535865,
+                "matched_target_coverage": 0.8,
+                "matched_target_error_risk_descriptive": 0.27610812625923437,
+                "target_ranked_aurc_descriptive": 0.2613261446989351,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.1,
+                    "error_risk": 0.2478173270651444
+                  },
+                  {
+                    "coverage": 0.2,
+                    "error_risk": 0.24748153122901276
+                  },
+                  {
+                    "coverage": 0.3000671591672263,
+                    "error_risk": 0.2535810205908684
+                  },
+                  {
+                    "coverage": 0.4,
+                    "error_risk": 0.25822699798522497
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.2636668905305574
+                  },
+                  {
+                    "coverage": 0.6,
+                    "error_risk": 0.26662189388851576
+                  },
+                  {
+                    "coverage": 0.7000671591672263,
+                    "error_risk": 0.27235226400613965
+                  },
+                  {
+                    "coverage": 0.8,
+                    "error_risk": 0.27610812625923437
+                  },
+                  {
+                    "coverage": 0.9,
+                    "error_risk": 0.2823669875382434
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.28945601074546673
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.0016118200134318335,
+                  "0.2": 0.014842175957018132
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8,
+                "accepted_error_risk": 0.27610812625923437,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        },
+        "metadata_router": {
+          "probability": {
+            "n": 14890,
+            "positive_rate": 0.29529885829415714,
+            "brier": 0.19948888069582144,
+            "log_loss": 0.5875521850919017,
+            "auroc": 0.624324573812391,
+            "auprc": 0.41744647223046855,
+            "ece_10_bins": 0.02468011177774951
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.4460729419932686,
+                "target_coverage": 0.9494963062458025,
+                "target_error_risk": 0.2783986419578441,
+                "matched_target_coverage": 0.8,
+                "matched_target_error_risk_descriptive": 0.2567998656816656,
+                "target_ranked_aurc_descriptive": 0.2231584100229097,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.1,
+                    "error_risk": 0.1732706514439221
+                  },
+                  {
+                    "coverage": 0.2,
+                    "error_risk": 0.19073203492276697
+                  },
+                  {
+                    "coverage": 0.3000671591672263,
+                    "error_risk": 0.20299910474485228
+                  },
+                  {
+                    "coverage": 0.4,
+                    "error_risk": 0.21356615177971794
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.22068502350570854
+                  },
+                  {
+                    "coverage": 0.6,
+                    "error_risk": 0.2364002686366689
+                  },
+                  {
+                    "coverage": 0.7000671591672263,
+                    "error_risk": 0.2452033768227168
+                  },
+                  {
+                    "coverage": 0.8,
+                    "error_risk": 0.2567998656816656
+                  },
+                  {
+                    "coverage": 0.9,
+                    "error_risk": 0.26953212446832325
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.28912021490933515
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.002753525856279382,
+                  "0.2": 0.28717259905977166
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8,
+                "accepted_error_risk": 0.2567998656816656,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.05032135794300025,
+                "target_coverage": 0.764002686366689,
+                "target_error_risk": 0.27461322081575246,
+                "matched_target_coverage": 0.8,
+                "matched_target_error_risk_descriptive": 0.27602417730020146,
+                "target_ranked_aurc_descriptive": 0.2611979674015634,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.1,
+                    "error_risk": 0.2478173270651444
+                  },
+                  {
+                    "coverage": 0.2,
+                    "error_risk": 0.24748153122901276
+                  },
+                  {
+                    "coverage": 0.3000671591672263,
+                    "error_risk": 0.25290957923008056
+                  },
+                  {
+                    "coverage": 0.4,
+                    "error_risk": 0.25822699798522497
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.2636668905305574
+                  },
+                  {
+                    "coverage": 0.6,
+                    "error_risk": 0.26662189388851576
+                  },
+                  {
+                    "coverage": 0.7000671591672263,
+                    "error_risk": 0.2718726016884114
+                  },
+                  {
+                    "coverage": 0.8,
+                    "error_risk": 0.27602417730020146
+                  },
+                  {
+                    "coverage": 0.9,
+                    "error_risk": 0.28221774494440716
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.28912021490933515
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.0016118200134318335,
+                  "0.2": 0.014842175957018132
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8,
+                "accepted_error_risk": 0.27602417730020146,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        },
+        "simple_router": {
+          "probability": {
+            "n": 14890,
+            "positive_rate": 0.29529885829415714,
+            "brier": 0.20677827518461062,
+            "log_loss": 0.6140527241564881,
+            "auroc": 0.6212563576774848,
+            "auprc": 0.41777701123204614,
+            "ece_10_bins": 0.08774421653848195
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.43311325311660764,
+                "target_coverage": 0.9628609805238415,
+                "target_error_risk": 0.2828346237009137,
+                "matched_target_coverage": 0.8,
+                "matched_target_error_risk_descriptive": 0.25453324378777703,
+                "target_ranked_aurc_descriptive": 0.22679659613458494,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.1,
+                    "error_risk": 0.19207521826729348
+                  },
+                  {
+                    "coverage": 0.2,
+                    "error_risk": 0.21054398925453324
+                  },
+                  {
+                    "coverage": 0.3000671591672263,
+                    "error_risk": 0.20635631154879142
+                  },
+                  {
+                    "coverage": 0.4,
+                    "error_risk": 0.21809939556749497
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.2239086635325722
+                  },
+                  {
+                    "coverage": 0.6,
+                    "error_risk": 0.23046787553167675
+                  },
+                  {
+                    "coverage": 0.7000671591672263,
+                    "error_risk": 0.24299693016116655
+                  },
+                  {
+                    "coverage": 0.8,
+                    "error_risk": 0.25453324378777703
+                  },
+                  {
+                    "coverage": 0.9,
+                    "error_risk": 0.2707260652190135
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.29173942243116185
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.005439892545332438,
+                  "0.2": 0.1374076561450638
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8,
+                "accepted_error_risk": 0.25453324378777703,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.05032135794300025,
+                "target_coverage": 0.764002686366689,
+                "target_error_risk": 0.27514064697609003,
+                "matched_target_coverage": 0.8,
+                "matched_target_error_risk_descriptive": 0.2765278710543989,
+                "target_ranked_aurc_descriptive": 0.2616149969451519,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.1,
+                    "error_risk": 0.2478173270651444
+                  },
+                  {
+                    "coverage": 0.2,
+                    "error_risk": 0.24748153122901276
+                  },
+                  {
+                    "coverage": 0.3000671591672263,
+                    "error_risk": 0.2535810205908684
+                  },
+                  {
+                    "coverage": 0.4,
+                    "error_risk": 0.25805910006715915
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.2638012088650101
+                  },
+                  {
+                    "coverage": 0.6,
+                    "error_risk": 0.266733825833893
+                  },
+                  {
+                    "coverage": 0.7000671591672263,
+                    "error_risk": 0.27292785878741366
+                  },
+                  {
+                    "coverage": 0.8,
+                    "error_risk": 0.2765278710543989
+                  },
+                  {
+                    "coverage": 0.9,
+                    "error_risk": 0.28348630699201555
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.29173942243116185
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.0016118200134318335,
+                  "0.2": 0.014842175957018132
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8,
+                "accepted_error_risk": 0.2765278710543989,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        },
+        "calibrated_static": {
+          "probability": {
+            "n": 14890,
+            "positive_rate": 0.29529885829415714,
+            "brier": 0.21304773409798142,
+            "log_loss": 0.6471074661801584,
+            "auroc": 0.6313198694838005,
+            "auprc": 0.4268984545858746,
+            "ece_10_bins": 0.1215310974469768
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.4122805486352863,
+                "target_coverage": 0.9467427803895232,
+                "target_error_risk": 0.27729304107256864,
+                "matched_target_coverage": 0.8,
+                "matched_target_error_risk_descriptive": 0.25134318334452654,
+                "target_ranked_aurc_descriptive": 0.21941420584981491,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.1,
+                    "error_risk": 0.16789791806581597
+                  },
+                  {
+                    "coverage": 0.2,
+                    "error_risk": 0.18401611820013433
+                  },
+                  {
+                    "coverage": 0.3000671591672263,
+                    "error_risk": 0.19785138764547897
+                  },
+                  {
+                    "coverage": 0.4,
+                    "error_risk": 0.2102081934184016
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.2231027535258563
+                  },
+                  {
+                    "coverage": 0.6,
+                    "error_risk": 0.2301320796955451
+                  },
+                  {
+                    "coverage": 0.7000671591672263,
+                    "error_risk": 0.23944742900997698
+                  },
+                  {
+                    "coverage": 0.8,
+                    "error_risk": 0.25134318334452654
+                  },
+                  {
+                    "coverage": 0.9,
+                    "error_risk": 0.26766659204536974
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.28817998656816657
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.0030893216924110143,
+                  "0.2": 0.31638683680322366
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8,
+                "accepted_error_risk": 0.25134318334452654,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.05032135794300025,
+                "target_coverage": 0.764002686366689,
+                "target_error_risk": 0.2736462728551336,
+                "matched_target_coverage": 0.8,
+                "matched_target_error_risk_descriptive": 0.2748488918737408,
+                "target_ranked_aurc_descriptive": 0.26025199256238163,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.1,
+                    "error_risk": 0.24714573539288112
+                  },
+                  {
+                    "coverage": 0.2,
+                    "error_risk": 0.24680993955674949
+                  },
+                  {
+                    "coverage": 0.3000671591672263,
+                    "error_risk": 0.25201432408236346
+                  },
+                  {
+                    "coverage": 0.4,
+                    "error_risk": 0.2573875083948959
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.2625923438549362
+                  },
+                  {
+                    "coverage": 0.6,
+                    "error_risk": 0.26595030221625254
+                  },
+                  {
+                    "coverage": 0.7000671591672263,
+                    "error_risk": 0.2712010744435917
+                  },
+                  {
+                    "coverage": 0.8,
+                    "error_risk": 0.2748488918737408
+                  },
+                  {
+                    "coverage": 0.9,
+                    "error_risk": 0.2807253190060443
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.28817998656816657
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.0016118200134318335,
+                  "0.2": 0.014842175957018132
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8,
+                "accepted_error_risk": 0.2748488918737408,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        }
+      },
+      "elapsed_seconds": 7.121099399999821
+    },
+    "4": {
+      "partition_sizes": {
+        "fit": 14683,
+        "selection": 3107,
+        "probability_calibration": 1446,
+        "threshold_calibration": 1600,
+        "outer": 1636
+      },
+      "partition_index_sha256": {
+        "fit": "553ec143e4a729ee318bc972ac632df61dd4aaf1b6d8dfece407750b27d4db71",
+        "selection": "2e435e1162c51238bfa9a34e4c5b29230b5c5163c0fb23ff237845cd858f4e42",
+        "probability_calibration": "a5ed44f4164745938a02c99bef2d7eb91d79a4bc61eada8a345331fbc84b3726",
+        "threshold_calibration": "50b57d1e39916b1f28ac41e287639e319f9e82f1c8b648db78a9b30d01b3edf5",
+        "outer": "eb5903919715a3e66091eca7bcb1b8c47dc3d128bdb6c8e3a82edb36e2ca7902"
+      },
+      "inner_domains": [
+        "1",
+        "6",
+        "17"
+      ],
+      "inner_oof_rows": 14683,
+      "selected_expert": "xgboost",
+      "selection_brier": {
+        "logistic_regression": 0.19795672242160786,
+        "hist_gradient_boosting": 0.1953116548052521,
+        "random_forest": 0.19663808495740823,
+        "xgboost": 0.19493757672730913,
+        "catboost_ohe": 0.19588319367740212
+      },
+      "inner_fit_seconds": 6.232377000001179,
+      "full_fit_seconds": {
+        "logistic_regression": 0.16536820000010266,
+        "hist_gradient_boosting": 0.6456167000001187,
+        "random_forest": 1.0698318999998264,
+        "xgboost": 0.39469540000027337,
+        "catboost_ohe": 0.8284924999998111
+      },
+      "inference_seconds": {
+        "selection": 0.1261767000000873,
+        "probability_calibration": 0.0745852999998533,
+        "threshold_calibration": 0.07695609999973385,
+        "outer": 0.07772440000007919
+      },
+      "policies": {
+        "static": {
+          "probability": {
+            "n": 1636,
+            "positive_rate": 0.2041564792176039,
+            "brier": 0.16180203675356788,
+            "log_loss": 0.5040020128928145,
+            "auroc": 0.6758924547218925,
+            "auprc": 0.39045686942157976,
+            "ece_10_bins": 0.11097667009676727
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.3962420403957367,
+                "target_coverage": 0.8422982885085575,
+                "target_error_risk": 0.16182873730043543,
+                "matched_target_coverage": 0.8001222493887531,
+                "matched_target_error_risk_descriptive": 0.15508021390374332,
+                "target_ranked_aurc_descriptive": 0.1275476738424959,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10024449877750612,
+                    "error_risk": 0.07926829268292683
+                  },
+                  {
+                    "coverage": 0.20048899755501223,
+                    "error_risk": 0.10975609756097561
+                  },
+                  {
+                    "coverage": 0.30012224938875304,
+                    "error_risk": 0.109979633401222
+                  },
+                  {
+                    "coverage": 0.40036674816625917,
+                    "error_risk": 0.1267175572519084
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.1295843520782396
+                  },
+                  {
+                    "coverage": 0.6002444987775061,
+                    "error_risk": 0.13747454175152748
+                  },
+                  {
+                    "coverage": 0.7004889975550123,
+                    "error_risk": 0.14921465968586387
+                  },
+                  {
+                    "coverage": 0.8001222493887531,
+                    "error_risk": 0.15508021390374332
+                  },
+                  {
+                    "coverage": 0.9003667481662592,
+                    "error_risk": 0.17243720298710116
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.19621026894865526
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.17359413202933985,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001222493887531,
+                "accepted_error_risk": 0.15508021390374332,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.0408253100524308,
+                "target_coverage": 0.867359413202934,
+                "target_error_risk": 0.19027484143763213,
+                "matched_target_coverage": 0.8001222493887531,
+                "matched_target_error_risk_descriptive": 0.1894576012223071,
+                "target_ranked_aurc_descriptive": 0.18230565964203485,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10024449877750612,
+                    "error_risk": 0.16463414634146342
+                  },
+                  {
+                    "coverage": 0.20048899755501223,
+                    "error_risk": 0.2073170731707317
+                  },
+                  {
+                    "coverage": 0.30012224938875304,
+                    "error_risk": 0.18533604887983707
+                  },
+                  {
+                    "coverage": 0.40036674816625917,
+                    "error_risk": 0.17862595419847327
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.1821515892420538
+                  },
+                  {
+                    "coverage": 0.6002444987775061,
+                    "error_risk": 0.17617107942973523
+                  },
+                  {
+                    "coverage": 0.7004889975550123,
+                    "error_risk": 0.18760907504363003
+                  },
+                  {
+                    "coverage": 0.8001222493887531,
+                    "error_risk": 0.1894576012223071
+                  },
+                  {
+                    "coverage": 0.9003667481662592,
+                    "error_risk": 0.19212491513917176
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.19621026894865526
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.018337408312958436,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001222493887531,
+                "accepted_error_risk": 0.1894576012223071,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        },
+        "uniform": {
+          "probability": {
+            "n": 1636,
+            "positive_rate": 0.2041564792176039,
+            "brier": 0.16166831189192393,
+            "log_loss": 0.504332503540349,
+            "auroc": 0.6794015655325293,
+            "auprc": 0.39738469684450384,
+            "ece_10_bins": 0.11687867070689241
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.39778923941387734,
+                "target_coverage": 0.8490220048899756,
+                "target_error_risk": 0.15982721382289417,
+                "matched_target_coverage": 0.8001222493887531,
+                "matched_target_error_risk_descriptive": 0.15049656226126815,
+                "target_ranked_aurc_descriptive": 0.1281685480363973,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10024449877750612,
+                    "error_risk": 0.08536585365853659
+                  },
+                  {
+                    "coverage": 0.20048899755501223,
+                    "error_risk": 0.10365853658536585
+                  },
+                  {
+                    "coverage": 0.30012224938875304,
+                    "error_risk": 0.11608961303462322
+                  },
+                  {
+                    "coverage": 0.40036674816625917,
+                    "error_risk": 0.1267175572519084
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.1271393643031785
+                  },
+                  {
+                    "coverage": 0.6002444987775061,
+                    "error_risk": 0.12932790224032586
+                  },
+                  {
+                    "coverage": 0.7004889975550123,
+                    "error_risk": 0.14397905759162305
+                  },
+                  {
+                    "coverage": 0.8001222493887531,
+                    "error_risk": 0.15049656226126815
+                  },
+                  {
+                    "coverage": 0.9003667481662592,
+                    "error_risk": 0.17040054310930075
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.19193154034229828
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.1980440097799511,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001222493887531,
+                "accepted_error_risk": 0.15049656226126815,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.0408253100524308,
+                "target_coverage": 0.867359413202934,
+                "target_error_risk": 0.1846370683579986,
+                "matched_target_coverage": 0.8001222493887531,
+                "matched_target_error_risk_descriptive": 0.186401833460657,
+                "target_ranked_aurc_descriptive": 0.17971816252200992,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10024449877750612,
+                    "error_risk": 0.16463414634146342
+                  },
+                  {
+                    "coverage": 0.20048899755501223,
+                    "error_risk": 0.20426829268292682
+                  },
+                  {
+                    "coverage": 0.30012224938875304,
+                    "error_risk": 0.18329938900203666
+                  },
+                  {
+                    "coverage": 0.40036674816625917,
+                    "error_risk": 0.17557251908396945
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.1784841075794621
+                  },
+                  {
+                    "coverage": 0.6002444987775061,
+                    "error_risk": 0.17515274949083504
+                  },
+                  {
+                    "coverage": 0.7004889975550123,
+                    "error_risk": 0.18411867364746945
+                  },
+                  {
+                    "coverage": 0.8001222493887531,
+                    "error_risk": 0.186401833460657
+                  },
+                  {
+                    "coverage": 0.9003667481662592,
+                    "error_risk": 0.18669382213170402
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.19193154034229828
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.018337408312958436,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001222493887531,
+                "accepted_error_risk": 0.186401833460657,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        },
+        "weighted": {
+          "probability": {
+            "n": 1636,
+            "positive_rate": 0.2041564792176039,
+            "brier": 0.16166300562516775,
+            "log_loss": 0.5043188645939056,
+            "auroc": 0.679396966435792,
+            "auprc": 0.39730017314842103,
+            "ece_10_bins": 0.11686020178240726
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.39785259587034877,
+                "target_coverage": 0.8490220048899756,
+                "target_error_risk": 0.15982721382289417,
+                "matched_target_coverage": 0.8001222493887531,
+                "matched_target_error_risk_descriptive": 0.15049656226126815,
+                "target_ranked_aurc_descriptive": 0.12816152688688986,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10024449877750612,
+                    "error_risk": 0.08536585365853659
+                  },
+                  {
+                    "coverage": 0.20048899755501223,
+                    "error_risk": 0.10365853658536585
+                  },
+                  {
+                    "coverage": 0.30012224938875304,
+                    "error_risk": 0.11608961303462322
+                  },
+                  {
+                    "coverage": 0.40036674816625917,
+                    "error_risk": 0.1267175572519084
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.1271393643031785
+                  },
+                  {
+                    "coverage": 0.6002444987775061,
+                    "error_risk": 0.12932790224032586
+                  },
+                  {
+                    "coverage": 0.7004889975550123,
+                    "error_risk": 0.14397905759162305
+                  },
+                  {
+                    "coverage": 0.8001222493887531,
+                    "error_risk": 0.15049656226126815
+                  },
+                  {
+                    "coverage": 0.9003667481662592,
+                    "error_risk": 0.17040054310930075
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.19193154034229828
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.1980440097799511,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001222493887531,
+                "accepted_error_risk": 0.15049656226126815,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.0408253100524308,
+                "target_coverage": 0.867359413202934,
+                "target_error_risk": 0.1846370683579986,
+                "matched_target_coverage": 0.8001222493887531,
+                "matched_target_error_risk_descriptive": 0.186401833460657,
+                "target_ranked_aurc_descriptive": 0.17971816252200992,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10024449877750612,
+                    "error_risk": 0.16463414634146342
+                  },
+                  {
+                    "coverage": 0.20048899755501223,
+                    "error_risk": 0.20426829268292682
+                  },
+                  {
+                    "coverage": 0.30012224938875304,
+                    "error_risk": 0.18329938900203666
+                  },
+                  {
+                    "coverage": 0.40036674816625917,
+                    "error_risk": 0.17557251908396945
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.1784841075794621
+                  },
+                  {
+                    "coverage": 0.6002444987775061,
+                    "error_risk": 0.17515274949083504
+                  },
+                  {
+                    "coverage": 0.7004889975550123,
+                    "error_risk": 0.18411867364746945
+                  },
+                  {
+                    "coverage": 0.8001222493887531,
+                    "error_risk": 0.186401833460657
+                  },
+                  {
+                    "coverage": 0.9003667481662592,
+                    "error_risk": 0.18669382213170402
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.19193154034229828
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.018337408312958436,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001222493887531,
+                "accepted_error_risk": 0.186401833460657,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        },
+        "metadata_router": {
+          "probability": {
+            "n": 1636,
+            "positive_rate": 0.2041564792176039,
+            "brier": 0.15817659005057677,
+            "log_loss": 0.4956133424077324,
+            "auroc": 0.6702528123476549,
+            "auprc": 0.3916067117277045,
+            "ece_10_bins": 0.09911563700646434
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.37370764869798273,
+                "target_coverage": 0.8416870415647921,
+                "target_error_risk": 0.16049382716049382,
+                "matched_target_coverage": 0.8001222493887531,
+                "matched_target_error_risk_descriptive": 0.15508021390374332,
+                "target_ranked_aurc_descriptive": 0.13209495638014868,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10024449877750612,
+                    "error_risk": 0.10365853658536585
+                  },
+                  {
+                    "coverage": 0.20048899755501223,
+                    "error_risk": 0.11890243902439024
+                  },
+                  {
+                    "coverage": 0.30012224938875304,
+                    "error_risk": 0.12423625254582485
+                  },
+                  {
+                    "coverage": 0.40036674816625917,
+                    "error_risk": 0.11755725190839694
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.12224938875305623
+                  },
+                  {
+                    "coverage": 0.6002444987775061,
+                    "error_risk": 0.1364562118126273
+                  },
+                  {
+                    "coverage": 0.7004889975550123,
+                    "error_risk": 0.14659685863874344
+                  },
+                  {
+                    "coverage": 0.8001222493887531,
+                    "error_risk": 0.15508021390374332
+                  },
+                  {
+                    "coverage": 0.9003667481662592,
+                    "error_risk": 0.17379497623896809
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.18948655256723718
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.1656479217603912,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001222493887531,
+                "accepted_error_risk": 0.15508021390374332,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.0408253100524308,
+                "target_coverage": 0.867359413202934,
+                "target_error_risk": 0.18534178999295278,
+                "matched_target_coverage": 0.8001222493887531,
+                "matched_target_error_risk_descriptive": 0.18487394957983194,
+                "target_ranked_aurc_descriptive": 0.17894746757751062,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10024449877750612,
+                    "error_risk": 0.16463414634146342
+                  },
+                  {
+                    "coverage": 0.20048899755501223,
+                    "error_risk": 0.20426829268292682
+                  },
+                  {
+                    "coverage": 0.30012224938875304,
+                    "error_risk": 0.18329938900203666
+                  },
+                  {
+                    "coverage": 0.40036674816625917,
+                    "error_risk": 0.17557251908396945
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.1784841075794621
+                  },
+                  {
+                    "coverage": 0.6002444987775061,
+                    "error_risk": 0.17515274949083504
+                  },
+                  {
+                    "coverage": 0.7004889975550123,
+                    "error_risk": 0.1806282722513089
+                  },
+                  {
+                    "coverage": 0.8001222493887531,
+                    "error_risk": 0.18487394957983194
+                  },
+                  {
+                    "coverage": 0.9003667481662592,
+                    "error_risk": 0.18737270875763748
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.18948655256723718
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.018337408312958436,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001222493887531,
+                "accepted_error_risk": 0.18487394957983194,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        },
+        "simple_router": {
+          "probability": {
+            "n": 1636,
+            "positive_rate": 0.2041564792176039,
+            "brier": 0.15670605971827095,
+            "log_loss": 0.49156144997610146,
+            "auroc": 0.674481681797695,
+            "auprc": 0.3972143140273488,
+            "ece_10_bins": 0.09399557261026675
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.3684730358269097,
+                "target_coverage": 0.8337408312958435,
+                "target_error_risk": 0.15689149560117302,
+                "matched_target_coverage": 0.8001222493887531,
+                "matched_target_error_risk_descriptive": 0.15508021390374332,
+                "target_ranked_aurc_descriptive": 0.12800137689161065,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10024449877750612,
+                    "error_risk": 0.08536585365853659
+                  },
+                  {
+                    "coverage": 0.20048899755501223,
+                    "error_risk": 0.0975609756097561
+                  },
+                  {
+                    "coverage": 0.30012224938875304,
+                    "error_risk": 0.11812627291242363
+                  },
+                  {
+                    "coverage": 0.40036674816625917,
+                    "error_risk": 0.12366412213740458
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.12591687041564792
+                  },
+                  {
+                    "coverage": 0.6002444987775061,
+                    "error_risk": 0.1354378818737271
+                  },
+                  {
+                    "coverage": 0.7004889975550123,
+                    "error_risk": 0.14921465968586387
+                  },
+                  {
+                    "coverage": 0.8001222493887531,
+                    "error_risk": 0.15508021390374332
+                  },
+                  {
+                    "coverage": 0.9003667481662592,
+                    "error_risk": 0.17243720298710116
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.18948655256723718
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.20354523227383864,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001222493887531,
+                "accepted_error_risk": 0.15508021390374332,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.0408253100524308,
+                "target_coverage": 0.867359413202934,
+                "target_error_risk": 0.18604651162790697,
+                "matched_target_coverage": 0.8001222493887531,
+                "matched_target_error_risk_descriptive": 0.18487394957983194,
+                "target_ranked_aurc_descriptive": 0.17879381935398497,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10024449877750612,
+                    "error_risk": 0.16463414634146342
+                  },
+                  {
+                    "coverage": 0.20048899755501223,
+                    "error_risk": 0.20426829268292682
+                  },
+                  {
+                    "coverage": 0.30012224938875304,
+                    "error_risk": 0.18329938900203666
+                  },
+                  {
+                    "coverage": 0.40036674816625917,
+                    "error_risk": 0.17557251908396945
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.17726161369193155
+                  },
+                  {
+                    "coverage": 0.6002444987775061,
+                    "error_risk": 0.17413441955193482
+                  },
+                  {
+                    "coverage": 0.7004889975550123,
+                    "error_risk": 0.17975567190226877
+                  },
+                  {
+                    "coverage": 0.8001222493887531,
+                    "error_risk": 0.18487394957983194
+                  },
+                  {
+                    "coverage": 0.9003667481662592,
+                    "error_risk": 0.18805159538357094
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.18948655256723718
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.018337408312958436,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001222493887531,
+                "accepted_error_risk": 0.18487394957983194,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        },
+        "calibrated_static": {
+          "probability": {
+            "n": 1636,
+            "positive_rate": 0.2041564792176039,
+            "brier": 0.1606260694287274,
+            "log_loss": 0.5006476332895291,
+            "auroc": 0.6758924547218925,
+            "auprc": 0.39045686942157976,
+            "ece_10_bins": 0.10515267874932646
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.39455033768699005,
+                "target_coverage": 0.8386308068459658,
+                "target_error_risk": 0.16253644314868804,
+                "matched_target_coverage": 0.8001222493887531,
+                "matched_target_error_risk_descriptive": 0.1573720397249809,
+                "target_ranked_aurc_descriptive": 0.127832875342052,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10024449877750612,
+                    "error_risk": 0.07926829268292683
+                  },
+                  {
+                    "coverage": 0.20048899755501223,
+                    "error_risk": 0.10975609756097561
+                  },
+                  {
+                    "coverage": 0.30012224938875304,
+                    "error_risk": 0.109979633401222
+                  },
+                  {
+                    "coverage": 0.40036674816625917,
+                    "error_risk": 0.1267175572519084
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.1295843520782396
+                  },
+                  {
+                    "coverage": 0.6002444987775061,
+                    "error_risk": 0.13747454175152748
+                  },
+                  {
+                    "coverage": 0.7004889975550123,
+                    "error_risk": 0.14834205933682373
+                  },
+                  {
+                    "coverage": 0.8001222493887531,
+                    "error_risk": 0.1573720397249809
+                  },
+                  {
+                    "coverage": 0.9003667481662592,
+                    "error_risk": 0.17175831636116767
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.19559902200489
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.17359413202933985,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001222493887531,
+                "accepted_error_risk": 0.1573720397249809,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.0408253100524308,
+                "target_coverage": 0.867359413202934,
+                "target_error_risk": 0.18816067653276955,
+                "matched_target_coverage": 0.8001222493887531,
+                "matched_target_error_risk_descriptive": 0.18792971734148206,
+                "target_ranked_aurc_descriptive": 0.18191582696523034,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10024449877750612,
+                    "error_risk": 0.16463414634146342
+                  },
+                  {
+                    "coverage": 0.20048899755501223,
+                    "error_risk": 0.2073170731707317
+                  },
+                  {
+                    "coverage": 0.30012224938875304,
+                    "error_risk": 0.18533604887983707
+                  },
+                  {
+                    "coverage": 0.40036674816625917,
+                    "error_risk": 0.17862595419847327
+                  },
+                  {
+                    "coverage": 0.5,
+                    "error_risk": 0.1821515892420538
+                  },
+                  {
+                    "coverage": 0.6002444987775061,
+                    "error_risk": 0.17617107942973523
+                  },
+                  {
+                    "coverage": 0.7004889975550123,
+                    "error_risk": 0.18586387434554974
+                  },
+                  {
+                    "coverage": 0.8001222493887531,
+                    "error_risk": 0.18792971734148206
+                  },
+                  {
+                    "coverage": 0.9003667481662592,
+                    "error_risk": 0.19008825526137135
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.19559902200489
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.018337408312958436,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001222493887531,
+                "accepted_error_risk": 0.18792971734148206,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        }
+      },
+      "elapsed_seconds": 10.327531800000088
+    },
+    "6": {
+      "partition_sizes": {
+        "fit": 14975,
+        "selection": 3213,
+        "probability_calibration": 1489,
+        "threshold_calibration": 1632,
+        "outer": 1163
+      },
+      "partition_index_sha256": {
+        "fit": "e525fb47701370ef1e0e6d9a94e81e6a247c5b37ce586d3084bdb3979f6a755f",
+        "selection": "a4061db2d7113ee812da94dbee3c62016f15ff9a056e00595347586eceb78777",
+        "probability_calibration": "bca5c59fb8ca4a1e2abeeb3714d5a49714b46150eaa684389a0973f1fb78e065",
+        "threshold_calibration": "0014287da15ee342f83112bc27e918a17b3d4a9b259be193a6276a041d1526c1",
+        "outer": "ca94a730139380367e5d66a36e48efbfc4a3826c2e17f35007a194e627105118"
+      },
+      "inner_domains": [
+        "1",
+        "4",
+        "17"
+      ],
+      "inner_oof_rows": 14975,
+      "selected_expert": "xgboost",
+      "selection_brier": {
+        "logistic_regression": 0.1989678355661118,
+        "hist_gradient_boosting": 0.19683517950618018,
+        "random_forest": 0.19855479338462717,
+        "xgboost": 0.19619187948537886,
+        "catboost_ohe": 0.19713515863211836
+      },
+      "inner_fit_seconds": 7.183047399998486,
+      "full_fit_seconds": {
+        "logistic_regression": 0.21166180000000168,
+        "hist_gradient_boosting": 0.6416150000000016,
+        "random_forest": 1.790900099999817,
+        "xgboost": 0.5053735000001325,
+        "catboost_ohe": 0.997285699999793
+      },
+      "inference_seconds": {
+        "selection": 0.1293457000001581,
+        "probability_calibration": 0.07779859999982364,
+        "threshold_calibration": 0.09140239999987898,
+        "outer": 0.10128949999989345
+      },
+      "policies": {
+        "static": {
+          "probability": {
+            "n": 1163,
+            "positive_rate": 0.19604471195184867,
+            "brier": 0.15217171070439525,
+            "log_loss": 0.4810737259686826,
+            "auroc": 0.6272140913781781,
+            "auprc": 0.34964789694878007,
+            "ece_10_bins": 0.05502450602611183
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.39524039030075075,
+                "target_coverage": 0.945829750644884,
+                "target_error_risk": 0.17727272727272728,
+                "matched_target_coverage": 0.8005159071367154,
+                "matched_target_error_risk_descriptive": 0.158968850698174,
+                "target_ranked_aurc_descriptive": 0.14713302501597442,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10060189165950129,
+                    "error_risk": 0.1111111111111111
+                  },
+                  {
+                    "coverage": 0.2003439380911436,
+                    "error_risk": 0.12875536480686695
+                  },
+                  {
+                    "coverage": 0.3000859845227859,
+                    "error_risk": 0.1346704871060172
+                  },
+                  {
+                    "coverage": 0.4006878761822872,
+                    "error_risk": 0.1459227467811159
+                  },
+                  {
+                    "coverage": 0.5004299226139295,
+                    "error_risk": 0.13745704467353953
+                  },
+                  {
+                    "coverage": 0.6001719690455718,
+                    "error_risk": 0.1504297994269341
+                  },
+                  {
+                    "coverage": 0.7007738607050731,
+                    "error_risk": 0.15337423312883436
+                  },
+                  {
+                    "coverage": 0.8005159071367154,
+                    "error_risk": 0.158968850698174
+                  },
+                  {
+                    "coverage": 0.9002579535683577,
+                    "error_risk": 0.17191977077363896
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.1943250214961307
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.023215821152192607,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8005159071367154,
+                "accepted_error_risk": 0.158968850698174,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.04126393955469605,
+                "target_coverage": 0.8865004299226139,
+                "target_error_risk": 0.18622696411251213,
+                "matched_target_coverage": 0.8005159071367154,
+                "matched_target_error_risk_descriptive": 0.18474758324382384,
+                "target_ranked_aurc_descriptive": 0.17764239781097332,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10060189165950129,
+                    "error_risk": 0.1794871794871795
+                  },
+                  {
+                    "coverage": 0.2003439380911436,
+                    "error_risk": 0.15879828326180256
+                  },
+                  {
+                    "coverage": 0.3000859845227859,
+                    "error_risk": 0.17478510028653296
+                  },
+                  {
+                    "coverage": 0.4006878761822872,
+                    "error_risk": 0.18025751072961374
+                  },
+                  {
+                    "coverage": 0.5004299226139295,
+                    "error_risk": 0.18213058419243985
+                  },
+                  {
+                    "coverage": 0.6001719690455718,
+                    "error_risk": 0.1833810888252149
+                  },
+                  {
+                    "coverage": 0.7007738607050731,
+                    "error_risk": 0.18159509202453988
+                  },
+                  {
+                    "coverage": 0.8005159071367154,
+                    "error_risk": 0.18474758324382384
+                  },
+                  {
+                    "coverage": 0.9002579535683577,
+                    "error_risk": 0.18815663801337154
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.1943250214961307
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.025795356835769563,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8005159071367154,
+                "accepted_error_risk": 0.18474758324382384,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        },
+        "uniform": {
+          "probability": {
+            "n": 1163,
+            "positive_rate": 0.19604471195184867,
+            "brier": 0.151862096367025,
+            "log_loss": 0.4807921037073049,
+            "auroc": 0.6374378459517779,
+            "auprc": 0.35603354980280805,
+            "ece_10_bins": 0.06421073248886906
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.4001925880515492,
+                "target_coverage": 0.9466895958727429,
+                "target_error_risk": 0.17892824704813806,
+                "matched_target_coverage": 0.8005159071367154,
+                "matched_target_error_risk_descriptive": 0.15789473684210525,
+                "target_ranked_aurc_descriptive": 0.1430714071462644,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10060189165950129,
+                    "error_risk": 0.1282051282051282
+                  },
+                  {
+                    "coverage": 0.2003439380911436,
+                    "error_risk": 0.12875536480686695
+                  },
+                  {
+                    "coverage": 0.3000859845227859,
+                    "error_risk": 0.14040114613180515
+                  },
+                  {
+                    "coverage": 0.4006878761822872,
+                    "error_risk": 0.13733905579399142
+                  },
+                  {
+                    "coverage": 0.5004299226139295,
+                    "error_risk": 0.13745704467353953
+                  },
+                  {
+                    "coverage": 0.6001719690455718,
+                    "error_risk": 0.13896848137535817
+                  },
+                  {
+                    "coverage": 0.7007738607050731,
+                    "error_risk": 0.14969325153374233
+                  },
+                  {
+                    "coverage": 0.8005159071367154,
+                    "error_risk": 0.15789473684210525
+                  },
+                  {
+                    "coverage": 0.9002579535683577,
+                    "error_risk": 0.1728748806112703
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.18572656921754085
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.025795356835769563,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8005159071367154,
+                "accepted_error_risk": 0.15789473684210525,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.04126393955469605,
+                "target_coverage": 0.8865004299226139,
+                "target_error_risk": 0.18331716779825413,
+                "matched_target_coverage": 0.8005159071367154,
+                "matched_target_error_risk_descriptive": 0.18152524167561762,
+                "target_ranked_aurc_descriptive": 0.17574090119227193,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10060189165950129,
+                    "error_risk": 0.1794871794871795
+                  },
+                  {
+                    "coverage": 0.2003439380911436,
+                    "error_risk": 0.15879828326180256
+                  },
+                  {
+                    "coverage": 0.3000859845227859,
+                    "error_risk": 0.17478510028653296
+                  },
+                  {
+                    "coverage": 0.4006878761822872,
+                    "error_risk": 0.18025751072961374
+                  },
+                  {
+                    "coverage": 0.5004299226139295,
+                    "error_risk": 0.18041237113402062
+                  },
+                  {
+                    "coverage": 0.6001719690455718,
+                    "error_risk": 0.18051575931232092
+                  },
+                  {
+                    "coverage": 0.7007738607050731,
+                    "error_risk": 0.18036809815950922
+                  },
+                  {
+                    "coverage": 0.8005159071367154,
+                    "error_risk": 0.18152524167561762
+                  },
+                  {
+                    "coverage": 0.9002579535683577,
+                    "error_risk": 0.1833810888252149
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.18572656921754085
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.025795356835769563,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8005159071367154,
+                "accepted_error_risk": 0.18152524167561762,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        },
+        "weighted": {
+          "probability": {
+            "n": 1163,
+            "positive_rate": 0.19604471195184867,
+            "brier": 0.15185493340864564,
+            "log_loss": 0.4807697242846213,
+            "auroc": 0.6374472276949058,
+            "auprc": 0.35603163223689593,
+            "ece_10_bins": 0.06414685999526985
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.400107265565316,
+                "target_coverage": 0.9466895958727429,
+                "target_error_risk": 0.17892824704813806,
+                "matched_target_coverage": 0.8005159071367154,
+                "matched_target_error_risk_descriptive": 0.15789473684210525,
+                "target_ranked_aurc_descriptive": 0.14302160395570493,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10060189165950129,
+                    "error_risk": 0.1282051282051282
+                  },
+                  {
+                    "coverage": 0.2003439380911436,
+                    "error_risk": 0.12875536480686695
+                  },
+                  {
+                    "coverage": 0.3000859845227859,
+                    "error_risk": 0.14040114613180515
+                  },
+                  {
+                    "coverage": 0.4006878761822872,
+                    "error_risk": 0.13733905579399142
+                  },
+                  {
+                    "coverage": 0.5004299226139295,
+                    "error_risk": 0.13745704467353953
+                  },
+                  {
+                    "coverage": 0.6001719690455718,
+                    "error_risk": 0.13896848137535817
+                  },
+                  {
+                    "coverage": 0.7007738607050731,
+                    "error_risk": 0.14969325153374233
+                  },
+                  {
+                    "coverage": 0.8005159071367154,
+                    "error_risk": 0.15789473684210525
+                  },
+                  {
+                    "coverage": 0.9002579535683577,
+                    "error_risk": 0.1728748806112703
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.18572656921754085
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.025795356835769563,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8005159071367154,
+                "accepted_error_risk": 0.15789473684210525,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.04126393955469605,
+                "target_coverage": 0.8865004299226139,
+                "target_error_risk": 0.18331716779825413,
+                "matched_target_coverage": 0.8005159071367154,
+                "matched_target_error_risk_descriptive": 0.18152524167561762,
+                "target_ranked_aurc_descriptive": 0.17574090119227193,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10060189165950129,
+                    "error_risk": 0.1794871794871795
+                  },
+                  {
+                    "coverage": 0.2003439380911436,
+                    "error_risk": 0.15879828326180256
+                  },
+                  {
+                    "coverage": 0.3000859845227859,
+                    "error_risk": 0.17478510028653296
+                  },
+                  {
+                    "coverage": 0.4006878761822872,
+                    "error_risk": 0.18025751072961374
+                  },
+                  {
+                    "coverage": 0.5004299226139295,
+                    "error_risk": 0.18041237113402062
+                  },
+                  {
+                    "coverage": 0.6001719690455718,
+                    "error_risk": 0.18051575931232092
+                  },
+                  {
+                    "coverage": 0.7007738607050731,
+                    "error_risk": 0.18036809815950922
+                  },
+                  {
+                    "coverage": 0.8005159071367154,
+                    "error_risk": 0.18152524167561762
+                  },
+                  {
+                    "coverage": 0.9002579535683577,
+                    "error_risk": 0.1833810888252149
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.18572656921754085
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.025795356835769563,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8005159071367154,
+                "accepted_error_risk": 0.18152524167561762,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        },
+        "metadata_router": {
+          "probability": {
+            "n": 1163,
+            "positive_rate": 0.19604471195184867,
+            "brier": 0.1571934079617177,
+            "log_loss": 0.49478711611303505,
+            "auroc": 0.6335467679894924,
+            "auprc": 0.3454710783654044,
+            "ece_10_bins": 0.09172304300525708
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.4237580260730805,
+                "target_coverage": 0.9415305245055889,
+                "target_error_risk": 0.17899543378995433,
+                "matched_target_coverage": 0.8005159071367154,
+                "matched_target_error_risk_descriptive": 0.15574650912996776,
+                "target_ranked_aurc_descriptive": 0.14505065075668122,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10060189165950129,
+                    "error_risk": 0.17094017094017094
+                  },
+                  {
+                    "coverage": 0.2003439380911436,
+                    "error_risk": 0.13304721030042918
+                  },
+                  {
+                    "coverage": 0.3000859845227859,
+                    "error_risk": 0.12320916905444126
+                  },
+                  {
+                    "coverage": 0.4006878761822872,
+                    "error_risk": 0.13090128755364808
+                  },
+                  {
+                    "coverage": 0.5004299226139295,
+                    "error_risk": 0.13573883161512026
+                  },
+                  {
+                    "coverage": 0.6001719690455718,
+                    "error_risk": 0.1504297994269341
+                  },
+                  {
+                    "coverage": 0.7007738607050731,
+                    "error_risk": 0.15337423312883436
+                  },
+                  {
+                    "coverage": 0.8005159071367154,
+                    "error_risk": 0.15574650912996776
+                  },
+                  {
+                    "coverage": 0.9002579535683577,
+                    "error_risk": 0.1728748806112703
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.18916595012897677
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.025795356835769563,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8005159071367154,
+                "accepted_error_risk": 0.15574650912996776,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.04126393955469605,
+                "target_coverage": 0.8865004299226139,
+                "target_error_risk": 0.18234723569350145,
+                "matched_target_coverage": 0.8005159071367154,
+                "matched_target_error_risk_descriptive": 0.18152524167561762,
+                "target_ranked_aurc_descriptive": 0.1752594202974894,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10060189165950129,
+                    "error_risk": 0.1794871794871795
+                  },
+                  {
+                    "coverage": 0.2003439380911436,
+                    "error_risk": 0.15879828326180256
+                  },
+                  {
+                    "coverage": 0.3000859845227859,
+                    "error_risk": 0.17478510028653296
+                  },
+                  {
+                    "coverage": 0.4006878761822872,
+                    "error_risk": 0.18025751072961374
+                  },
+                  {
+                    "coverage": 0.5004299226139295,
+                    "error_risk": 0.17869415807560138
+                  },
+                  {
+                    "coverage": 0.6001719690455718,
+                    "error_risk": 0.17908309455587393
+                  },
+                  {
+                    "coverage": 0.7007738607050731,
+                    "error_risk": 0.18036809815950922
+                  },
+                  {
+                    "coverage": 0.8005159071367154,
+                    "error_risk": 0.18152524167561762
+                  },
+                  {
+                    "coverage": 0.9002579535683577,
+                    "error_risk": 0.18147086914995225
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.18916595012897677
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.025795356835769563,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8005159071367154,
+                "accepted_error_risk": 0.18152524167561762,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        },
+        "simple_router": {
+          "probability": {
+            "n": 1163,
+            "positive_rate": 0.19604471195184867,
+            "brier": 0.15084923909407819,
+            "log_loss": 0.47799849583373644,
+            "auroc": 0.6241790974763111,
+            "auprc": 0.3404326943159137,
+            "ece_10_bins": 0.03473335973735297
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.3725413944812269,
+                "target_coverage": 0.9484092863284609,
+                "target_error_risk": 0.17951042611060744,
+                "matched_target_coverage": 0.8005159071367154,
+                "matched_target_error_risk_descriptive": 0.15789473684210525,
+                "target_ranked_aurc_descriptive": 0.15947319559917436,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10060189165950129,
+                    "error_risk": 0.1794871794871795
+                  },
+                  {
+                    "coverage": 0.2003439380911436,
+                    "error_risk": 0.12875536480686695
+                  },
+                  {
+                    "coverage": 0.3000859845227859,
+                    "error_risk": 0.14613180515759314
+                  },
+                  {
+                    "coverage": 0.4006878761822872,
+                    "error_risk": 0.13948497854077252
+                  },
+                  {
+                    "coverage": 0.5004299226139295,
+                    "error_risk": 0.140893470790378
+                  },
+                  {
+                    "coverage": 0.6001719690455718,
+                    "error_risk": 0.14756446991404013
+                  },
+                  {
+                    "coverage": 0.7007738607050731,
+                    "error_risk": 0.150920245398773
+                  },
+                  {
+                    "coverage": 0.8005159071367154,
+                    "error_risk": 0.15789473684210525
+                  },
+                  {
+                    "coverage": 0.9002579535683577,
+                    "error_risk": 0.17000955109837632
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.19174548581255374
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.0008598452278589854,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8005159071367154,
+                "accepted_error_risk": 0.15789473684210525,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.04126393955469605,
+                "target_coverage": 0.8865004299226139,
+                "target_error_risk": 0.18525703200775945,
+                "matched_target_coverage": 0.8005159071367154,
+                "matched_target_error_risk_descriptive": 0.18152524167561762,
+                "target_ranked_aurc_descriptive": 0.1754446782081176,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10060189165950129,
+                    "error_risk": 0.1794871794871795
+                  },
+                  {
+                    "coverage": 0.2003439380911436,
+                    "error_risk": 0.15879828326180256
+                  },
+                  {
+                    "coverage": 0.3000859845227859,
+                    "error_risk": 0.17478510028653296
+                  },
+                  {
+                    "coverage": 0.4006878761822872,
+                    "error_risk": 0.18025751072961374
+                  },
+                  {
+                    "coverage": 0.5004299226139295,
+                    "error_risk": 0.17869415807560138
+                  },
+                  {
+                    "coverage": 0.6001719690455718,
+                    "error_risk": 0.17765042979942694
+                  },
+                  {
+                    "coverage": 0.7007738607050731,
+                    "error_risk": 0.17914110429447852
+                  },
+                  {
+                    "coverage": 0.8005159071367154,
+                    "error_risk": 0.18152524167561762
+                  },
+                  {
+                    "coverage": 0.9002579535683577,
+                    "error_risk": 0.18529130850047756
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.19174548581255374
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.025795356835769563,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8005159071367154,
+                "accepted_error_risk": 0.18152524167561762,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        },
+        "calibrated_static": {
+          "probability": {
+            "n": 1163,
+            "positive_rate": 0.19604471195184867,
+            "brier": 0.15150853583277119,
+            "log_loss": 0.4789832401453095,
+            "auroc": 0.6272140913781781,
+            "auprc": 0.34964789694878007,
+            "ece_10_bins": 0.047347446983302045
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.3939298802455106,
+                "target_coverage": 0.944110060189166,
+                "target_error_risk": 0.17759562841530055,
+                "matched_target_coverage": 0.8005159071367154,
+                "matched_target_error_risk_descriptive": 0.158968850698174,
+                "target_ranked_aurc_descriptive": 0.14708790521557827,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10060189165950129,
+                    "error_risk": 0.1111111111111111
+                  },
+                  {
+                    "coverage": 0.2003439380911436,
+                    "error_risk": 0.12875536480686695
+                  },
+                  {
+                    "coverage": 0.3000859845227859,
+                    "error_risk": 0.1346704871060172
+                  },
+                  {
+                    "coverage": 0.4006878761822872,
+                    "error_risk": 0.1459227467811159
+                  },
+                  {
+                    "coverage": 0.5004299226139295,
+                    "error_risk": 0.13745704467353953
+                  },
+                  {
+                    "coverage": 0.6001719690455718,
+                    "error_risk": 0.1489971346704871
+                  },
+                  {
+                    "coverage": 0.7007738607050731,
+                    "error_risk": 0.1521472392638037
+                  },
+                  {
+                    "coverage": 0.8005159071367154,
+                    "error_risk": 0.158968850698174
+                  },
+                  {
+                    "coverage": 0.9002579535683577,
+                    "error_risk": 0.17191977077363896
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.1951848667239897
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.023215821152192607,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8005159071367154,
+                "accepted_error_risk": 0.158968850698174,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.04126393955469605,
+                "target_coverage": 0.8865004299226139,
+                "target_error_risk": 0.18622696411251213,
+                "matched_target_coverage": 0.8005159071367154,
+                "matched_target_error_risk_descriptive": 0.18474758324382384,
+                "target_ranked_aurc_descriptive": 0.17783768111923362,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10060189165950129,
+                    "error_risk": 0.1794871794871795
+                  },
+                  {
+                    "coverage": 0.2003439380911436,
+                    "error_risk": 0.15879828326180256
+                  },
+                  {
+                    "coverage": 0.3000859845227859,
+                    "error_risk": 0.17478510028653296
+                  },
+                  {
+                    "coverage": 0.4006878761822872,
+                    "error_risk": 0.18025751072961374
+                  },
+                  {
+                    "coverage": 0.5004299226139295,
+                    "error_risk": 0.18213058419243985
+                  },
+                  {
+                    "coverage": 0.6001719690455718,
+                    "error_risk": 0.18481375358166188
+                  },
+                  {
+                    "coverage": 0.7007738607050731,
+                    "error_risk": 0.18159509202453988
+                  },
+                  {
+                    "coverage": 0.8005159071367154,
+                    "error_risk": 0.18474758324382384
+                  },
+                  {
+                    "coverage": 0.9002579535683577,
+                    "error_risk": 0.18815663801337154
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.1951848667239897
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.025795356835769563,
+                  "0.2": 1.0
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8005159071367154,
+                "accepted_error_risk": 0.18474758324382384,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        }
+      },
+      "elapsed_seconds": 12.422592200000054
+    },
+    "17": {
+      "partition_sizes": {
+        "fit": 12390,
+        "selection": 2686,
+        "probability_calibration": 1247,
+        "threshold_calibration": 1366,
+        "outer": 4783
+      },
+      "partition_index_sha256": {
+        "fit": "59cd63288384739dce289c211e057aada1c56cdb819ad61b5179cedb10b4be35",
+        "selection": "dcaf8cc0ce0dc9428801c15e80fdfb7e7657397555ea7e0696446f179d862681",
+        "probability_calibration": "802da4b86857a6d646f3b820b516f5c1c8a7e33a81983564b79500f10682d768",
+        "threshold_calibration": "ed25af127cc3eacdfcd60753a3815d5879b71ae28c0df98893219fc026e9a784",
+        "outer": "e248ea4b4095bb02b819ab8b8c6f0bb9bce2497010d559f9b31e5504222edee1"
+      },
+      "inner_domains": [
+        "1",
+        "4",
+        "6"
+      ],
+      "inner_oof_rows": 12390,
+      "selected_expert": "catboost_ohe",
+      "selection_brier": {
+        "logistic_regression": 0.18904220414602016,
+        "hist_gradient_boosting": 0.18730910899571923,
+        "random_forest": 0.18809520407381725,
+        "xgboost": 0.18763940425039946,
+        "catboost_ohe": 0.1870796560868183
+      },
+      "inner_fit_seconds": 5.9916547999987415,
+      "full_fit_seconds": {
+        "logistic_regression": 0.29903539999986606,
+        "hist_gradient_boosting": 0.6933060999999725,
+        "random_forest": 1.046459600000162,
+        "xgboost": 0.45486929999970016,
+        "catboost_ohe": 0.96535380000023
+      },
+      "inference_seconds": {
+        "selection": 0.10845709999966857,
+        "probability_calibration": 0.06394899999986592,
+        "threshold_calibration": 0.06703970000035042,
+        "outer": 0.1544632999998612
+      },
+      "policies": {
+        "static": {
+          "probability": {
+            "n": 4783,
+            "positive_rate": 0.46163495713987035,
+            "brier": 0.24351929539597825,
+            "log_loss": 0.6811200354350045,
+            "auroc": 0.6002122906993106,
+            "auprc": 0.5701487232864164,
+            "ece_10_bins": 0.04847558023538661
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.3421084690681966,
+                "target_coverage": 0.4022579970729668,
+                "target_error_risk": 0.3659043659043659,
+                "matched_target_coverage": 0.8001254442818315,
+                "matched_target_error_risk_descriptive": 0.4021426704990854,
+                "target_ranked_aurc_descriptive": 0.36344910649833206,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10014635166213673,
+                    "error_risk": 0.302713987473904
+                  },
+                  {
+                    "coverage": 0.200083629521221,
+                    "error_risk": 0.34691745036572624
+                  },
+                  {
+                    "coverage": 0.30002090738030524,
+                    "error_risk": 0.35958188153310106
+                  },
+                  {
+                    "coverage": 0.400167259042442,
+                    "error_risk": 0.3657262277951933
+                  },
+                  {
+                    "coverage": 0.5001045369015262,
+                    "error_risk": 0.3712374581939799
+                  },
+                  {
+                    "coverage": 0.6000418147606105,
+                    "error_risk": 0.37700348432055747
+                  },
+                  {
+                    "coverage": 0.7001881664227473,
+                    "error_risk": 0.38608539862645563
+                  },
+                  {
+                    "coverage": 0.8001254442818315,
+                    "error_risk": 0.4021426704990854
+                  },
+                  {
+                    "coverage": 0.9000627221409158,
+                    "error_risk": 0.40603948896631825
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.414175203846958
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.002299811833577253,
+                  "0.2": 0.011499059167886265
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001254442818315,
+                "accepted_error_risk": 0.4021426704990854,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.038839383072252,
+                "target_coverage": 0.33702697052059377,
+                "target_error_risk": 0.4280397022332506,
+                "matched_target_coverage": 0.8001254442818315,
+                "matched_target_error_risk_descriptive": 0.4115495165926313,
+                "target_ranked_aurc_descriptive": 0.422811060500585,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10014635166213673,
+                    "error_risk": 0.430062630480167
+                  },
+                  {
+                    "coverage": 0.200083629521221,
+                    "error_risk": 0.42424242424242425
+                  },
+                  {
+                    "coverage": 0.30002090738030524,
+                    "error_risk": 0.4264808362369338
+                  },
+                  {
+                    "coverage": 0.400167259042442,
+                    "error_risk": 0.4263322884012539
+                  },
+                  {
+                    "coverage": 0.5001045369015262,
+                    "error_risk": 0.4218227424749164
+                  },
+                  {
+                    "coverage": 0.6000418147606105,
+                    "error_risk": 0.4226480836236934
+                  },
+                  {
+                    "coverage": 0.7001881664227473,
+                    "error_risk": 0.41654225141833384
+                  },
+                  {
+                    "coverage": 0.8001254442818315,
+                    "error_risk": 0.4115495165926313
+                  },
+                  {
+                    "coverage": 0.9000627221409158,
+                    "error_risk": 0.4146341463414634
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.414175203846958
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.000418147606104955,
+                  "0.2": 0.000418147606104955
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001254442818315,
+                "accepted_error_risk": 0.4115495165926313,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        },
+        "uniform": {
+          "probability": {
+            "n": 4783,
+            "positive_rate": 0.46163495713987035,
+            "brier": 0.24071252261468276,
+            "log_loss": 0.6750276742907633,
+            "auroc": 0.6083292880258899,
+            "auprc": 0.5751838546124831,
+            "ece_10_bins": 0.02832257610260062
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.34475418778165945,
+                "target_coverage": 0.3435082584152206,
+                "target_error_risk": 0.3584905660377358,
+                "matched_target_coverage": 0.8001254442818315,
+                "matched_target_error_risk_descriptive": 0.3854193885550039,
+                "target_ranked_aurc_descriptive": 0.36090622350001633,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10014635166213673,
+                    "error_risk": 0.31524008350730687
+                  },
+                  {
+                    "coverage": 0.200083629521221,
+                    "error_risk": 0.3458725182863114
+                  },
+                  {
+                    "coverage": 0.30002090738030524,
+                    "error_risk": 0.3554006968641115
+                  },
+                  {
+                    "coverage": 0.400167259042442,
+                    "error_risk": 0.36311389759665624
+                  },
+                  {
+                    "coverage": 0.5001045369015262,
+                    "error_risk": 0.36622073578595316
+                  },
+                  {
+                    "coverage": 0.6000418147606105,
+                    "error_risk": 0.37317073170731707
+                  },
+                  {
+                    "coverage": 0.7001881664227473,
+                    "error_risk": 0.3819050462824724
+                  },
+                  {
+                    "coverage": 0.8001254442818315,
+                    "error_risk": 0.3854193885550039
+                  },
+                  {
+                    "coverage": 0.9000627221409158,
+                    "error_risk": 0.39628339140534263
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.4074848421492787
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.0029270332427346855,
+                  "0.2": 0.0056449926824168935
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001254442818315,
+                "accepted_error_risk": 0.3854193885550039,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.038839383072252,
+                "target_coverage": 0.33702697052059377,
+                "target_error_risk": 0.4280397022332506,
+                "matched_target_coverage": 0.8001254442818315,
+                "matched_target_error_risk_descriptive": 0.408413901228116,
+                "target_ranked_aurc_descriptive": 0.420841530963361,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10014635166213673,
+                    "error_risk": 0.430062630480167
+                  },
+                  {
+                    "coverage": 0.200083629521221,
+                    "error_risk": 0.42528735632183906
+                  },
+                  {
+                    "coverage": 0.30002090738030524,
+                    "error_risk": 0.4264808362369338
+                  },
+                  {
+                    "coverage": 0.400167259042442,
+                    "error_risk": 0.42424242424242425
+                  },
+                  {
+                    "coverage": 0.5001045369015262,
+                    "error_risk": 0.41931438127090304
+                  },
+                  {
+                    "coverage": 0.6000418147606105,
+                    "error_risk": 0.4219512195121951
+                  },
+                  {
+                    "coverage": 0.7001881664227473,
+                    "error_risk": 0.4144520752463422
+                  },
+                  {
+                    "coverage": 0.8001254442818315,
+                    "error_risk": 0.408413901228116
+                  },
+                  {
+                    "coverage": 0.9000627221409158,
+                    "error_risk": 0.40859465737514516
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.4074848421492787
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.000418147606104955,
+                  "0.2": 0.000418147606104955
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001254442818315,
+                "accepted_error_risk": 0.408413901228116,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        },
+        "weighted": {
+          "probability": {
+            "n": 4783,
+            "positive_rate": 0.46163495713987035,
+            "brier": 0.24070839909807168,
+            "log_loss": 0.6750203544217435,
+            "auroc": 0.6083621781342339,
+            "auprc": 0.5752216260049728,
+            "ece_10_bins": 0.028947583465316565
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.3447722541740267,
+                "target_coverage": 0.3432991846121681,
+                "target_error_risk": 0.3587088915956151,
+                "matched_target_coverage": 0.8001254442818315,
+                "matched_target_error_risk_descriptive": 0.3856806898353802,
+                "target_ranked_aurc_descriptive": 0.3608900094470111,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10014635166213673,
+                    "error_risk": 0.3173277661795407
+                  },
+                  {
+                    "coverage": 0.200083629521221,
+                    "error_risk": 0.3458725182863114
+                  },
+                  {
+                    "coverage": 0.30002090738030524,
+                    "error_risk": 0.3554006968641115
+                  },
+                  {
+                    "coverage": 0.400167259042442,
+                    "error_risk": 0.36311389759665624
+                  },
+                  {
+                    "coverage": 0.5001045369015262,
+                    "error_risk": 0.36622073578595316
+                  },
+                  {
+                    "coverage": 0.6000418147606105,
+                    "error_risk": 0.37282229965156793
+                  },
+                  {
+                    "coverage": 0.7001881664227473,
+                    "error_risk": 0.3819050462824724
+                  },
+                  {
+                    "coverage": 0.8001254442818315,
+                    "error_risk": 0.3856806898353802
+                  },
+                  {
+                    "coverage": 0.9000627221409158,
+                    "error_risk": 0.39581881533101043
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.4068576207401213
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.0029270332427346855,
+                  "0.2": 0.0056449926824168935
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001254442818315,
+                "accepted_error_risk": 0.3856806898353802,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.038839383072252,
+                "target_coverage": 0.33702697052059377,
+                "target_error_risk": 0.4280397022332506,
+                "matched_target_coverage": 0.8001254442818315,
+                "matched_target_error_risk_descriptive": 0.40789129866736346,
+                "target_ranked_aurc_descriptive": 0.42069402261067257,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10014635166213673,
+                    "error_risk": 0.430062630480167
+                  },
+                  {
+                    "coverage": 0.200083629521221,
+                    "error_risk": 0.42528735632183906
+                  },
+                  {
+                    "coverage": 0.30002090738030524,
+                    "error_risk": 0.4264808362369338
+                  },
+                  {
+                    "coverage": 0.400167259042442,
+                    "error_risk": 0.42424242424242425
+                  },
+                  {
+                    "coverage": 0.5001045369015262,
+                    "error_risk": 0.41931438127090304
+                  },
+                  {
+                    "coverage": 0.6000418147606105,
+                    "error_risk": 0.4219512195121951
+                  },
+                  {
+                    "coverage": 0.7001881664227473,
+                    "error_risk": 0.4144520752463422
+                  },
+                  {
+                    "coverage": 0.8001254442818315,
+                    "error_risk": 0.40789129866736346
+                  },
+                  {
+                    "coverage": 0.9000627221409158,
+                    "error_risk": 0.40789779326364695
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.4068576207401213
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.000418147606104955,
+                  "0.2": 0.000418147606104955
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001254442818315,
+                "accepted_error_risk": 0.40789129866736346,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        },
+        "metadata_router": {
+          "probability": {
+            "n": 4783,
+            "positive_rate": 0.46163495713987035,
+            "brier": 0.24182248965447548,
+            "log_loss": 0.6772521782242945,
+            "auroc": 0.6045301287463065,
+            "auprc": 0.5708703717859647,
+            "ece_10_bins": 0.03208030135969137
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.34055448645633823,
+                "target_coverage": 0.3236462471252352,
+                "target_error_risk": 0.36886304909560724,
+                "matched_target_coverage": 0.8001254442818315,
+                "matched_target_error_risk_descriptive": 0.3927358244055396,
+                "target_ranked_aurc_descriptive": 0.3733836576924767,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10014635166213673,
+                    "error_risk": 0.36325678496868474
+                  },
+                  {
+                    "coverage": 0.200083629521221,
+                    "error_risk": 0.3719958202716823
+                  },
+                  {
+                    "coverage": 0.30002090738030524,
+                    "error_risk": 0.37073170731707317
+                  },
+                  {
+                    "coverage": 0.400167259042442,
+                    "error_risk": 0.3610240334378265
+                  },
+                  {
+                    "coverage": 0.5001045369015262,
+                    "error_risk": 0.3720735785953177
+                  },
+                  {
+                    "coverage": 0.6000418147606105,
+                    "error_risk": 0.375609756097561
+                  },
+                  {
+                    "coverage": 0.7001881664227473,
+                    "error_risk": 0.3828008360704688
+                  },
+                  {
+                    "coverage": 0.8001254442818315,
+                    "error_risk": 0.3927358244055396
+                  },
+                  {
+                    "coverage": 0.9000627221409158,
+                    "error_risk": 0.40255516840882694
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.41062094919506587
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.000418147606104955,
+                  "0.2": 0.007317583106836713
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001254442818315,
+                "accepted_error_risk": 0.3927358244055396,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.038839383072252,
+                "target_coverage": 0.33702697052059377,
+                "target_error_risk": 0.43858560794044665,
+                "matched_target_coverage": 0.8001254442818315,
+                "matched_target_error_risk_descriptive": 0.4094591063496211,
+                "target_ranked_aurc_descriptive": 0.42435126237758686,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10014635166213673,
+                    "error_risk": 0.4321503131524008
+                  },
+                  {
+                    "coverage": 0.200083629521221,
+                    "error_risk": 0.42946708463949845
+                  },
+                  {
+                    "coverage": 0.30002090738030524,
+                    "error_risk": 0.4362369337979094
+                  },
+                  {
+                    "coverage": 0.400167259042442,
+                    "error_risk": 0.4336468129571578
+                  },
+                  {
+                    "coverage": 0.5001045369015262,
+                    "error_risk": 0.4260033444816054
+                  },
+                  {
+                    "coverage": 0.6000418147606105,
+                    "error_risk": 0.4240418118466899
+                  },
+                  {
+                    "coverage": 0.7001881664227473,
+                    "error_risk": 0.4135562854583458
+                  },
+                  {
+                    "coverage": 0.8001254442818315,
+                    "error_risk": 0.4094591063496211
+                  },
+                  {
+                    "coverage": 0.9000627221409158,
+                    "error_risk": 0.40905923344947737
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.41062094919506587
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.000418147606104955,
+                  "0.2": 0.000418147606104955
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001254442818315,
+                "accepted_error_risk": 0.4094591063496211,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        },
+        "simple_router": {
+          "probability": {
+            "n": 4783,
+            "positive_rate": 0.46163495713987035,
+            "brier": 0.24349059071616802,
+            "log_loss": 0.6819851922450071,
+            "auroc": 0.618739534965527,
+            "auprc": 0.5800426613912001,
+            "ece_10_bins": 0.05304599267157499
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.3164156377315521,
+                "target_coverage": 0.3510349153251098,
+                "target_error_risk": 0.35378201310303753,
+                "matched_target_coverage": 0.8001254442818315,
+                "matched_target_error_risk_descriptive": 0.3924745231251633,
+                "target_ranked_aurc_descriptive": 0.36419458369541025,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10014635166213673,
+                    "error_risk": 0.33402922755741127
+                  },
+                  {
+                    "coverage": 0.200083629521221,
+                    "error_risk": 0.35214211076280044
+                  },
+                  {
+                    "coverage": 0.30002090738030524,
+                    "error_risk": 0.34773519163763067
+                  },
+                  {
+                    "coverage": 0.400167259042442,
+                    "error_risk": 0.36415882967607105
+                  },
+                  {
+                    "coverage": 0.5001045369015262,
+                    "error_risk": 0.3632943143812709
+                  },
+                  {
+                    "coverage": 0.6000418147606105,
+                    "error_risk": 0.37212543554006966
+                  },
+                  {
+                    "coverage": 0.7001881664227473,
+                    "error_risk": 0.38071065989847713
+                  },
+                  {
+                    "coverage": 0.8001254442818315,
+                    "error_risk": 0.3924745231251633
+                  },
+                  {
+                    "coverage": 0.9000627221409158,
+                    "error_risk": 0.4
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.4083211373614886
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.004181476061049551,
+                  "0.2": 0.005854066485469371
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001254442818315,
+                "accepted_error_risk": 0.3924745231251633,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.038839383072252,
+                "target_coverage": 0.33702697052059377,
+                "target_error_risk": 0.4336228287841191,
+                "matched_target_coverage": 0.8001254442818315,
+                "matched_target_error_risk_descriptive": 0.40475568330284817,
+                "target_ranked_aurc_descriptive": 0.4211764092103823,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10014635166213673,
+                    "error_risk": 0.4321503131524008
+                  },
+                  {
+                    "coverage": 0.200083629521221,
+                    "error_risk": 0.4315569487983281
+                  },
+                  {
+                    "coverage": 0.30002090738030524,
+                    "error_risk": 0.43205574912891986
+                  },
+                  {
+                    "coverage": 0.400167259042442,
+                    "error_risk": 0.42737722048066873
+                  },
+                  {
+                    "coverage": 0.5001045369015262,
+                    "error_risk": 0.4209866220735786
+                  },
+                  {
+                    "coverage": 0.6000418147606105,
+                    "error_risk": 0.4181184668989547
+                  },
+                  {
+                    "coverage": 0.7001881664227473,
+                    "error_risk": 0.40728575694237085
+                  },
+                  {
+                    "coverage": 0.8001254442818315,
+                    "error_risk": 0.40475568330284817
+                  },
+                  {
+                    "coverage": 0.9000627221409158,
+                    "error_risk": 0.40418118466898956
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.4083211373614886
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.000418147606104955,
+                  "0.2": 0.000418147606104955
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001254442818315,
+                "accepted_error_risk": 0.40475568330284817,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        },
+        "calibrated_static": {
+          "probability": {
+            "n": 4783,
+            "positive_rate": 0.46163495713987035,
+            "brier": 0.24688343469628718,
+            "log_loss": 0.6893435589554752,
+            "auroc": 0.6002122906993106,
+            "auprc": 0.5701487232864164,
+            "ece_10_bins": 0.07320804448931906
+          },
+          "selective": {
+            "confidence": {
+              "source_threshold": {
+                "source_threshold": 0.34131714800416346,
+                "target_coverage": 0.4534810788208237,
+                "target_error_risk": 0.3715998155832181,
+                "matched_target_coverage": 0.8001254442818315,
+                "matched_target_error_risk_descriptive": 0.39717794617193625,
+                "target_ranked_aurc_descriptive": 0.3632574515756508,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10014635166213673,
+                    "error_risk": 0.2776617954070981
+                  },
+                  {
+                    "coverage": 0.200083629521221,
+                    "error_risk": 0.3458725182863114
+                  },
+                  {
+                    "coverage": 0.30002090738030524,
+                    "error_risk": 0.35958188153310106
+                  },
+                  {
+                    "coverage": 0.400167259042442,
+                    "error_risk": 0.3714733542319749
+                  },
+                  {
+                    "coverage": 0.5001045369015262,
+                    "error_risk": 0.3758361204013378
+                  },
+                  {
+                    "coverage": 0.6000418147606105,
+                    "error_risk": 0.38571428571428573
+                  },
+                  {
+                    "coverage": 0.7001881664227473,
+                    "error_risk": 0.39086294416243655
+                  },
+                  {
+                    "coverage": 0.8001254442818315,
+                    "error_risk": 0.39717794617193625
+                  },
+                  {
+                    "coverage": 0.9000627221409158,
+                    "error_risk": 0.413472706155633
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.422956303575162
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.0006272214091574326,
+                  "0.2": 0.023207192138825005
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001254442818315,
+                "accepted_error_risk": 0.39717794617193625,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            },
+            "disagreement": {
+              "source_threshold": {
+                "source_threshold": 0.038839383072252,
+                "target_coverage": 0.33702697052059377,
+                "target_error_risk": 0.43610421836228286,
+                "matched_target_coverage": 0.8001254442818315,
+                "matched_target_error_risk_descriptive": 0.4225241703684348,
+                "target_ranked_aurc_descriptive": 0.4295476037308509,
+                "target_risk_coverage_curve_descriptive": [
+                  {
+                    "coverage": 0.10014635166213673,
+                    "error_risk": 0.4342379958246347
+                  },
+                  {
+                    "coverage": 0.200083629521221,
+                    "error_risk": 0.43051201671891326
+                  },
+                  {
+                    "coverage": 0.30002090738030524,
+                    "error_risk": 0.43344947735191636
+                  },
+                  {
+                    "coverage": 0.400167259042442,
+                    "error_risk": 0.42946708463949845
+                  },
+                  {
+                    "coverage": 0.5001045369015262,
+                    "error_risk": 0.42642140468227424
+                  },
+                  {
+                    "coverage": 0.6000418147606105,
+                    "error_risk": 0.4292682926829268
+                  },
+                  {
+                    "coverage": 0.7001881664227473,
+                    "error_risk": 0.42908330845028364
+                  },
+                  {
+                    "coverage": 0.8001254442818315,
+                    "error_risk": 0.4225241703684348
+                  },
+                  {
+                    "coverage": 0.9000627221409158,
+                    "error_risk": 0.42555168408826943
+                  },
+                  {
+                    "coverage": 1.0,
+                    "error_risk": 0.422956303575162
+                  }
+                ],
+                "target_coverage_at_fixed_error_risk_descriptive": {
+                  "0.1": 0.000418147606104955,
+                  "0.2": 0.000418147606104955
+                }
+              },
+              "unlabeled_batch": {
+                "acceptance": 0.8001254442818315,
+                "accepted_error_risk": 0.4225241703684348,
+                "information": "unlabeled target batch scores; transductive"
+              }
+            }
+          }
+        }
+      },
+      "elapsed_seconds": 10.550661700000092
+    }
+  },
+  "peak_process_working_set_kib": 470680
+}

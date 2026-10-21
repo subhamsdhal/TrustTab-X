@@ -1,5 +1,12 @@
 # TrustTab-X autonomous build status
 
+## 2026-10-21 M7 final research/portfolio verification
+
+- Completed scientific review of the M6 manuscript against locked M4.2/M5.1 JSON and implementation. Corrected the TableShift paper title and clarified that the router selects one expert per row from predicted squared error, while the primary static expert is uncalibrated and the calibrated-static control is separate. No target retuning or claim inflation. Preserved **C: no adaptive advantage demonstrated** and **B: local demo only**.
+- Generated and visually inspected the six-page, six-figure A4 PDF using a Python ReportLab builder; editable Markdown retained. Built the final 32-file portfolio package with academic overview, experimental summary, industry case study, architecture diagram, reproducibility, Growtern context, three resume bullet options, technical interview answers and local demo walkthrough; copied evidence has a SHA-256 manifest.
+- Ran the existing approved ACS artifact through an authenticated local in-process API on cached public data. Source/artifact hashes matched tracked provenance; health/dashboard, prediction, drift, admin-only delayed-label metrics and security-negative endpoints behaved as recorded in `reports/results/m7_local_demo.json`. The 100-row CT drift illustration used no target labels; the 100-row delayed-label metric is a feature-filtered source ID demonstration subset, not a new final score.
+- Final gate: 42 offline tests passed (one existing deprecation warning), Ruff, `pip check`, local `pip-audit` for auditable packages, wheel build/content check, static container checks, six-figure/JSON integrity, PDF extraction and visual inspection, portfolio link/hash/exclusion verification, credential-pattern scan and Git whitespace check passed. Docker runtime unavailable. Private empty GitHub handoff created and locally linked; no push. See `RESULTS_VERIFICATION.md`, `docs/FINAL_PROJECT_AUDIT.md` and `docs/GITHUB_PRIVATE_HANDOFF.md`.
+
 ## 2026-10-21 M6 research and portfolio checkpoint
 
 - Audited locked M4.2 and M5.1 evidence without changing trained policies or target results. Created a complete review-style Markdown manuscript at `reports/paper/TrustTab-X-manuscript.md`, six figures under `reports/figures/`, an input-SHA256 figure manifest and `scripts/build_m6_figures.py`. The figures are generated solely from tracked aggregate JSON, not synthetic or fabricated numbers. PDF was not produced because local Pandoc/TeX was unavailable; the reproducibility guide gives a compilation command.
