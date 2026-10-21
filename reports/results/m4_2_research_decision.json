@@ -1,0 +1,124 @@
+{
+  "decision": "C. NO ADAPTIVE ADVANTAGE DEMONSTRATED",
+  "source_outer_domains": 13,
+  "family_summary": {
+    "acs": {
+      "outer_domains": 7,
+      "mean_brier_by_policy": {
+        "static": 0.1416142443195085,
+        "uniform": 0.14133437754860667,
+        "weighted": 0.14133211407195614,
+        "metadata_router": 0.14143678981572858,
+        "simple_router": 0.14411109929870664,
+        "calibrated_static": 0.1415497813225193
+      },
+      "mean_log_loss_by_policy": {
+        "static": 0.43193606365503506,
+        "uniform": 0.43258584330690153,
+        "weighted": 0.4325651091447557,
+        "metadata_router": 0.43151868531509613,
+        "simple_router": 0.43889097801716836,
+        "calibrated_static": 0.43139151723048474
+      }
+    },
+    "diabetes": {
+      "outer_domains": 4,
+      "mean_brier_by_policy": {
+        "static": 0.18932869078452502,
+        "uniform": 0.18856949049866067,
+        "weighted": 0.18856565638961809,
+        "metadata_router": 0.18917034209064784,
+        "simple_router": 0.18945604117828196,
+        "calibrated_static": 0.1930164435139418
+      },
+      "mean_log_loss_by_policy": {
+        "static": 0.5639149802365004,
+        "uniform": 0.5626068296556475,
+        "weighted": 0.5625982402246906,
+        "metadata_router": 0.563801205459241,
+        "simple_router": 0.5663994655528333,
+        "calibrated_static": 0.5790204746426181
+      }
+    },
+    "bank": {
+      "outer_domains": 2,
+      "mean_brier_by_policy": {
+        "static": 0.056950805491174566,
+        "uniform": 0.05666934281412718,
+        "weighted": 0.05666492863232428,
+        "metadata_router": 0.05737231654193013,
+        "simple_router": 0.05743025479051565,
+        "calibrated_static": 0.05601543310675279
+      },
+      "mean_log_loss_by_policy": {
+        "static": 0.23103365942452553,
+        "uniform": 0.23577074573862367,
+        "weighted": 0.23569856201899758,
+        "metadata_router": 0.25383692105983613,
+        "simple_router": 0.2543377671848994,
+        "calibrated_static": 0.22653707090136335
+      }
+    }
+  },
+  "router_source_gate": false,
+  "router_confirmation_gate": false,
+  "selective_policies_passing_both_months": [],
+  "confirmation": {
+    "nov": {
+      "n": 2998,
+      "brier_by_policy": {
+        "static": 0.1900732353886215,
+        "uniform": 0.1893892254893887,
+        "weighted": 0.18941114837530507,
+        "metadata_router": 0.1966181464572958,
+        "simple_router": 0.20154197866259385,
+        "calibrated_static": 0.1858625392662374
+      },
+      "log_loss_by_policy": {
+        "static": 0.5732563655505168,
+        "uniform": 0.5677694676037701,
+        "weighted": 0.567866670390992,
+        "metadata_router": 0.6032591070652458,
+        "simple_router": 0.6283746167764772,
+        "calibrated_static": 0.555042123583476
+      },
+      "source_threshold_coverage_by_policy": {
+        "static": 0.7995330220146765,
+        "uniform": 0.8012008005336891,
+        "weighted": 0.8012008005336891,
+        "metadata_router": 0.8208805870580387,
+        "simple_router": 0.7991994663108739,
+        "calibrated_static": 0.7995330220146765
+      }
+    },
+    "dec": {
+      "n": 1727,
+      "brier_by_policy": {
+        "static": 0.1038416382033789,
+        "uniform": 0.10252695467639414,
+        "weighted": 0.10253402763668673,
+        "metadata_router": 0.10209203091235435,
+        "simple_router": 0.10275302225696982,
+        "calibrated_static": 0.1123273394621299
+      },
+      "log_loss_by_policy": {
+        "static": 0.3425004670618631,
+        "uniform": 0.33984848635845943,
+        "weighted": 0.33983406273116756,
+        "metadata_router": 0.33850301907510116,
+        "simple_router": 0.34149009393156654,
+        "calibrated_static": 0.3870475302782181
+      },
+      "source_threshold_coverage_by_policy": {
+        "static": 0.781702374059062,
+        "uniform": 0.7759119861030689,
+        "weighted": 0.7759119861030689,
+        "metadata_router": 0.7903879559930516,
+        "simple_router": 0.8002316155182397,
+        "calibrated_static": 0.781702374059062
+      }
+    }
+  },
+  "production_research_default": "source-validation-selected fixed expert",
+  "statistical_scope": "Three source families and two related confirmation months; no family-level confidence interval or arbitrary-shift guarantee"
+}

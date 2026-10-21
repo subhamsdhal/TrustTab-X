@@ -1,5 +1,13 @@
 # TrustTab-X autonomous build status
 
+## 2026-10-21 M4.2 finite adaptive-routing decision
+
+- Implemented and ran fully re-fit nested source-domain validation: seven household-disjoint ACS state folds, four patient-disjoint hospital admission-code folds and two forward-only bank folds. Inner router training, expert selection, sigmoid calibration and abstention thresholds were source-only and excluded each outer domain. Five experts and two fixed-alpha routers compared at the same upstream five-fit budget; static deployment uses one expert. The original metadata router beat static in 6/13 outer domains but did not beat the weighted ensemble in any family's mean Brier. Exact folds, hashes, costs and all policy metrics: `reports/results/m4_2_nested_{acs,diabetes,bank}.json`.
+- Committed the UCI shopper confirmation preregistration as `9d5ad86` before downloading/opening its labels. The new free CC BY 4.0 month-shift family uses 6,608 fit, 448 selection, 274 probability-calibration, 275 threshold-calibration, 2,998 November and 1,727 December sessions. Source-selected RF versus original router Brier: November 0.190073 vs 0.196618; December 0.103842 vs 0.102092. Related months do not establish a family-level interval. See `docs/SHOPPER_MONTH_SHIFT_MANIFEST.md`.
+- Source-fixed 80%-target confidence thresholds failed the acceptance floor in December for static and weighted policies (0.7817 and 0.7759); disagreement passed coverage but increased accepted error. Unlabeled-target batch thresholds attained 80% coverage transductively and are reported separately. No under-shift coverage guarantee.
+- Applied the locked decision rule: **C. NO ADAPTIVE ADVANTAGE DEMONSTRATED**. M5 engineering may proceed around a source-validation-selected fixed expert with monitoring and audit, while routers remain research-only. See `docs/M4_2_RESEARCH_DECISION.md` and `docs/M5_ENGINEERING_HANDOFF.md`. Production deployment remains unapproved and unvalidated.
+- Final verification: 35 offline tests passed, Ruff passed and `git diff --check` passed. No public push, paid service or raw-data commit.
+
 ## 2026-10-21 M4.1 reliability and independent confirmation checkpoint
 
 - Reproduced the locked prior router Brier exactly on ACS/hospital/bank: 0.148039/0.258926/0.344292 versus source-selected static 0.145517/0.250504/0.337574. Kept all negative results.

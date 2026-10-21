@@ -1,5 +1,11 @@
 # Statistical and research evaluation protocol (pre-register before comparing methods)
 
+## M4.2 final finite evaluation addendum (2026-10-21)
+
+Nested source-domain folds re-fit each expert and preprocessing after excluding the entire outer environment. Inside each outer training set, disjoint entity/time-aware fit, selection, probability-calibration and threshold-calibration partitions determine the fixed expert, ensemble weights, ridge router training and abstention cutoffs. No hyperparameter search was conducted; five expert configurations and Ridge alpha=100 were fixed. ACS folds are household-disjoint, hospital folds patient-disjoint, and bank folds forward-only. Source folds are correlated within three dataset families; only family-level patterns support transfer discussion.
+
+`docs/M4_2_CONFIRMATION_PREREGISTRATION.md` was committed as `9d5ad86` before UCI shopper labels were opened. November and December are untouched seasonal confirmation environments from one independent dataset family, with source months and feature timing defined in `docs/SHOPPER_MONTH_SHIFT_MANIFEST.md`. Fixed source uncertainty thresholds and separately identified unlabeled-batch transductive thresholds are both evaluated. The locked A/B/C research rule and its executed result are in `docs/M4_2_RESEARCH_DECISION.md`. The negative outcome ends this finite router evaluation; previously inspected targets may not be reused as fresh confirmation for a revised method.
+
 ## M4.1 confirmation and selective objectives (2026-10-21)
 
 `docs/M4_1_PREREGISTRATION.md` was saved before College Scorecard outcome inspection. The 2025 single-cohort institution-type target is a fresh family-level confirmation for the unchanged probability-metadata router; ACS/hospital/bank final outcomes are exploratory audits. Source institution IDs are disjoint across fit, selection, probability-calibration and threshold-calibration; for-profit institutions are untouched until the locked comparison. The new family has one target environment, so no across-environment confidence interval or broad generalisation claim is available. Existing source cross-fit artifacts are used separately for leave-one-entire-family-out meta-transfer diagnosis; those 14 source domains are not 14 independent datasets.

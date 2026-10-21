@@ -98,7 +98,8 @@ def disagreement_uncertainty(matrix: np.ndarray) -> np.ndarray:
 
 
 def fit_error_router(matrix: np.ndarray, labels: np.ndarray, names: list[str],
-                     *, simplified: bool = False) -> dict:
+                     *, simplified: bool = False,
+                     sample_weight: np.ndarray | None = None) -> dict:
     """Fit fixed-alpha risk regressors on inner held-out source predictions."""
     p, y = np.asarray(matrix), np.asarray(labels)
     if p.shape != (len(y), len(names)) or len(y) == 0:
@@ -108,7 +109,9 @@ def fit_error_router(matrix: np.ndarray, labels: np.ndarray, names: list[str],
     for index, name in enumerate(names):
         features = np.column_stack([p[:, index], p.std(axis=1)]) if simplified else full
         model = make_pipeline(StandardScaler(), Ridge(alpha=100.0))
-        model.fit(features, (p[:, index] - y) ** 2)
+        fit_kwargs = ({"ridge__sample_weight": np.asarray(sample_weight) * len(y)}
+                      if sample_weight is not None else {})
+        model.fit(features, (p[:, index] - y) ** 2, **fit_kwargs)
         models[name] = model
     return models
 
