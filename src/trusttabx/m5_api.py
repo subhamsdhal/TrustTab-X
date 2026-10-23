@@ -32,6 +32,7 @@ if not LOG.handlers:
     LOG.addHandler(handler)
 LOG.propagate = False
 STATIC_DIR = Path(__file__).with_name("m5_web")
+MANUSCRIPT_PATH = Path.cwd() / "reports" / "paper" / "TrustTab-X-manuscript.pdf"
 
 
 class ACSRecord(BaseModel):
@@ -185,6 +186,12 @@ def create_app(artifact_dir: str | Path | None = None) -> FastAPI:
     @app.get("/")
     def dashboard():
         return FileResponse(STATIC_DIR / "index.html")
+
+    @app.get("/research/manuscript", include_in_schema=False)
+    def research_manuscript():
+        if not MANUSCRIPT_PATH.is_file():
+            raise HTTPException(status_code=404, detail={"code": "manuscript_unavailable"})
+        return FileResponse(MANUSCRIPT_PATH, media_type="application/pdf")
 
     def predict_many(request: Request, records: list[ACSRecord]) -> list[dict]:
         current = bundle(request)

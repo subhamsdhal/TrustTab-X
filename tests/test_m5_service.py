@@ -98,6 +98,16 @@ def test_prediction_contract_and_validation(artifact):
         assert "<script>" not in dashboard.text
         assert client.get("/assets/app.js").status_code == 200
         assert client.get("/assets/app.css").status_code == 200
+        explorer = client.get("/assets/research_results.json")
+        assert explorer.status_code == 200
+        assert explorer.json()["decision"] == "C. NO ADAPTIVE ADVANTAGE DEMONSTRATED"
+        assert client.get("/assets/research.js").status_code == 200
+        assert "Research Explorer" in dashboard.text
+        assert "Secure live demo" in dashboard.text
+        manuscript = client.get("/research/manuscript")
+        assert manuscript.status_code == 200
+        assert manuscript.headers["content-type"].startswith("application/pdf")
+        assert manuscript.content.startswith(b"%PDF")
 
 
 def test_artifact_rejects_missing_corrupt_untrusted_and_incompatible(artifact, monkeypatch):

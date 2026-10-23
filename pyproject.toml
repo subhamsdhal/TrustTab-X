@@ -32,7 +32,7 @@ trusttabx-m5-train = "trusttabx.m5_train:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-trusttabx = ["m5_web/*.html", "m5_web/*.css", "m5_web/*.js"]
+trusttabx = ["m5_web/*.html", "m5_web/*.css", "m5_web/*.js", "m5_web/*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

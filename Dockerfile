@@ -4,6 +4,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_
 COPY pyproject.toml README.md ./
 COPY constraints ./constraints
 COPY src ./src
+COPY reports/paper/TrustTab-X-manuscript.pdf ./reports/paper/TrustTab-X-manuscript.pdf
 RUN python -m pip install --no-cache-dir pip==26.2.2 && \
     python -m pip install --no-cache-dir -c constraints/m5.txt '.[m5-service]' && \
     useradd --create-home appuser

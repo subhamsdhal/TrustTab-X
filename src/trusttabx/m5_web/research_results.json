@@ -1,0 +1,487 @@
+{
+  "schema_version": 1,
+  "decision": "C. NO ADAPTIVE ADVANTAGE DEMONSTRATED",
+  "release_classification": "Local Demo Only",
+  "models": [
+    "logistic_regression",
+    "hist_gradient_boosting",
+    "random_forest",
+    "xgboost",
+    "catboost_ohe"
+  ],
+  "datasets": [
+    {
+      "id": "acs",
+      "title": "ACSIncome",
+      "provenance": "2018 ACS PUMS via Folktables; sampled geographic state holdout.",
+      "protocol": "TableShift-inspired ACSIncome geographic pilot",
+      "source_url": "https://www.census.gov/programs-surveys/acs/microdata.html",
+      "result_files": [
+        "reports/results/acs_income_2018_geographic_expanded.json",
+        "reports/results/m4_2_research_decision.json"
+      ],
+      "selected_model": "hist_gradient_boosting",
+      "selection_brier": {
+        "logistic_regression": 0.13922045075900052,
+        "hist_gradient_boosting": 0.13573966201362414,
+        "random_forest": 0.14069178580479033,
+        "xgboost": 0.13803905248641968,
+        "catboost_ohe": 0.13865976460907817
+      },
+      "shift_kind": "ID / OOD",
+      "shift": [
+        {
+          "label": "ID test",
+          "brier": 0.13164414790076484,
+          "log_loss": 0.40682234801097117,
+          "ece_10_bins": 0.02442353995086991
+        },
+        {
+          "label": "OOD states",
+          "brier": 0.1455172454379213,
+          "log_loss": 0.441379523302052,
+          "ece_10_bins": 0.006535948199881656
+        }
+      ],
+      "comparisons": [
+        {
+          "label": "Outer source-domain mean",
+          "n_domains": 7,
+          "rows": [
+            {
+              "policy": "static",
+              "brier": 0.1416142443195085,
+              "log_loss": 0.43193606365503506,
+              "ece_10_bins": null
+            },
+            {
+              "policy": "uniform",
+              "brier": 0.14133437754860667,
+              "log_loss": 0.43258584330690153,
+              "ece_10_bins": null
+            },
+            {
+              "policy": "weighted",
+              "brier": 0.14133211407195614,
+              "log_loss": 0.4325651091447557,
+              "ece_10_bins": null
+            },
+            {
+              "policy": "metadata_router",
+              "brier": 0.14143678981572858,
+              "log_loss": 0.43151868531509613,
+              "ece_10_bins": null
+            },
+            {
+              "policy": "simple_router",
+              "brier": 0.14411109929870664,
+              "log_loss": 0.43889097801716836,
+              "ece_10_bins": null
+            },
+            {
+              "policy": "calibrated_static",
+              "brier": 0.1415497813225193,
+              "log_loss": 0.43139151723048474,
+              "ece_10_bins": null
+            }
+          ]
+        }
+      ],
+      "comparison_note": "Mean across nested source domains; separate from final ID/OOD or future holdout.",
+      "limitations": [
+        "Sampled nine states; not the full official TableShift dataset or row splits.",
+        "Three-model configuration was separately refit for timing; metrics use shared fits.",
+        "US Census person records may share household; partitions are household-disjoint.",
+        "Seven source states span five census divisions, but only one ACS OOD division and one hospital domain pair are available for final evaluation."
+      ]
+    },
+    {
+      "id": "healthcare",
+      "title": "Healthcare admissions",
+      "provenance": "UCI Diabetes 130-US-hospitals dataset; admission-source domain holdout.",
+      "protocol": "TableShift-derived diabetes admission-source domain holdout",
+      "source_url": "https://archive.ics.uci.edu/ml/machine-learning-databases/00296/dataset_diabetes.zip",
+      "result_files": [
+        "reports/results/tableshift_diabetes_12000.json",
+        "reports/results/m4_2_research_decision.json"
+      ],
+      "selected_model": "catboost_ohe",
+      "selection_brier": {
+        "logistic_regression": 0.20629189681448243,
+        "hist_gradient_boosting": 0.20322369467089324,
+        "random_forest": 0.20313465125612146,
+        "xgboost": 0.2033393383026123,
+        "catboost_ohe": 0.20297696866929069
+      },
+      "shift_kind": "ID / OOD",
+      "shift": [
+        {
+          "label": "ID test",
+          "brier": 0.20160277329612328,
+          "log_loss": 0.5900866100580902,
+          "ece_10_bins": 0.009759291081503528
+        },
+        {
+          "label": "OOD admission sources",
+          "brier": 0.2505038991829952,
+          "log_loss": 0.6968195527462027,
+          "ece_10_bins": 0.09531267357507926
+        }
+      ],
+      "comparisons": [
+        {
+          "label": "Outer source-domain mean",
+          "n_domains": 4,
+          "rows": [
+            {
+              "policy": "static",
+              "brier": 0.18932869078452502,
+              "log_loss": 0.5639149802365004,
+              "ece_10_bins": null
+            },
+            {
+              "policy": "uniform",
+              "brier": 0.18856949049866067,
+              "log_loss": 0.5626068296556475,
+              "ece_10_bins": null
+            },
+            {
+              "policy": "weighted",
+              "brier": 0.18856565638961809,
+              "log_loss": 0.5625982402246906,
+              "ece_10_bins": null
+            },
+            {
+              "policy": "metadata_router",
+              "brier": 0.18917034209064784,
+              "log_loss": 0.563801205459241,
+              "ece_10_bins": null
+            },
+            {
+              "policy": "simple_router",
+              "brier": 0.18945604117828196,
+              "log_loss": 0.5663994655528333,
+              "ece_10_bins": null
+            },
+            {
+              "policy": "calibrated_static",
+              "brier": 0.1930164435139418,
+              "log_loss": 0.5790204746426181,
+              "ece_10_bins": null
+            }
+          ]
+        }
+      ],
+      "comparison_note": "Mean across nested source domains; separate from final ID/OOD or future holdout.",
+      "limitations": [
+        "The original TableShift package and exact row splits were not run.",
+        "Patient grouping and a bounded fixed feature subset change the benchmark protocol.",
+        "OOD labels are evaluation-only; OOD patient IDs were used by the curator to prevent leakage.",
+        "Both selections share the same five fitted experts and thus equal realized fit cost; the three-expert decision ignores two already-trained models.",
+        "One domain pair is insufficient to assess a trained router's domain generalization."
+      ]
+    },
+    {
+      "id": "banking",
+      "title": "Bank marketing",
+      "provenance": "UCI Bank Marketing; forward-only pre-call chronological windows, not IID.",
+      "protocol": "UCI Bank Marketing pre-call chronological holdout",
+      "source_url": "https://archive.ics.uci.edu/ml/machine-learning-databases/00222/bank-additional.zip",
+      "result_files": [
+        "reports/results/bank_temporal_2008_2010.json",
+        "reports/results/m4_2_research_decision.json"
+      ],
+      "selected_model": "hist_gradient_boosting",
+      "selection_brier": {
+        "logistic_regression": 0.0523781773230858,
+        "hist_gradient_boosting": 0.050942434837128715,
+        "random_forest": 0.05207774694075637,
+        "xgboost": 0.05170276388525963,
+        "catboost_ohe": 0.05116350703689026
+      },
+      "shift_kind": "Forward time",
+      "shift": [
+        {
+          "label": "Near future",
+          "brier": 0.06375250075169343,
+          "log_loss": 0.24934972802469213,
+          "ece_10_bins": 0.008141334534629023
+        },
+        {
+          "label": "Final future",
+          "brier": 0.3375742343205313,
+          "log_loss": 1.0994541840221332,
+          "ece_10_bins": 0.3196284605199168
+        }
+      ],
+      "comparisons": [
+        {
+          "label": "Outer source-domain mean",
+          "n_domains": 2,
+          "rows": [
+            {
+              "policy": "static",
+              "brier": 0.056950805491174566,
+              "log_loss": 0.23103365942452553,
+              "ece_10_bins": null
+            },
+            {
+              "policy": "uniform",
+              "brier": 0.05666934281412718,
+              "log_loss": 0.23577074573862367,
+              "ece_10_bins": null
+            },
+            {
+              "policy": "weighted",
+              "brier": 0.05666492863232428,
+              "log_loss": 0.23569856201899758,
+              "ece_10_bins": null
+            },
+            {
+              "policy": "metadata_router",
+              "brier": 0.05737231654193013,
+              "log_loss": 0.25383692105983613,
+              "ece_10_bins": null
+            },
+            {
+              "policy": "simple_router",
+              "brier": 0.05743025479051565,
+              "log_loss": 0.2543377671848994,
+              "ece_10_bins": null
+            },
+            {
+              "policy": "calibrated_static",
+              "brier": 0.05601543310675279,
+              "log_loss": 0.22653707090136335,
+              "ece_10_bins": null
+            }
+          ]
+        }
+      ],
+      "comparison_note": "Mean across nested source domains; separate from final ID/OOD or future holdout.",
+      "limitations": [
+        "Original order is chronological but exact per-record timestamps are unavailable.",
+        "Near-future is a later time window, not IID; no customer IDs to enforce entity isolation.",
+        "One final future window cannot establish arbitrary temporal generalisation."
+      ]
+    },
+    {
+      "id": "college",
+      "title": "College Scorecard",
+      "provenance": "US College Scorecard; 2025 held-out cohort with institution-disjoint partitions.",
+      "protocol": "M4.1 preregistered single-cohort College Scorecard confirmation",
+      "source_url": "https://catalog.data.gov/dataset/college-scorecard",
+      "result_files": [
+        "reports/results/college_scorecard_2025_confirmation.json"
+      ],
+      "selected_model": "random_forest",
+      "selection_brier": {
+        "logistic_regression": 0.1500322085194338,
+        "hist_gradient_boosting": 0.1383020422607853,
+        "random_forest": 0.13151515405898173,
+        "xgboost": 0.13518334869598417,
+        "catboost_ohe": 0.1327533834571092
+      },
+      "shift_kind": "Held-out cohort",
+      "shift": [
+        {
+          "label": "2025 final cohort",
+          "brier": 0.26370708561082423,
+          "log_loss": 0.7246726705516723,
+          "ece_10_bins": null
+        }
+      ],
+      "comparisons": [
+        {
+          "label": "2025 final cohort",
+          "n_domains": 1,
+          "rows": [
+            {
+              "policy": "static",
+              "brier": 0.26370708561082423,
+              "log_loss": 0.7246726705516723,
+              "ece_10_bins": null
+            },
+            {
+              "policy": "uniform_ensemble",
+              "brier": 0.26896708831339067,
+              "log_loss": 0.7384487916769767,
+              "ece_10_bins": null
+            },
+            {
+              "policy": "weighted_ensemble",
+              "brier": 0.2686957925553526,
+              "log_loss": 0.7376730464800421,
+              "ece_10_bins": null
+            },
+            {
+              "policy": "confidence_expert",
+              "brier": 0.3175572523314018,
+              "log_loss": 0.9164226954610166,
+              "ece_10_bins": null
+            },
+            {
+              "policy": "reliability_router",
+              "brier": 0.28575681083078885,
+              "log_loss": 0.7974009456883584,
+              "ece_10_bins": null
+            },
+            {
+              "policy": "calibrated_static",
+              "brier": 0.26689184365718,
+              "log_loss": 0.7328607858609058,
+              "ece_10_bins": null
+            }
+          ]
+        }
+      ],
+      "comparison_note": "Single held-out cohort; College policy names match the saved confirmation file.",
+      "limitations": [
+        "Single 2025 cohort; small final sample and no independent family replication.",
+        "Outcome timing and institutional applicability require separate review."
+      ]
+    },
+    {
+      "id": "shopper",
+      "title": "Online shoppers",
+      "provenance": "UCI Online Shoppers Purchasing Intention; month-shift confirmation (November and December).",
+      "protocol": "M4.2 preregistered UCI shopper month-shift confirmation",
+      "source_url": "https://archive.ics.uci.edu/dataset/468/online+shoppers+purchasing+intention+dataset",
+      "result_files": [
+        "reports/results/m4_2_shopper_confirmation.json",
+        "reports/results/m4_2_research_decision.json"
+      ],
+      "selected_model": "random_forest",
+      "selection_brier": {
+        "logistic_regression": 0.16120605140928532,
+        "hist_gradient_boosting": 0.15884453051361438,
+        "random_forest": 0.15597910621572186,
+        "xgboost": 0.15819509566720313,
+        "catboost_ohe": 0.15627312123231743
+      },
+      "shift_kind": "Shifted months",
+      "shift": [
+        {
+          "label": "November",
+          "brier": 0.1900732353886215,
+          "log_loss": 0.5732563655505168,
+          "ece_10_bins": 0.11548137397931528
+        },
+        {
+          "label": "December",
+          "brier": 0.1038416382033789,
+          "log_loss": 0.3425004670618631,
+          "ece_10_bins": 0.019820003348193175
+        }
+      ],
+      "comparisons": [
+        {
+          "label": "November",
+          "n_domains": 1,
+          "n_rows": 2998,
+          "rows": [
+            {
+              "policy": "static",
+              "brier": 0.1900732353886215,
+              "log_loss": 0.5732563655505168,
+              "ece_10_bins": 0.11548137397931528
+            },
+            {
+              "policy": "uniform",
+              "brier": 0.1893892254893887,
+              "log_loss": 0.5677694676037701,
+              "ece_10_bins": 0.110358812682679
+            },
+            {
+              "policy": "weighted",
+              "brier": 0.18941114837530507,
+              "log_loss": 0.567866670390992,
+              "ece_10_bins": 0.11038964110385022
+            },
+            {
+              "policy": "metadata_router",
+              "brier": 0.1966181464572958,
+              "log_loss": 0.6032591070652458,
+              "ece_10_bins": 0.13506639830404188
+            },
+            {
+              "policy": "simple_router",
+              "brier": 0.20154197866259385,
+              "log_loss": 0.6283746167764772,
+              "ece_10_bins": 0.15423134359735674
+            },
+            {
+              "policy": "calibrated_static",
+              "brier": 0.1858625392662374,
+              "log_loss": 0.555042123583476,
+              "ece_10_bins": 0.0990048911550205
+            }
+          ]
+        },
+        {
+          "label": "December",
+          "n_domains": 1,
+          "n_rows": 1727,
+          "rows": [
+            {
+              "policy": "static",
+              "brier": 0.1038416382033789,
+              "log_loss": 0.3425004670618631,
+              "ece_10_bins": 0.019820003348193175
+            },
+            {
+              "policy": "uniform",
+              "brier": 0.10252695467639414,
+              "log_loss": 0.33984848635845943,
+              "ece_10_bins": 0.01544497487815208
+            },
+            {
+              "policy": "weighted",
+              "brier": 0.10253402763668673,
+              "log_loss": 0.33983406273116756,
+              "ece_10_bins": 0.015431152748031897
+            },
+            {
+              "policy": "metadata_router",
+              "brier": 0.10209203091235435,
+              "log_loss": 0.33850301907510116,
+              "ece_10_bins": 0.011700269513430657
+            },
+            {
+              "policy": "simple_router",
+              "brier": 0.10275302225696982,
+              "log_loss": 0.34149009393156654,
+              "ece_10_bins": 0.028870843459728266
+            },
+            {
+              "policy": "calibrated_static",
+              "brier": 0.1123273394621299,
+              "log_loss": 0.3870475302782181,
+              "ece_10_bins": 0.08151577836664665
+            }
+          ]
+        }
+      ],
+      "comparison_note": "November and December are related months in one dataset family; neither is an IID test.",
+      "limitations": [
+        "Exact session timestamps and user IDs are unavailable.",
+        "Pre-checkout availability of retrospective page features is not independently certified."
+      ]
+    }
+  ],
+  "methodology": [
+    "Preprocessing and model fits use source training partitions; selection, calibration and final evaluation remain separate.",
+    "Nested source-domain comparisons use held-out states, admissions or chronological blocks; shopper months form one confirmation family.",
+    "Brier, log loss and 10-bin expected calibration error are lower-is-better metrics. Missing metrics are shown as unavailable.",
+    "ID/OOD, forward-time and held-out-cohort results are different protocols and should not be pooled into a single ranking."
+  ],
+  "decision_explanation": "Across 13 nested source domains in three families, the metadata router did not beat both the source-selected fixed expert and weighted ensemble in every family. On November shopper sessions it lost to both controls; its December gain over the weighted ensemble was below the preregistered margin. The two months are related, and source-fixed selective acceptance was inconsistent.",
+  "source_files_sha256": {
+    "reports/results/acs_income_2018_geographic_expanded.json": "99be91c2b36a9b4d4a08eacd2519994fa50feb1414b91df855187ca1950d344b",
+    "reports/results/tableshift_diabetes_12000.json": "5d63e625794ec514a85259edd10bbe2e3563006408cab1d0c53aeec5b916cf9d",
+    "reports/results/bank_temporal_2008_2010.json": "75e17e0524099f6a79ef37c79629ec57e7d361796c57ed8ac52b07d5e7b93af5",
+    "reports/results/college_scorecard_2025_confirmation.json": "add11b3b6875ea3bd4a6c819804d9f850b36e56fcd3e0235f618f2e7cdef3781",
+    "reports/results/m4_2_shopper_confirmation.json": "98b851dacb09ea3e30bab66e2f0339d885d125c125f093a89831745748cf5fe2",
+    "reports/results/m4_2_research_decision.json": "19cc909954d7ef4f6648601c467c7c5b0a90ae1e45f5975ef68bf289056235f0"
+  }
+}

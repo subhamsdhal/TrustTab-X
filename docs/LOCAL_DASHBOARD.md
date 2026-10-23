@@ -1,12 +1,12 @@
 # Use TrustTab-X on this Windows computer
 
-TrustTab-X is a **local demo only**. The research found **no adaptive advantage demonstrated**. The dashboard runs at <http://127.0.0.1:8000/> and is bound to this computer's loopback interface.
+TrustTab-X is a **local demo only**. The research found **no adaptive advantage demonstrated**. The dashboard runs at <http://127.0.0.1:8000/> and is bound to this computer's loopback interface. It opens on the read-only [Research Explorer](RESEARCH_EXPLORER.md); select **Secure live demo** for authenticated predictions.
 
 ## Start and unlock
 
 1. Double-click [`Start-TrustTabX.cmd`](../Start-TrustTabX.cmd) in the project folder. The launcher starts Docker Desktop if needed, reuses the `trusttabx-local` Compose container, waits for `/health`, checks the approved model, then opens the dashboard in your default browser. The first run builds the image and may take several minutes.
 2. On the first run only, the launcher creates a Git-ignored `.env` in the project root with distinct randomly generated operator and admin keys. Its Windows file ACL is restricted to your account. The approved model bundle remains under ignored `outputs/m5_acs_model/` and is mounted read-only. Later launches never replace `.env` or the container.
-3. Open `D:\TrustTab-X\.env` in a local text editor and copy **only the value** after `TRUSTTABX_API_KEY=` into the dashboard's **Operator API key** field. Click **Unlock local dashboard**. Keep the admin key private; the dashboard does not need it. The key is kept in the current browser tab's memory and must be entered again after a reload or new tab. Never place either key in a URL, screenshot, chat, or shared file.
+3. Select **Secure live demo**. Open `D:\TrustTab-X\.env` in a local text editor and copy **only the value** after `TRUSTTABX_API_KEY=` into the **Operator API key** field. Click **Unlock local dashboard**. Keep the admin key private; the demo does not need it. The key is kept in the current browser tab's memory and must be entered again after a reload or new tab. Never place either key in a URL, screenshot, chat, or shared file.
 
 The `.env` file is the local credential store. Do not commit or share it. If the approved model bundle changes, the launcher refuses to start until an operator deliberately reviews the replacement and updates the local approval. It does not silently approve a new model.
 

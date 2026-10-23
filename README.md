@@ -4,7 +4,7 @@
 
 A research-first Data Science project developed for a Growtern Academy portfolio upgrade and for a reproducible academic/industry demonstration. Attribution to an organisation must accurately reflect its permission, supervision, project dates, and actual work.
 
-> **Current implementation: completed research portfolio and container-verified local M5.1 decision-support demo.** The M4.2 research gate found no adaptive advantage; the ACSIncome service uses one source-selected fixed expert. It is **local demo only**. Local Docker evidence is in the [engineering record](docs/FINAL_ENGINEERING_VERIFICATION.md); internal deployment controls remain open. See [release scope](docs/RELEASE_SCOPE.md), [M5 architecture](docs/M5_ARCHITECTURE.md), [security policy](docs/M5_SECURITY.md) and [research decision](docs/M4_2_RESEARCH_DECISION.md).
+> **Current implementation: completed research portfolio and container-verified local M5.1 decision-support demo.** The M4.2 research gate found no adaptive advantage; the ACSIncome service uses one source-selected fixed expert. It is **local demo only**. The dashboard now opens on a [Research Explorer](docs/RESEARCH_EXPLORER.md) of verified aggregate results, with the authenticated live demo in a separate tab. Local Docker evidence is in the [engineering record](docs/FINAL_ENGINEERING_VERIFICATION.md); internal deployment controls remain open. See [release scope](docs/RELEASE_SCOPE.md), [M5 architecture](docs/M5_ARCHITECTURE.md), [security policy](docs/M5_SECURITY.md) and [research decision](docs/M4_2_RESEARCH_DECISION.md).
 
 ## Final research and portfolio package (M7)
 
