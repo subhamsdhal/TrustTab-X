@@ -1,6 +1,7 @@
 """The public explorer must match completed, tracked aggregate results exactly."""
 
 import hashlib
+import importlib.util
 import json
 import shutil
 import subprocess
@@ -8,8 +9,16 @@ from pathlib import Path
 
 import pytest
 
-import scripts.build_research_explorer as explorer_builder
-from scripts.build_research_explorer import MODELS, OUTPUT, RESULTS, build_explorer
+ROOT = Path(__file__).resolve().parents[1]
+SPEC = importlib.util.spec_from_file_location(
+    "trusttabx_research_builder", ROOT / "scripts" / "build_research_explorer.py")
+assert SPEC is not None and SPEC.loader is not None
+explorer_builder = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(explorer_builder)
+MODELS = explorer_builder.MODELS
+OUTPUT = explorer_builder.OUTPUT
+RESULTS = explorer_builder.RESULTS
+build_explorer = explorer_builder.build_explorer
 
 
 def test_packaged_results_rebuild_and_provenance():
