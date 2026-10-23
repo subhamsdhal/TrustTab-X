@@ -10,12 +10,12 @@ ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "reports" / "results"
 OUTPUT = ROOT / "src" / "trusttabx" / "m5_web" / "research_results.json"
 EXPECTED_SHA256 = {
-    "acs_income_2018_geographic_expanded": "99be91c2b36a9b4d4a08eacd2519994fa50feb1414b91df855187ca1950d344b",
-    "tableshift_diabetes_12000": "5d63e625794ec514a85259edd10bbe2e3563006408cab1d0c53aeec5b916cf9d",
-    "bank_temporal_2008_2010": "75e17e0524099f6a79ef37c79629ec57e7d361796c57ed8ac52b07d5e7b93af5",
-    "college_scorecard_2025_confirmation": "add11b3b6875ea3bd4a6c819804d9f850b36e56fcd3e0235f618f2e7cdef3781",
-    "m4_2_shopper_confirmation": "98b851dacb09ea3e30bab66e2f0339d885d125c125f093a89831745748cf5fe2",
-    "m4_2_research_decision": "19cc909954d7ef4f6648601c467c7c5b0a90ae1e45f5975ef68bf289056235f0",
+    "acs_income_2018_geographic_expanded": "6fc315daca56a346dec054eace667fd2785c6a7dfa271d7c4185a407a0f031ed",
+    "tableshift_diabetes_12000": "56cae1c6ea72cd143a03f2f949f2a4cebf64ad4ddc80890dfec37bf5523d0e8d",
+    "bank_temporal_2008_2010": "b54eecc0853c22d3cdaebac3b6b1bdd9aef85baf1b384a79aefdb0971769c707",
+    "college_scorecard_2025_confirmation": "2a9392b28cf6d10f392a043dfe47f8cee9ae9dda70c654dfc8206c1f7c1d0044",
+    "m4_2_shopper_confirmation": "7f2fd797453280a912b022fe9a2891503583dd74cc2d5a0b6ac40d2c01cb5fc8",
+    "m4_2_research_decision": "389c4340e67a2f701597dd9e1d99371b34edcc0c3cf72baff2ef57281c7239b1",
 }
 
 MODELS = [
@@ -29,7 +29,8 @@ POLICIES = [
 def _source(name: str, provenance: dict[str, str]) -> dict:
     path = RESULTS / f"{name}.json"
     raw = path.read_bytes()
-    digest = hashlib.sha256(raw).hexdigest()
+    # Git stores these text results with LF; Windows may check them out with CRLF.
+    digest = hashlib.sha256(raw.replace(b"\r\n", b"\n")).hexdigest()
     if digest != EXPECTED_SHA256[name]:
         raise ValueError(f"Verified result changed: {path.name}")
     provenance[f"reports/results/{path.name}"] = digest

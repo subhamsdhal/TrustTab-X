@@ -29,7 +29,8 @@ def test_packaged_results_rebuild_and_provenance():
     assert len(packaged["datasets"]) == 5
     assert packaged["models"] == MODELS
     for path, digest in packaged["source_files_sha256"].items():
-        assert hashlib.sha256((RESULTS.parent.parent / path).read_bytes()).hexdigest() == digest
+        raw = (RESULTS.parent.parent / path).read_bytes()
+        assert hashlib.sha256(raw.replace(b"\r\n", b"\n")).hexdigest() == digest
 
 
 def test_builder_rejects_modified_result(tmp_path, monkeypatch):

@@ -27,6 +27,6 @@ From the project root:
 docker compose --file compose.yaml --project-name trusttabx-local --env-file .env up -d --build --no-deps trusttabx
 ```
 
-The builder reads six tracked `reports/results/*.json` files, verifies their pinned SHA-256 digests and locked M4.2 decision, then writes `src/trusttabx/m5_web/research_results.json` with provenance for every source. Tests compare the packaged values and browser chart geometry with their exact source values and reject changed source files. Never edit the packaged file by hand; regenerate it from the completed results.
+The builder reads six tracked `reports/results/*.json` files, verifies their pinned SHA-256 digests and locked M4.2 decision, then writes `src/trusttabx/m5_web/research_results.json` with provenance for every source. Hashes use Git's LF line endings so Windows and Linux checkouts agree. Tests compare the packaged values and browser chart geometry with their exact source values and reject changed source files. Never edit the packaged file by hand; regenerate it from the completed results.
 
 The research decision stays **No adaptive advantage demonstrated** and the release stays **Local Demo Only**. The source families are few, shopper months are related, and College Scorecard is a single cohort. No arbitrary-shift reliability or production deployment claim follows from this interface.

@@ -477,11 +477,11 @@
   ],
   "decision_explanation": "Across 13 nested source domains in three families, the metadata router did not beat both the source-selected fixed expert and weighted ensemble in every family. On November shopper sessions it lost to both controls; its December gain over the weighted ensemble was below the preregistered margin. The two months are related, and source-fixed selective acceptance was inconsistent.",
   "source_files_sha256": {
-    "reports/results/acs_income_2018_geographic_expanded.json": "99be91c2b36a9b4d4a08eacd2519994fa50feb1414b91df855187ca1950d344b",
-    "reports/results/tableshift_diabetes_12000.json": "5d63e625794ec514a85259edd10bbe2e3563006408cab1d0c53aeec5b916cf9d",
-    "reports/results/bank_temporal_2008_2010.json": "75e17e0524099f6a79ef37c79629ec57e7d361796c57ed8ac52b07d5e7b93af5",
-    "reports/results/college_scorecard_2025_confirmation.json": "add11b3b6875ea3bd4a6c819804d9f850b36e56fcd3e0235f618f2e7cdef3781",
-    "reports/results/m4_2_shopper_confirmation.json": "98b851dacb09ea3e30bab66e2f0339d885d125c125f093a89831745748cf5fe2",
-    "reports/results/m4_2_research_decision.json": "19cc909954d7ef4f6648601c467c7c5b0a90ae1e45f5975ef68bf289056235f0"
+    "reports/results/acs_income_2018_geographic_expanded.json": "6fc315daca56a346dec054eace667fd2785c6a7dfa271d7c4185a407a0f031ed",
+    "reports/results/tableshift_diabetes_12000.json": "56cae1c6ea72cd143a03f2f949f2a4cebf64ad4ddc80890dfec37bf5523d0e8d",
+    "reports/results/bank_temporal_2008_2010.json": "b54eecc0853c22d3cdaebac3b6b1bdd9aef85baf1b384a79aefdb0971769c707",
+    "reports/results/college_scorecard_2025_confirmation.json": "2a9392b28cf6d10f392a043dfe47f8cee9ae9dda70c654dfc8206c1f7c1d0044",
+    "reports/results/m4_2_shopper_confirmation.json": "7f2fd797453280a912b022fe9a2891503583dd74cc2d5a0b6ac40d2c01cb5fc8",
+    "reports/results/m4_2_research_decision.json": "389c4340e67a2f701597dd9e1d99371b34edcc0c3cf72baff2ef57281c7239b1"
   }
 }
