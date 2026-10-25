@@ -1,9 +1,12 @@
 # Private GitHub handoff
 
-**Current M8 note:** The M7 branch was pushed privately at `5a5c5f7`, and the
-reviewed M8 feature branch `codex/trusttabx-m8-closure` was pushed privately at
-`cce7567` with `[skip ci]`. The original empty-repository instructions below
-record the pre-publication checkpoint and are no longer the current upload state.
+**Current V1 note:** The private branch `codex/trusttabx-m8-closure` reached
+`2ac0ceac0fabe2790121a072b764c986f8342991` with passing GitHub Actions run
+`39901441762` on 23 October 2026. The original empty-repository instructions
+below record an earlier pre-publication checkpoint and are not current upload
+instructions.
+
+## Historical pre-publication checkpoint (21 October 2026)
 
 On 21 October 2026, GitHub CLI was authenticated as `subhamsdhal`. The private, empty repository [subhamsdhal/TrustTab-X](https://github.com/subhamsdhal/TrustTab-X) was created and verified with `visibility: PRIVATE` and `isEmpty: true`. The local `origin` remote points to it. **No branch, commit, model, raw data or portfolio file has been pushed.**
 

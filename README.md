@@ -26,7 +26,7 @@ Can an evidence-driven model-selection and abstention policy improve predictive 
 - Five fixed classical candidates for the bounded ACS task; source-selection Brier chooses one expert for M5.1 service inference. The research routers are disabled in the service because M4.2 found no adaptive advantage.
 - Conformal, calibration, selective-risk and drift research diagnostics with their shift limitations documented in the research report.
 - A versioned ACSIncome pipeline artifact, authenticated FastAPI predictions, local drift/delayed-label monitoring, structured privacy-conscious audit metadata and a browser dashboard.
-- Offline synthetic smoke, OpenML and natural-domain aggregate results, 43 automated tests, real local Docker Compose verification with a synthetic bundle, and a manual GitHub workflow that was not used for M8. Internal deployment gates remain open.
+- Offline synthetic smoke, OpenML and natural-domain aggregate results, 48 automated tests at the V1 closeout, real local Docker Compose verification with a synthetic bundle, and a manual GitHub workflow that was not used for M8. Internal deployment gates remain open.
 
 ## Quickstart
 

@@ -1,5 +1,48 @@
 # Final engineering verification — M8
 
+## V1 local closeout recheck — 25 October 2026
+
+The existing `Start-TrustTabX.ps1` launcher started Docker Desktop and reused the
+approved persistent `trusttabx-local` Compose container. `/health` returned ready
+with model `m5-acs-fixed-1`; Compose exposed only `127.0.0.1:8000`. A second start
+reused the same container. A Compose restart returned to ready. The existing
+`Stop-TrustTabX.ps1` launcher stopped only this service: the container remained
+present with exit code 0, and localhost port 8000 no longer served HTTP.
+
+Installed Edge rendered the live Research Explorer. A localhost-only headless
+browser check clicked all five dataset tabs: ACSIncome, healthcare admissions,
+bank marketing, College Scorecard and online shoppers. Each showed its expected
+shift bars, six policy bars and five source-selection model bars for Brier. The
+browser reported no JavaScript exceptions. The ECE view rendered available
+values and omitted unavailable College and nested-source policy ECE values. The
+manuscript endpoint returned HTTP 200. These are functional browser checks, not
+an accessibility or cross-browser certification.
+
+In the Secure live demo, the operator unlock succeeded with the existing ignored
+local key; the input cleared, and the key was absent from the page markup and
+URL. The approved model registry showed the fixed HistGradientBoosting expert.
+The documented non-sensitive example produced probability `0.598819776284426`,
+class `1` at threshold `0.5` and the OOD reliability warning. One-record drift
+inspection returned an illustrative alert and explicitly said that labels were
+unavailable. Telemetry counted one prediction. Earlier in-process checks with
+the same approved bundle confirmed anonymous model access returned 401,
+operator access to admin delayed-label evaluation returned 403, and the
+prediction probability matched the loaded pipeline exactly. No credential was
+printed or saved in the browser audit output.
+
+The closeout gates passed: 48 pytest tests (one existing Starlette/httpx
+deprecation warning), Ruff, `pip check`, M6/M7 research and portfolio integrity,
+static container checks, Compose configuration and a small synthetic smoke with
+its output under ignored `work/`. No tracked research result, figure, manuscript,
+model artifact or source file changed. This recheck did not rerun natural-domain
+training or the full synthetic M8 container integration suite described below.
+The release remains **Local Demo Only** with **no adaptive advantage demonstrated**.
+
+The package and FastAPI metadata both still report `0.1.0`. They are consistent
+with each other but predate the proposed portfolio tag `v1.0.0-local-demo`.
+Changing runtime/package version identifiers is unnecessary for this verified
+snapshot; a later package release should align them deliberately and retest.
+
 **Decision:** COMPLETE — research portfolio and container-verified local demo.
 The M4.2 scientific result remains **C: no adaptive advantage demonstrated**;
 the service uses the source-selected fixed expert. The engineering release remains

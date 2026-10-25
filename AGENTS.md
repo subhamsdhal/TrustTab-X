@@ -2,11 +2,11 @@
 
 You are implementing a research-first Data Science framework, not a demo that fabricates model wins.
 
-## Current repo state (2026-10-20)
+## Current repo state (2026-10-25)
 
-- The original v0.1 synthetic smoke pipeline remains reproducible.
-- M1 now includes a three-task OpenML-CC18 pilot; optional M2 classical experts and M3 stress tests have run. See `docs/AUTOPILOT_STATUS.md` and `RESULTS_VERIFICATION.md` for verified scope.
-- The architecture **does not yet have** foundation models, a learned adaptive router, or a backend.
+- The original v0.1 synthetic smoke pipeline and completed bounded real-data studies remain reproducible from their recorded protocols and sources.
+- The M4.2 decision is **no adaptive advantage demonstrated**. Research-only routers were evaluated; the local FastAPI backend serves a source-selected fixed ACSIncome expert. No TabPFN or other foundation-model experiment was completed.
+- The Research Explorer, secured local demo, Docker Compose setup and Windows launchers are implemented. The release classification is **Local Demo Only**. See `docs/RELEASE_SCOPE.md`, `docs/FINAL_ENGINEERING_VERIFICATION.md`, `docs/AUTOPILOT_STATUS.md` and `RESULTS_VERIFICATION.md` for scope and evidence.
 
 ## Non-negotiable rules
 
@@ -22,7 +22,7 @@ You are implementing a research-first Data Science framework, not a demo that fa
 
 ## Next task
 
-Continue from `docs/NEXT_CODEX_TASK.md`: expand the pinned pilot to repeated official folds and seeds, validate natural held-out domains and compute budgets, then evaluate a source-only router. Preserve offline fixture tests and never fetch OpenML data in CI.
+There is no further V1 research or engineering milestone. `docs/NEXT_CODEX_TASK.md` records the project closure. Preserve the locked findings and local-demo boundary; any later work requires a separately scoped request. Keep offline fixture tests and never fetch OpenML data in CI.
 
 ## Dev commands
 

@@ -1,6 +1,6 @@
 # M6 reproducibility guide
 
-Run commands from `D:\TrustTab-X` on branch `codex/trusttabx-autopilot`. Python 3.10+ is required. The development environment for this checkpoint is Windows PowerShell with the committed `constraints/m5.txt`; set BLAS thread limits on this constrained host. Raw archives, fitted bundles and caches remain ignored. No command below silently fetches a raw natural-domain dataset merely to regenerate the paper figures.
+Run commands from `D:\TrustTab-X` on the V1 closeout branch `codex/trusttabx-m8-closure`. Python 3.10+ is required. The development environment for this checkpoint is Windows PowerShell with the committed `constraints/m5.txt`; set BLAS thread limits on this constrained host. Raw archives, fitted bundles and caches remain ignored. No command below silently fetches a raw natural-domain dataset merely to regenerate the paper figures.
 
 ## Fast independent checks from tracked evidence
 
@@ -45,7 +45,7 @@ The command-line experiment modules and their arguments are defined under `src/t
 .\.venv\Scripts\trusttabx.exe benchmark --output outputs/openml_m1_pilot.json
 ```
 
-The natural benchmark commands and per-run source versions are preserved in the corresponding manifest and `RESULTS_VERIFICATION.md`. Full natural reruns are substantially more expensive than figure regeneration; do them only after confirming source access, package versions and compute budget. For the ACS service artifact and loopback demo, use the [README quickstart](../README.md#local-m5-acsincome-demonstration) and [API contract](M5_API.md). Docker verification remains a separate open gate under [M5 Docker](M5_DOCKER.md); it was not run on this host.
+The natural benchmark commands and per-run source versions are preserved in the corresponding manifest and `RESULTS_VERIFICATION.md`. Full natural reruns are substantially more expensive than figure regeneration; do them only after confirming source access, package versions and compute budget. For the ACS service artifact and loopback demo, use the [README quickstart](../README.md#local-m5-acsincome-demonstration) and [API contract](M5_API.md). The Docker and Compose runtime passed the synthetic M8 integration suite on this Windows host; see [M5 Docker](M5_DOCKER.md) and [final engineering verification](FINAL_ENGINEERING_VERIFICATION.md). The synthetic container run does not establish real-data inference quality or external deployment readiness.
 
 The core natural-domain entry points, with raw archives already placed at the paths shown, are:
 
